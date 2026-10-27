@@ -1,0 +1,108 @@
+{
+  "version": 3,
+  "retrieval": {
+    "k": 3,
+    "relevance": "family-level useful principles; not a diagnosis verdict",
+    "relevant_ids": {
+      "spelling_variant": [
+        "K005",
+        "K006",
+        "K010",
+        "K017",
+        "K018",
+        "K019"
+      ],
+      "cross_script": [
+        "K007",
+        "K010"
+      ],
+      "synonym_gap": [
+        "K008",
+        "K010",
+        "K018",
+        "K019"
+      ],
+      "garbage_split": [
+        "K001",
+        "K002",
+        "K003",
+        "K005",
+        "K011",
+        "K016",
+        "K017"
+      ],
+      "compound_locked": [
+        "K003",
+        "K004",
+        "K009",
+        "K017",
+        "K018"
+      ]
+    },
+    "metrics": [
+      "hit@3",
+      "MRR@3",
+      "per-family hit@3",
+      "empty retrieval count"
+    ],
+    "exclusions": [
+      "healthy",
+      "unknown",
+      "insufficient",
+      "out_of_scope"
+    ]
+  },
+  "generation": {
+    "cause": "Report literal family match and raw supported/abstain separately. Reference hypotheses are not adjudicated correctness; both conditions same labels. No claim of diagnostic accuracy without human review.",
+    "abstention": "healthy/unknown/insufficient/out_of_scope require abstain AND no patches; report invalid separately; summary appropriateness pending independent review. Failure cases: supported-family match, wrong family, abstain, invalid separately; no penalizing cautious abstention as automatic error.",
+    "citation_trace": "Only provided body or contiguous excerpt; title-only and edited wording fail.",
+    "semantic_support": "requires_independent_human_review; reviewer checks query observation -> quoted principle -> cause, alternative causes, insufficiency; status pending until named independent reviewer actually adjudicates.",
+    "patch_structure": "Strict terms, reconstruction, duplicate and no patch on abstain; record raw attempted patch even if invalid.",
+    "patch_effect": "Apply only validated executable candidates in isolated engine; all qrels-bearing evaluation queries and original development gate separately; no patch counted as improvement if not run.",
+    "wrong_patch": "any patch for abstain-required cases; structural invalidity; measured regressions; semantic error pending human review"
+  },
+  "paid_case_ids": [
+    "T01",
+    "T02",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T05",
+    "T09",
+    "T17",
+    "T21",
+    "T23",
+    "T24"
+  ],
+  "price_assumption": {
+    "model": "gpt-5.4-mini-2026-03-17",
+    "calls": 24,
+    "max_output_tokens": 800,
+    "max_request_bytes": 11000,
+    "reserved_usd_per_call": 0.0125,
+    "total_reservation_usd": 0.3,
+    "approval": "NOT APPROVED - never execute on this instruction"
+  },
+  "search_config": {
+    "user_words": [
+      {
+        "form": "목공접착제"
+      },
+      {
+        "form": "식기건조대"
+      },
+      {
+        "form": "손목보호대"
+      },
+      {
+        "form": "습도측정기"
+      }
+    ]
+  },
+  "preconditions": {
+    "compound": "4 positive queries must have raw name match, no complete query-token coverage in target index, zero baseline results, and improve with reconstructing compound expansion. Abort before reporting scores if false.",
+    "healthy": "8 full-name queries must retrieve designated item at rank1; abort if false. Compare raw-substring-gap false signals separately from cause predictions.",
+    "other_families": "authored semantic intent; no independent adjudication. No new garbage_split examples; report n=0, not success."
+  }
+}

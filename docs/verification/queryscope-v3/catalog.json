@@ -1,0 +1,98 @@
+[
+  {
+    "doc_id": "R001",
+    "name": "목공접착제",
+    "description": "목재를 붙이는 용액",
+    "category": "공예"
+  },
+  {
+    "doc_id": "R002",
+    "name": "식기건조대",
+    "description": "씻은 그릇을 올려 놓는 받침",
+    "category": "주방"
+  },
+  {
+    "doc_id": "R003",
+    "name": "손목보호대",
+    "description": "관절을 감싸는 밴드",
+    "category": "보호"
+  },
+  {
+    "doc_id": "R004",
+    "name": "습도측정기",
+    "description": "공기 중 수분의 비율을 확인하는 장치",
+    "category": "측정"
+  },
+  {
+    "doc_id": "R005",
+    "name": "휴대용 계수기",
+    "description": "수를 세는 소형 장치",
+    "category": "측정"
+  },
+  {
+    "doc_id": "R006",
+    "name": "보관용 악보집",
+    "description": "음악 기호를 모은 책",
+    "category": "음악"
+  },
+  {
+    "doc_id": "R007",
+    "name": "세척용 비커",
+    "description": "액체를 담는 실험 기구",
+    "category": "실험"
+  },
+  {
+    "doc_id": "R008",
+    "name": "촬영용 반사판",
+    "description": "빛을 반사하는 판",
+    "category": "사진"
+  },
+  {
+    "doc_id": "R009",
+    "name": "연습용 오카리나",
+    "description": "연주를 배우는 관악기",
+    "category": "음악"
+  },
+  {
+    "doc_id": "R010",
+    "name": "휴대용 루페",
+    "description": "세밀한 부분을 확대하는 기구",
+    "category": "광학"
+  },
+  {
+    "doc_id": "R011",
+    "name": "보관용 도면집",
+    "description": "설계 그림을 묶은 책",
+    "category": "설계"
+  },
+  {
+    "doc_id": "R012",
+    "name": "실험용 피펫홀더",
+    "description": "기구를 세워 고정하는 받침",
+    "category": "실험"
+  },
+  {
+    "doc_id": "R013",
+    "name": "도예용 팔레트",
+    "description": "여러 색을 섞는 판",
+    "category": "미술"
+  },
+  {
+    "doc_id": "R014",
+    "name": "수채 파스텔",
+    "description": "그림을 그리는 색채 도구",
+    "category": "미술"
+  },
+  {
+    "doc_id": "R015",
+    "name": "광학 현미경",
+    "description": "미세한 대상을 확대하는 관찰 장치",
+    "category": "광학"
+  },
+  {
+    "doc_id": "R016",
+    "name": "기계식 메트로놈",
+    "description": "일정한 박자를 알려 주는 도구",
+    "category": "음악"
+  }
+]

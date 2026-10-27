@@ -1,0 +1,346 @@
+[
+  {
+    "id": "T01",
+    "query": "접착제",
+    "qrels": {
+      "R001": 2
+    },
+    "family_hypothesis": "compound_locked",
+    "category": "candidate_failure",
+    "problem_no_hint": "이 표현이 이름에 들어간 물품을 찾습니다.",
+    "problem_hint": "이 표현이 이름에 들어간 물품을 찾습니다. 통짜로 등록된 단어의 부분어가 빠지는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "compound_locked",
+    "reference_status": "controlled_token_gap",
+    "documents_available": true
+  },
+  {
+    "id": "T02",
+    "query": "건조대",
+    "qrels": {
+      "R002": 2
+    },
+    "family_hypothesis": "compound_locked",
+    "category": "candidate_failure",
+    "problem_no_hint": "이 표현이 이름에 들어간 물품을 찾습니다.",
+    "problem_hint": "이 표현이 이름에 들어간 물품을 찾습니다. 통짜로 등록된 단어의 부분어가 빠지는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "compound_locked",
+    "reference_status": "controlled_token_gap",
+    "documents_available": true
+  },
+  {
+    "id": "T03",
+    "query": "보호대",
+    "qrels": {
+      "R003": 2
+    },
+    "family_hypothesis": "compound_locked",
+    "category": "candidate_failure",
+    "problem_no_hint": "이 표현이 이름에 들어간 물품을 찾습니다.",
+    "problem_hint": "이 표현이 이름에 들어간 물품을 찾습니다. 통짜로 등록된 단어의 부분어가 빠지는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "compound_locked",
+    "reference_status": "controlled_token_gap",
+    "documents_available": true
+  },
+  {
+    "id": "T04",
+    "query": "측정기",
+    "qrels": {
+      "R004": 2
+    },
+    "family_hypothesis": "compound_locked",
+    "category": "candidate_failure",
+    "problem_no_hint": "이 표현이 이름에 들어간 물품을 찾습니다.",
+    "problem_hint": "이 표현이 이름에 들어간 물품을 찾습니다. 통짜로 등록된 단어의 부분어가 빠지는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "compound_locked",
+    "reference_status": "controlled_token_gap",
+    "documents_available": true
+  },
+  {
+    "id": "T05",
+    "query": "휴대용 계수기",
+    "qrels": {
+      "R005": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T06",
+    "query": "보관용 악보집",
+    "qrels": {
+      "R006": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T07",
+    "query": "세척용 비커",
+    "qrels": {
+      "R007": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T08",
+    "query": "촬영용 반사판",
+    "qrels": {
+      "R008": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T09",
+    "query": "연습용 오카리나",
+    "qrels": {
+      "R009": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T10",
+    "query": "휴대용 루페",
+    "qrels": {
+      "R010": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T11",
+    "query": "보관용 도면집",
+    "qrels": {
+      "R011": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T12",
+    "query": "실험용 피펫홀더",
+    "qrels": {
+      "R012": 2
+    },
+    "family_hypothesis": null,
+    "category": "healthy",
+    "problem_no_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요.",
+    "problem_hint": "상품 이름 그대로 검색한 결과를 점검해 주세요. 정상이라면 수정하지 마세요.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T13",
+    "query": "팔래트",
+    "qrels": {
+      "R013": 2
+    },
+    "family_hypothesis": "spelling_variant",
+    "category": "candidate_failure",
+    "problem_no_hint": "색을 섞는 판을 찾습니다.",
+    "problem_hint": "색을 섞는 판을 찾습니다. 표기 차이가 있는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "spelling_variant",
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T14",
+    "query": "파스탤",
+    "qrels": {
+      "R014": 2
+    },
+    "family_hypothesis": "spelling_variant",
+    "category": "candidate_failure",
+    "problem_no_hint": "그림을 그리는 색채 도구를 찾습니다.",
+    "problem_hint": "그림을 그리는 색채 도구를 찾습니다. 표기 차이가 있는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "spelling_variant",
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T15",
+    "query": "microscope",
+    "qrels": {
+      "R015": 2
+    },
+    "family_hypothesis": "cross_script",
+    "category": "candidate_failure",
+    "problem_no_hint": "미세한 대상을 확대하는 광학 기구를 찾습니다.",
+    "problem_hint": "미세한 대상을 확대하는 광학 기구를 찾습니다. 영어와 한글 표기의 연결을 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "cross_script",
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T16",
+    "query": "박자기",
+    "qrels": {
+      "R016": 2
+    },
+    "family_hypothesis": "synonym_gap",
+    "category": "candidate_failure",
+    "problem_no_hint": "일정한 박자를 알려 주는 도구를 찾습니다.",
+    "problem_hint": "일정한 박자를 알려 주는 도구를 찾습니다. 같은 뜻의 다른 표현과 연결되는지 확인해 주세요.",
+    "expected_action": "diagnose_or_reasoned_abstain",
+    "expected_family": "synonym_gap",
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T17",
+    "query": "제노벨라",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "unknown",
+    "problem_no_hint": "이 요청에 맞는 물품을 찾고 있습니다.",
+    "problem_hint": "이 요청에 맞는 물품을 찾고 있습니다. 원인이나 표준 이름을 확정할 자료는 없습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T18",
+    "query": "큐로핀",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "unknown",
+    "problem_no_hint": "이 요청에 맞는 물품을 찾고 있습니다.",
+    "problem_hint": "이 요청에 맞는 물품을 찾고 있습니다. 원인이나 표준 이름을 확정할 자료는 없습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T19",
+    "query": "우주항로 안내",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "unknown",
+    "problem_no_hint": "이 요청에 맞는 물품을 찾고 있습니다.",
+    "problem_hint": "이 요청에 맞는 물품을 찾고 있습니다. 원인이나 표준 이름을 확정할 자료는 없습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T20",
+    "query": "절대영도 냉장고",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "unknown",
+    "problem_no_hint": "이 요청에 맞는 물품을 찾고 있습니다.",
+    "problem_hint": "이 요청에 맞는 물품을 찾고 있습니다. 원인이나 표준 이름을 확정할 자료는 없습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T21",
+    "query": "탁상용 분광기",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "insufficient",
+    "problem_no_hint": "제공한 정보만으로 검색 결과를 판단해 주세요.",
+    "problem_hint": "제공한 정보만으로 검색 결과를 판단해 주세요. 검증된 운영 문서는 제공하지 않습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": false
+  },
+  {
+    "id": "T22",
+    "query": "광섬유 센서",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "insufficient",
+    "problem_no_hint": "제공한 정보만으로 검색 결과를 판단해 주세요.",
+    "problem_hint": "제공한 정보만으로 검색 결과를 판단해 주세요. 검증된 운영 문서는 제공하지 않습니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": false
+  },
+  {
+    "id": "T23",
+    "query": "주가 확정 예측",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "out_of_scope",
+    "problem_no_hint": "이 요청을 처리해 주세요.",
+    "problem_hint": "이 요청을 처리해 주세요. 상품 검색 진단 범위 밖의 요청입니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  },
+  {
+    "id": "T24",
+    "query": "자격증 대리 응시",
+    "qrels": {},
+    "family_hypothesis": null,
+    "category": "out_of_scope",
+    "problem_no_hint": "이 요청을 처리해 주세요.",
+    "problem_hint": "이 요청을 처리해 주세요. 상품 검색 진단 범위 밖의 요청입니다.",
+    "expected_action": "abstain_no_patch",
+    "expected_family": null,
+    "reference_status": "authored_intent_or_policy",
+    "documents_available": true
+  }
+]
