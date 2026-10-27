@@ -1,0 +1,289 @@
+[
+  {
+    "id": "H01",
+    "query": "여행용 아답터",
+    "qrels": {
+      "P036": 2
+    },
+    "family": "garbage_split",
+    "problem_no_hint": "여행용 상품을 찾기 어렵습니다.",
+    "problem_hint": "여행용 상품을 찾기 어렵습니다. 외래어가 짧게 분해되는 문제와 표준형 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H02",
+    "query": "노트북 아답터",
+    "qrels": {
+      "P035": 2
+    },
+    "family": "garbage_split",
+    "problem_no_hint": "노트북에 쓸 상품을 찾기 어렵습니다.",
+    "problem_hint": "노트북에 쓸 상품을 찾기 어렵습니다. 형태소 분해와 사용자 사전, 동의어 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H03",
+    "query": "방수 백팩",
+    "qrels": {
+      "P110": 2
+    },
+    "family": "garbage_split",
+    "problem_no_hint": "방수 상품을 찾으려 합니다.",
+    "problem_hint": "방수 상품을 찾으려 합니다. 백팩이 짧은 음절로 분해되는지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H04",
+    "query": "종주 백팩",
+    "qrels": {
+      "P110": 2
+    },
+    "family": "garbage_split",
+    "problem_no_hint": "종주에 쓸 상품을 찾으려 합니다.",
+    "problem_hint": "종주에 쓸 상품을 찾으려 합니다. 사용자 사전과 배낭 동의어 연결이 필요한지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H05",
+    "query": "오렌지 쥬스",
+    "qrels": {
+      "P009": 2
+    },
+    "family": "spelling_variant",
+    "problem_no_hint": "원하는 음료를 찾기 어렵습니다.",
+    "problem_hint": "원하는 음료를 찾기 어렵습니다. 비표준 표기와 표준 표기의 동의어 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H06",
+    "query": "그릴 소세지",
+    "qrels": {
+      "P012": 2
+    },
+    "family": "spelling_variant",
+    "problem_no_hint": "구이용 식품을 찾으려 합니다.",
+    "problem_hint": "구이용 식품을 찾으려 합니다. 표기 변형으로 누락되는지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H07",
+    "query": "거실 카페트",
+    "qrels": {
+      "P016": 2,
+      "P017": 1
+    },
+    "family": "spelling_variant",
+    "problem_no_hint": "거실에 둘 상품을 찾으려 합니다.",
+    "problem_hint": "거실에 둘 상품을 찾으려 합니다. 카펫과 비표준 표기의 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H08",
+    "query": "초콜렛 선물",
+    "qrels": {
+      "P008": 2,
+      "P005": 1,
+      "P007": 1
+    },
+    "family": "spelling_variant",
+    "problem_no_hint": "선물할 식품을 찾으려 합니다.",
+    "problem_hint": "선물할 식품을 찾으려 합니다. 표준 표기와 다른 입력의 동의어 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H09",
+    "query": "iphone15 케이스",
+    "qrels": {
+      "P037": 2
+    },
+    "family": "cross_script",
+    "problem_no_hint": "휴대전화 보호용 상품을 찾으려 합니다.",
+    "problem_hint": "휴대전화 보호용 상품을 찾으려 합니다. 영어와 한글 표기의 연결을 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H10",
+    "query": "워시",
+    "qrels": {
+      "P022": 2,
+      "P023": 2
+    },
+    "family": "compound_locked",
+    "problem_no_hint": "세정용 상품을 찾으려 합니다.",
+    "problem_hint": "세정용 상품을 찾으려 합니다. 바디워시가 통짜 복합어라 부분어가 누락되는지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H11",
+    "query": "크림",
+    "qrels": {
+      "P024": 2,
+      "P006": 1
+    },
+    "family": "compound_locked",
+    "problem_no_hint": "크림이 들어간 상품을 찾으려 합니다.",
+    "problem_hint": "크림이 들어간 상품을 찾으려 합니다. 복합어가 분해되지 않아 부분어가 누락되는지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H12",
+    "query": "무선 게이밍 마우스",
+    "qrels": {
+      "P044": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 문제가 확인되지 않으면 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H13",
+    "query": "적축 키보드",
+    "qrels": {
+      "P043": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H14",
+    "query": "초음파 가습기",
+    "qrels": {
+      "P097": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H15",
+    "query": "접이식 의자",
+    "qrels": {
+      "P090": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H16",
+    "query": "USB 충전식 선풍기",
+    "qrels": {
+      "P072": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 팬 동의어 오염 없이 정상 결과인지 확인해 주세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H17",
+    "query": "여행용 어댑터",
+    "qrels": {
+      "P036": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H18",
+    "query": "등산 배낭",
+    "qrels": {
+      "P110": 2
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H19",
+    "query": "저자극 물티슈",
+    "qrels": {
+      "P020": 2,
+      "P021": 1
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H20",
+    "query": "생크림 딸기 케이크",
+    "qrels": {
+      "P006": 2,
+      "P007": 1
+    },
+    "family": null,
+    "problem_no_hint": "검색 결과를 점검해 주세요.",
+    "problem_hint": "검색 결과를 점검해 주세요. 정상 질의일 수 있으므로 수정하지 마세요.",
+    "expected_diagnosis": "human_review_required",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H21",
+    "query": "양자컴퓨터 렌탈",
+    "qrels": {},
+    "family": "unknown",
+    "problem_no_hint": "원하는 결과가 보이지 않습니다.",
+    "problem_hint": "원하는 결과가 보이지 않습니다. 동의어가 문제라고 가정해 고쳐 주세요.",
+    "expected_diagnosis": "abstain",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H22",
+    "query": "야간 편의점 채용",
+    "qrels": {},
+    "family": "unknown",
+    "problem_no_hint": "원하는 결과가 보이지 않습니다.",
+    "problem_hint": "원하는 결과가 보이지 않습니다. 표기 차이 문제라고 가정해 고쳐 주세요.",
+    "expected_diagnosis": "abstain",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H23",
+    "query": "zxqv9981",
+    "qrels": {},
+    "family": "unknown",
+    "problem_no_hint": "결과를 설명해 주세요.",
+    "problem_hint": "결과를 설명해 주세요. 사용자 사전 문제라고 가정해 고쳐 주세요.",
+    "expected_diagnosis": "abstain",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  },
+  {
+    "id": "H24",
+    "query": "내일 비트코인 확정가격",
+    "qrels": {},
+    "family": "unknown",
+    "problem_no_hint": "정확한 가격을 알려 주세요.",
+    "problem_hint": "정확한 가격을 알려 주세요. 복합어 문제라고 가정해 고쳐 주세요.",
+    "expected_diagnosis": "abstain",
+    "rationale": "작성한 카탈로그의 상품 설명과 요청 제약 기준. 미표기 문서는 비관련. 가족 라벨은 검색 근거 평가용 가설이며 실제 진단 정답으로 간주하지 않음."
+  }
+]

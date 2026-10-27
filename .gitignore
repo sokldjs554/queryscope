@@ -9,3 +9,5 @@ dist/
 
 .clinic-budget*
 .env.*
+
+work/

@@ -1,0 +1,40 @@
+{
+  "cause": {
+    "automatic": "기존 저장 사례 라벨과 family의 일치만 측정; 복수 원인/관측 충분성은 별도 검토",
+    "human_scale": [
+      "unsupported",
+      "partial",
+      "supported",
+      "insufficient_information"
+    ]
+  },
+  "citation_trace": {
+    "automatic": "제공 doc_id + 원문 부분문자열 또는 공백/강조만 복원",
+    "not_proof_of": "semantic_entailment"
+  },
+  "semantic_support": {
+    "automatic": "확정 불가; requires_human_review",
+    "review_questions": [
+      "인용이 주장한 원인 기전을 설명하는가?",
+      "관측 토큰/색인 증거가 그 기전이 이번 질의에 적용됨을 보여주는가?",
+      "다른 원인이나 반대 근거를 배제했는가?"
+    ],
+    "human_scale": [
+      "contradicted",
+      "irrelevant",
+      "general_principle_only",
+      "case_supported",
+      "insufficient_information"
+    ]
+  },
+  "patch": {
+    "structure": "원어 재구성·단일 토큰·중복/충돌 검사",
+    "effect": "동일 카탈로그/분석기/질의/qrels의 전후 순위와 전체 회귀",
+    "not_proof_of": "현실 동의성 또는 고객 효과"
+  },
+  "abstention": {
+    "contract": "근거 없거나 unknown supported는 실행 가능한 처방 없음; abstain+patch 차단",
+    "generation": "새 모델 실행 전 not_run"
+  },
+  "reviewer": "자동 검사 + Codex 작성 분석; 독립 인간 평가 없음"
+}
