@@ -5,7 +5,7 @@
 - 전체 pytest: **378 passed, 1 skipped, 2 deselected**, 84.83초. [기록](checks/pytest.txt).
 - 기본 검색 평균 nDCG0.5839 유지. [기록](checks/baseline.txt).
 - 기존 v1/v2/실제 API와 재생 원자료83파일의 바이트를 base `e8f967c`와 비교해 모두 동일. [보존 해시](preservation.json).
-- v2 오프라인 실험을 재실행했고 검색·순위·수정·novelty·과거 응답 사후검증 6개 결과 영역이 모두 동일. [비교](v2-reproduction.json).
+- v2 오프라인 실험을 재실행했고 검색·순위·수정·novelty·과거 응답 사후검증 6개 결과 영역이 모두 동일. [비교](v2-reproduction.json). v2 무료 준비물24개의 입력·컨텍스트·요청 payload·해시도 동일하게 재현했다([기록](prepared-v2-reproduction.json)).
 - 1440/320/390/650px에서 [v3 비교](browser/checks.json)와 [기존 재생](browser-replay/checks.json)을 검사했다. 입력24개 선택 목록, 5계열(n=0 포함), 순위24행, 원문 펼침, 근거 없는 경우, 범위 밖, 다운로드·취소·로딩 실패·가로 넘침·JS 오류를 확인했다. 실제 생성 화면 상태 전환에 한해 명시적 테스트 응답을 사용했으며 모델 성능에 포함하지 않았다.
 - 실제 loopback HTTP: 준비2264.32ms, 준비 후 GET120회 모두200, p50 0.892ms / p95 **1.822ms** / 최대4.154ms. 기본 생성 요청503, 빈 입력422, 생성 요청 집계0. [원자료](operations/operations.json). 정적 자료·상태 조회이며 모델 지연이나 공개 SLA가 아니다.
 
@@ -21,9 +21,11 @@
 - https://queryscope-zwia.onrender.com/evaluation-v3.html (이번 오프라인 비교)
 - v1/v2 비교 주소와 저장 결과는 보존한다.
 
-21:22:56 한국 시각에 기존 공개 v2 주소로 실제 HTTPS 접속을 시도했지만 실행 환경 프록시가 CONNECT403을 반환했다. 공개 서버의 HTTP403을 확인한 것이 아니라 서버 연결 전 프록시 거부이다. 제한을 우회하지 않았다. 외부 브라우저 접근·HTTP200·가용성을 검증한 것으로 표시하지 않는다.
+21:22:56 한국 시각에 기존 공개 v2 주소로 실제 HTTPS 접속을 시도했지만 실행 환경 프록시가 CONNECT403을 반환했다. 공개 서버의 HTTP403을 확인한 것이 아니라 서버 연결 전 프록시 거부이다. v3 주소도 같은 프록시 거부였고 웹 도구도 해당 URL 접근 불가를 보고했다. [접속 기록](checks/public-access-before-deploy.txt). 제한을 우회하지 않았다. 외부 브라우저 접근·HTTP200·가용성을 검증한 것으로 표시하지 않는다.
 
 Render는 사용자 지정 `my2 workspace` (`tea-db9hb2dg1s2s738nd1a0`), 정적 서비스 `srv-dbg6rtflk1mc73cok690`이다. 자동배포는 꺼져 있다. 저장 HTML/JS/JSON만 게시하며 API 키·생성 서버는 게시하지 않는다. 최종 CI·배포 ID/상태는 완료 후 이 기록에 추가한다.
+
+[최종 코드 검토](REVIEW.md)에서는 차단 이슈0건이며 별도 집중 테스트17개와 원자료 대조를 통과했다. 독립 인간 의미 평가와는 다르다.
 
 ## 미실행
 
