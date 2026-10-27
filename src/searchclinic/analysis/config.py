@@ -28,7 +28,7 @@ class UserWord(BaseModel):
     @field_validator("form")
     @classmethod
     def _no_space(cls, v: str) -> str:
-        if " " in v:
+        if any(c.isspace() for c in v):
             raise ValueError("사용자 사전 항목에 공백이 올 수 없다")
         return v
 
@@ -46,7 +46,7 @@ class SynonymGroup(BaseModel):
     @classmethod
     def _distinct_and_clean(cls, v: list[str]) -> list[str]:
         cleaned = [t.strip() for t in v]
-        if any(not t or " " in t for t in cleaned):
+        if any(not t or any(c.isspace() for c in t) for t in cleaned):
             raise ValueError("동의어 항목은 공백 없는 단일 토큰이어야 한다")
         if len(set(cleaned)) != len(cleaned):
             raise ValueError("동의어 그룹에 중복 항목이 있다")
@@ -70,6 +70,8 @@ class CompoundExpansion(BaseModel):
 
     @model_validator(mode="after")
     def _parts_reconstruct_word(self) -> "CompoundExpansion":
+        if any(c.isspace() for c in self.word) or any(c.isspace() for p in self.parts for c in p):
+            raise ValueError("복합어와 부분어에 공백이 올 수 없다")
         if "".join(self.parts) != self.word:
             raise ValueError(
                 f"부분어를 이어 붙이면 원어가 돼야 한다: "

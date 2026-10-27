@@ -8,38 +8,37 @@ import uuid
 from collections import OrderedDict
 from datetime import datetime, timezone
 from searchclinic.rag.explanation import validate_explanation
-from searchclinic.rag.knowledge import KnowledgeDoc
 from searchclinic.rag.retriever import KnowledgeRetriever
 from searchclinic.service import ClinicService, ToolFailed
 
 class ExplanationService:
-    def __init__(self, clinic: ClinicService, provider=None, retriever=None):
+    def __init__(self, clinic: ClinicService, provider=None, retriever=None, retrieval_strategy='observed'):
         self.clinic=clinic
         self.provider=provider
         self.retriever=retriever or KnowledgeRetriever(mode='bm25')
+        self.retrieval_strategy=retrieval_strategy
         self._reports=OrderedDict()
         self._lock=threading.RLock()
 
     def context(self, query: str, problem: str) -> tuple[dict,list[KnowledgeDoc]]:
         if not query.strip() or len(query)>100 or len(problem)>500:
             raise ToolFailed('질의는 1~100자, 관찰 내용은 500자 이하입니다.')
-        # Labels/families/qrels are intentionally absent from the context.
-        hits=self.retriever.retrieve(query+' '+problem,k=3)
-        docs=[KnowledgeDoc(h.doc.doc_id,h.doc.title,h.doc.body[:400],h.doc.source) for h in hits]
-        context={'query':query,'problem':problem,
-            'analysis':self.clinic.analyze(query), 'search':self.clinic.search(query,k=3),
-            'documents':[{'id':d.doc_id,'title':d.title,'body':d.body,'source':d.source} for d in docs]}
-        return context,docs
+        from searchclinic.rag.observations import build_context
+        return build_context(self.clinic.baseline_engine, self.retriever, query, problem,
+                             self.retrieval_strategy)
 
     def explain(self, query: str, problem: str) -> dict:
         from searchclinic.rag.openai_provider import ProviderError
         if self.provider is None:
             raise ProviderError('provider_not_configured')
         context,docs=self.context(query,problem)
-        generated=self.provider.generate(context)
+        from searchclinic.rag.observations import model_context
+        transmitted=model_context(context) if self.retrieval_strategy=='observed' else context
+        generated=self.provider.generate(transmitted)
         answer=validate_explanation(generated['raw'],docs,query)
         report={'id':uuid.uuid4().hex,'mode':'live','created_at':datetime.now(timezone.utc).isoformat(),
             'context':context,'context_sha256':hashlib.sha256(json.dumps(context,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),
+            'model_context':transmitted,'model_context_sha256':hashlib.sha256(json.dumps(transmitted,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),
             'answer':answer,'generation':generated,'gate':None,'session_id':None}
         with self._lock:
             self._reports[report['id']]=report

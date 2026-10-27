@@ -174,7 +174,7 @@ def main():
         'unanswerable_with_results_before':sum(r['before']['n_results']>0 for r in rows if not r['qrels']),
         'unanswerable_with_results_after':sum(r['after']['n_results']>0 for r in rows if not r['qrels'])}}
     save()
-    svc=ExplanationService(ClinicService())
+    svc=ExplanationService(ClinicService(), retrieval_strategy='legacy')
     report['new_hint_ablation']=ablations(cases,svc)
     oldcases=json.loads((ROOT/'docs/verification/alba-20261027/cases.json').read_text(encoding='utf-8'))
     report['legacy_hint_ablation']=ablations([{'id':c['id'],'query':c['query'],'family':c['category'],

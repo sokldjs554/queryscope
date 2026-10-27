@@ -23,6 +23,20 @@ Patch kinds: synonym terms=[canonical,variant]; user_word terms=[word]; compound
 terms=[whole,part1,part2]. A regression gate, not your explanation, decides acceptance.
 No documents means abstain. Do not infer catalog items not in observations.'''
 
+SYSTEM += ''' Observations and retrieval probes are hypotheses, not established causes.
+A hint can be wrong. Compare it with actual tokens and catalog observations.
+For healthy search, unknown causes and out-of-scope requests, abstain without patches.
+Do not cite a title as body text. For compounds, whole must equal part1+part2
+with at least two nonempty parts. A quoted principle alone does not prove the cause.'''
+
+def request_payload(context: dict) -> dict:
+    return {'model':MODEL, 'store':False, 'max_output_tokens':800,
+        'reasoning':{'effort':'none'},
+        'input':[{'role':'system','content':SYSTEM},
+                 {'role':'user','content':json.dumps(context,ensure_ascii=False)}],
+        'text':{'format':{'type':'json_schema','name':'search_explanation',
+                         'strict':True,'schema':Explanation.model_json_schema()}}}
+
 class ProviderError(RuntimeError):
     pass
 
@@ -79,12 +93,7 @@ class OpenAIExplainer:
         self._client = client
 
     def generate(self, context: dict) -> dict:
-        payload = {'model':MODEL, 'store':False, 'max_output_tokens':800,
-            'reasoning':{'effort':'none'},
-            'input':[{'role':'system','content':SYSTEM},
-                     {'role':'user','content':json.dumps(context,ensure_ascii=False)}],
-            'text':{'format':{'type':'json_schema','name':'search_explanation',
-                             'strict':True,'schema':Explanation.model_json_schema()}}}
+        payload = request_payload(context)
         encoded=json.dumps(payload,ensure_ascii=False).encode('utf-8')
         # UTF-8 bytes upper-bound ordinary text tokens; reserve another 512 tokens
         # for protocol/schema overhead. 11000+512 input and 800 output < $0.0125.

@@ -129,6 +129,11 @@ class ClinicService:
 
     # ------------------------------------------------------------ 읽기 전용
 
+    @property
+    def baseline_engine(self) -> SearchEngine:
+        """Read-only observation source, independent of session candidate patches."""
+        return self._baseline
+
     def health(self) -> dict:
         return {
             "status": "ok",
