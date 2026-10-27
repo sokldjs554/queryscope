@@ -6,8 +6,9 @@ import os
 from pathlib import Path
 from searchclinic.corpus.evalset import EvalQuery
 from searchclinic.index.engine import SearchEngine
+from searchclinic.analysis.config import AnalyzerConfig
 from searchclinic.rag.retriever import KnowledgeRetriever
-from searchclinic.rag.observations import model_context
+from searchclinic.rag.observations import model_context,build_context
 from searchclinic.evaluation.queryscope_v2 import (
     ROOT,load_bundle,file_sha,json_sha,write_json,paired_context,assess_generation,
 )
@@ -17,16 +18,35 @@ from searchclinic.evaluation.queryscope_v2 import (
 CAMPAIGN_STATE_ROOT=ROOT/'work/llm-campaigns'
 
 
-def prepare(output):
+def campaign_bundle(suite):
+    if suite not in {'queryscope-v2','queryscope-v3'}:
+        raise ValueError('unknown_suite')
+    return load_bundle(ROOT/'docs/verification'/suite)
+
+
+def campaign_engine(bundle):
+    engine=SearchEngine(bundle['catalog'],AnalyzerConfig(**bundle['rubric'].get('search_config',{})))
+    if bundle['rubric'].get('version')==3:
+        from searchclinic.evaluation.controlled_cases import validate_controls
+        validation,_=validate_controls(bundle,engine)
+        if not validation['passed']:raise ValueError('control_precondition_failed')
+    return engine
+
+
+def prepare(output,*,suite='queryscope-v2'):
     from searchclinic.rag.openai_provider import MODEL,MAX_REQUEST_BYTES,request_payload
     output=Path(output)
     if output.exists(): raise FileExistsError(output)
-    bundle=load_bundle();engine=SearchEngine(bundle['catalog']);retriever=KnowledgeRetriever()
+    bundle=campaign_bundle(suite);engine=campaign_engine(bundle);retriever=KnowledgeRetriever()
     rows=[]
     for case_id in bundle['rubric']['paid_case_ids']:
         case=next(c for c in bundle['cases'] if c['id']==case_id)
         for condition in ['no_hint','hint']:
-            full,_=paired_context(engine,retriever,case,condition,'observed')
+            if suite=='queryscope-v2':
+                full,_=paired_context(engine,retriever,case,condition,'observed')
+            else:
+                full,_=build_context(engine,retriever,case['query'],case['problem_'+condition])
+                if not case.get('documents_available',True):full['documents']=[]
             context=model_context(full)
             payload=request_payload(context)
             size=len(json.dumps(payload,ensure_ascii=False).encode('utf-8'))
@@ -36,11 +56,11 @@ def prepare(output):
                 'payload_sha256':json_sha(payload),'payload_bytes':size,
                 'model_answer':None,'generation_status':'not_run'})
     output.mkdir(parents=True,exist_ok=False)
-    prepared={'created_at':datetime.now(timezone.utc).isoformat(),'mode':'dry_run',
+    prepared={'created_at':datetime.now(timezone.utc).isoformat(),'mode':'dry_run','suite':suite,
         'new_api_calls':0,'model':MODEL,'calls_if_approved':len(rows),'reservation_usd':.30,
         'frozen_manifest':bundle['manifest'],'requests':rows}
     write_json(output/'requests.json',prepared)
-    write_json(output/'approval-template.json',{'approved':False,'approved_by':None,
+    write_json(output/'approval-template.json',{'approved':False,'approved_by':None,'suite':suite,
         'prepared_sha256':file_sha(output/'requests.json'),'model':MODEL,'calls':24,'max_usd':.30})
     write_json(output/'human-review.json',{'status':'pending_independent_human_review',
         'rows':[{'case_id':r['case_id'],'condition':r['condition'],'reviewer':None,
@@ -59,7 +79,9 @@ def check_approval(prepared_dir,approval_path):
     if approval.get('prepared_sha256')!=file_sha(path):raise ValueError('approval_preparation_mismatch')
     if approval.get('model')!=MODEL or approval.get('calls')!=24 or approval.get('max_usd')!=.30:
         raise ValueError('approval_budget_mismatch')
-    data=json.loads(path.read_text(encoding='utf-8'));bundle=load_bundle()
+    data=json.loads(path.read_text(encoding='utf-8'))
+    suite=data.get('suite','queryscope-v2');bundle=campaign_bundle(suite)
+    if approval.get('suite','queryscope-v2')!=suite:raise ValueError('approval_suite_mismatch')
     expected={(c,cond) for c in bundle['rubric']['paid_case_ids'] for cond in ['hint','no_hint']}
     if (data['frozen_manifest']!=bundle['manifest'] or len(data['requests'])!=24 or
         {(r['case_id'],r['condition']) for r in data['requests']}!=expected):
@@ -69,7 +91,7 @@ def check_approval(prepared_dir,approval_path):
             raise ValueError('preparation_payload_changed')
         if len(json.dumps(row['payload'],ensure_ascii=False).encode())>MAX_REQUEST_BYTES:
             raise ValueError('prepared_input_too_large')
-    return approval
+    return {**approval,'suite':suite}
 
 
 def summarize(rows):
@@ -108,13 +130,13 @@ def execute(prepared_dir,output,approval_path):
     write_json(campaign_state/'execution-claim.json',
         {'approval_sha256':file_sha(approval_path),'prepared_sha256':approval['prepared_sha256'],
          'output':str(output.resolve())})
-    bundle=load_bundle();engine=SearchEngine(bundle['catalog'])
+    bundle=campaign_bundle(approval['suite']);engine=campaign_engine(bundle)
     evalset=[EvalQuery(c['query'],c['qrels']) for c in bundle['cases'] if c['qrels']]
     data=json.loads((Path(prepared_dir)/'requests.json').read_text(encoding='utf-8'))
     output.mkdir(parents=True,exist_ok=False)
     budget=Budget(campaign_state/'budget.json',max_calls=24)
     provider=OpenAIExplainer(key,budget=budget)
-    report={'mode':'actual_api','prepared_sha256':file_sha(Path(prepared_dir)/'requests.json'),
+    report={'mode':'actual_api','suite':approval['suite'],'prepared_sha256':file_sha(Path(prepared_dir)/'requests.json'),
         'campaign_state_path':str(campaign_state.resolve()),
         'approval_sha256':file_sha(approval_path),'complete':False,'attempts':0,'responses':0,'errors':0,
         'estimated_usd':0,'semantic_review':'pending_independent_human_review','rows':[]}

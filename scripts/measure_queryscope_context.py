@@ -12,17 +12,19 @@ from searchclinic.rag.explanation_service import ExplanationService
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',required=True,type=Path)
+    parser.add_argument('--baseline',choices=['legacy','observed_v2'],default='legacy')
     args=parser.parse_args()
+    strategies=[args.baseline,'observed']
     args.output.mkdir(parents=True,exist_ok=False)
     root=Path(__file__).resolve().parents[1]
     cases=json.loads((root/'docs/verification/queryscope-v1/cases.json').read_text(encoding='utf-8'))
     start=time.perf_counter()
     clinic=ClinicService()
-    services={s:ExplanationService(clinic,retrieval_strategy=s) for s in ['legacy','observed']}
+    services={s:ExplanationService(clinic,retrieval_strategy=s) for s in strategies}
     initialization=(time.perf_counter()-start)*1000
     rows=[]
     for i,case in enumerate(cases):
-        for strategy in (['legacy','observed'] if i%2==0 else ['observed','legacy']):
+        for strategy in (strategies if i%2==0 else list(reversed(strategies))):
             start=time.perf_counter()
             context,_=services[strategy].context(case['query'],case['problem_no_hint'])
             elapsed=(time.perf_counter()-start)*1000

@@ -10,6 +10,8 @@ def main():
     parser.add_argument('--live',action='store_true')
     parser.add_argument('--prepared',type=Path)
     parser.add_argument('--approval',type=Path)
+    parser.add_argument('--suite',choices=['queryscope-v2','queryscope-v3'],default='queryscope-v2',
+                        help='Free preparation bundle; live execution uses the approved preparation identity.')
     args=parser.parse_args()
     if args.live:
         if not args.prepared or not args.approval:
@@ -17,7 +19,7 @@ def main():
         result=execute(args.prepared,args.output,args.approval)
         print(f"actual responses={result['responses']} errors={result['errors']}")
     else:
-        result=prepare(args.output)
+        result=prepare(args.output,suite=args.suite)
         print(f"prepared={len(result['requests'])}; new API calls=0; approval required")
 
 if __name__=='__main__':main()

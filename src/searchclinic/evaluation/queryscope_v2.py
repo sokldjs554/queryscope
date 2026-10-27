@@ -39,9 +39,13 @@ def load_bundle(path=DATA):
         if file_sha(path/name)!=sha:
             raise ValueError('frozen_input_changed: '+name)
     cases=json.loads((path/'cases.json').read_text(encoding='utf-8'))
+    rubric=json.loads((path/'rubric.json').read_text(encoding='utf-8'))
     catalog=[Document(**d) for d in json.loads((path/'catalog.json').read_text(encoding='utf-8'))]
     old_queries={q.query for q in load_evalset()}
-    for source in ['queryscope-v1','alba-20261027']:
+    sources=['queryscope-v1','alba-20261027']
+    if rubric.get('version',2)>=3:
+        sources.append('queryscope-v2')
+    for source in sources:
         old_queries.update(c['query'] for c in json.loads((ROOT/'docs/verification'/source/'cases.json').read_text(encoding='utf-8')))
     if len({c['query'] for c in cases})!=len(cases) or old_queries & {c['query'] for c in cases}:
         raise ValueError('query_overlap')
@@ -51,7 +55,7 @@ def load_bundle(path=DATA):
     if ids & {d.doc_id for d in load_catalog()}:
         raise ValueError('catalog_id_overlap')
     return {'cases':cases,'catalog':catalog,'manifest':manifest,
-            'rubric':json.loads((path/'rubric.json').read_text(encoding='utf-8'))}
+            'rubric':rubric}
 
 
 def rank(engine,case):
@@ -81,13 +85,15 @@ def compare_ranking(before,after,cases):
 
 
 def paired_context(engine,retriever,case,condition,strategy):
-    context,docs=build_context(engine,retriever,case['query'],case['problem_'+condition],strategy)
+    # Preserve the v2 benchmark exactly; v3 evaluation calls build_context directly.
+    context,docs=build_context(engine,retriever,case['query'],case['problem_'+condition],
+                               {'observed':'observed_v2','observed_v3':'observed'}.get(strategy,strategy))
     if not case.get('documents_available',True):
         context['documents']=[];docs=[]
     return context,docs
 
 
-def compare_retrieval(engine,retriever,cases,relevance):
+def compare_retrieval(engine,retriever,cases,relevance,strategies=('legacy','observed')):
     rows=[]
     for case in cases:
         family=case.get('family_hypothesis',case.get('family'))
@@ -96,7 +102,7 @@ def compare_retrieval(engine,retriever,cases,relevance):
              'relevant_ids':relevant,'conditions':{}}
         for condition in ['hint','no_hint']:
             row['conditions'][condition]={}
-            for strategy in ['legacy','observed']:
+            for strategy in strategies:
                 context,_=paired_context(engine,retriever,case,condition,strategy)
                 ids=[d['id'] for d in context['documents']]
                 rr=next((1/i for i,d in enumerate(ids,1) if d in relevant),0)
@@ -108,7 +114,7 @@ def compare_retrieval(engine,retriever,cases,relevance):
         result={}
         for condition in ['hint','no_hint']:
             result[condition]={}
-            for strategy in ['legacy','observed']:
+            for strategy in strategies:
                 scores=[r['conditions'][condition][strategy] for r in subset if r['relevant_ids']]
                 n=len(scores)
                 result[condition][strategy]={'eligible':n,'hits':sum(s['hit_at_3'] for s in scores),
