@@ -1,0 +1,138 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_________________ test_same_commit_cannot_claim_campaign_twice _________________
+
+    def test_same_commit_cannot_claim_campaign_twice():
+>       m=module();seen=[]
+          ^^^^^^^^
+
+tests/test_remote_campaign_claim.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_remote_campaign_claim.py:11: in module
+    result=importlib.util.module_from_spec(spec);spec.loader.exec_module(result)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x7f30ba3751c0>
+path = '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+<frozen importlib._bootstrap_external>:1190: FileNotFoundError
+_______________ test_claim_errors_fail_closed_without_retry[401] _______________
+
+status = 401
+
+    @pytest.mark.parametrize('status',[401,403,500])
+    def test_claim_errors_fail_closed_without_retry(status):
+>       m=module();seen=[]
+          ^^^^^^^^
+
+tests/test_remote_campaign_claim.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_remote_campaign_claim.py:11: in module
+    result=importlib.util.module_from_spec(spec);spec.loader.exec_module(result)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x7f30ba235310>
+path = '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+<frozen importlib._bootstrap_external>:1190: FileNotFoundError
+_______________ test_claim_errors_fail_closed_without_retry[403] _______________
+
+status = 403
+
+    @pytest.mark.parametrize('status',[401,403,500])
+    def test_claim_errors_fail_closed_without_retry(status):
+>       m=module();seen=[]
+          ^^^^^^^^
+
+tests/test_remote_campaign_claim.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_remote_campaign_claim.py:11: in module
+    result=importlib.util.module_from_spec(spec);spec.loader.exec_module(result)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x7f30b9ed7c80>
+path = '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+<frozen importlib._bootstrap_external>:1190: FileNotFoundError
+_______________ test_claim_errors_fail_closed_without_retry[500] _______________
+
+status = 500
+
+    @pytest.mark.parametrize('status',[401,403,500])
+    def test_claim_errors_fail_closed_without_retry(status):
+>       m=module();seen=[]
+          ^^^^^^^^
+
+tests/test_remote_campaign_claim.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_remote_campaign_claim.py:11: in module
+    result=importlib.util.module_from_spec(spec);spec.loader.exec_module(result)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x7f30b9f34770>
+path = '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+<frozen importlib._bootstrap_external>:1190: FileNotFoundError
+__________________ test_rerun_attempt_rejected_before_network __________________
+
+    def test_rerun_attempt_rejected_before_network():
+>       m=module()
+          ^^^^^^^^
+
+tests/test_remote_campaign_claim.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_remote_campaign_claim.py:11: in module
+    result=importlib.util.module_from_spec(spec);spec.loader.exec_module(result)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:995: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1132: in get_code
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_frozen_importlib_external.SourceFileLoader object at 0x7f30b9f35100>
+path = '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+>   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/queryscope/scripts/claim_queryscope_campaign.py'
+
+<frozen importlib._bootstrap_external>:1190: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_remote_campaign_claim.py::test_same_commit_cannot_claim_campaign_twice
+FAILED tests/test_remote_campaign_claim.py::test_claim_errors_fail_closed_without_retry[401]
+FAILED tests/test_remote_campaign_claim.py::test_claim_errors_fail_closed_without_retry[403]
+FAILED tests/test_remote_campaign_claim.py::test_claim_errors_fail_closed_without_retry[500]
+FAILED tests/test_remote_campaign_claim.py::test_rerun_attempt_rejected_before_network
+5 failed in 0.05s

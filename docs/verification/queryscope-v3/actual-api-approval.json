@@ -1,0 +1,12 @@
+{
+  "approved": true,
+  "approved_by": "user: explicit approval in current conversation",
+  "suite": "queryscope-v3",
+  "prepared_sha256": "dfb4442ed8935b804cecfb5428ac374a765862c9ee96354cd8ddba556bdf3dfb",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "calls": 24,
+  "max_usd": 0.3,
+  "approval_message": "승인할게",
+  "approved_at": "2026-10-27T12:50:04.553437+00:00",
+  "scope": "queryscope-v3 only; at most 24 calls and USD 0.30; no v2 execution, retries or additional calls"
+}

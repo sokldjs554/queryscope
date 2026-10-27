@@ -1,0 +1,82 @@
+name: QueryScope v3 approved 24-call evaluation
+
+# This approval file is a one-time trigger. Ordinary pushes and pull requests
+# never run paid evaluation. Re-runs and later edits are blocked by a remote ref.
+on:
+  push:
+    branches: [main]
+    paths: [docs/verification/queryscope-v3/actual-api-approval.json]
+
+permissions:
+  contents: write
+concurrency:
+  group: queryscope-v3-approved-dfb4442ed893
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    if: github.repository == 'sokldjs554/queryscope' && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install evaluation dependencies
+        run: pip install -e '.[api,dev]'
+      - name: Check secret presence without reading it into logs
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os
+          if not os.environ.get('OPENAI_API_KEY'):
+              raise SystemExit('OPENAI_API_KEY secret is missing; no campaign claimed or calls made')
+          print('OPENAI_API_KEY is configured; value not displayed')
+          PY
+      - name: Validate and claim this approval exactly once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/claim_queryscope_campaign.py
+      - name: Execute approved frozen requests with no retries
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: >-
+          python scripts/evaluate_queryscope_llm.py --live
+          --prepared docs/verification/queryscope-v3/llm-prepared-v1
+          --approval docs/verification/queryscope-v3/actual-api-approval.json
+          --output docs/verification/queryscope-v3/actual-api-v1
+      - name: Save result and durable budget receipts
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,os,shutil
+          from pathlib import Path
+          out=Path('docs/verification/queryscope-v3/actual-api-v1')
+          if out.is_dir():
+              state=Path('work/llm-campaigns/dfb4442ed8935b804cecfb5428ac374a765862c9ee96354cd8ddba556bdf3dfb')
+              for name in ['execution-claim.json','budget.json']:
+                  if (state/name).exists():shutil.copyfile(state/name,out/name)
+              (out/'workflow.json').write_text(json.dumps({k:os.environ.get(k) for k in ['GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_SHA','GITHUB_REPOSITORY']},indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Upload actual responses even after a scoring failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: queryscope-v3-actual-api-${{ github.run_id }}
+          path: docs/verification/queryscope-v3/actual-api-v1/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Preserve results on a dedicated branch
+        if: always()
+        run: |
+          if test -f docs/verification/queryscope-v3/actual-api-v1/results.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git switch -c queryscope-v3-actual-api-results
+            git add docs/verification/queryscope-v3/actual-api-v1
+            git commit -m 'Record approved v3 actual API responses and budget receipts'
+            git push origin HEAD:refs/heads/queryscope-v3-actual-api-results
+          fi
