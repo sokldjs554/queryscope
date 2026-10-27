@@ -1,0 +1,110 @@
+[
+  {
+    "doc_id": "N001",
+    "name": "레이저 프린터",
+    "description": "흑백 문서를 인쇄하는 사무용 장치",
+    "category": "사무"
+  },
+  {
+    "doc_id": "N002",
+    "name": "평판 스캐너",
+    "description": "종이 문서를 파일로 저장하는 장치",
+    "category": "사무"
+  },
+  {
+    "doc_id": "N003",
+    "name": "탁상 캘린더",
+    "description": "월별 일정을 기록하는 달력",
+    "category": "사무"
+  },
+  {
+    "doc_id": "N004",
+    "name": "LED 랜턴",
+    "description": "야외 조명용 전등",
+    "category": "야외"
+  },
+  {
+    "doc_id": "N005",
+    "name": "USB 허브",
+    "description": "컴퓨터 연결 포트를 늘리는 장치",
+    "category": "컴퓨터"
+  },
+  {
+    "doc_id": "N006",
+    "name": "SSD 케이스",
+    "description": "저장 장치용 외장 보호함",
+    "category": "컴퓨터"
+  },
+  {
+    "doc_id": "N007",
+    "name": "확대경",
+    "description": "작은 글자를 크게 보는 렌즈",
+    "category": "광학"
+  },
+  {
+    "doc_id": "N008",
+    "name": "육각 렌치",
+    "description": "볼트를 돌리는 공구",
+    "category": "공구"
+  },
+  {
+    "doc_id": "N009",
+    "name": "휴대용 전지",
+    "description": "전자 기기 전원 공급용 셀",
+    "category": "전기"
+  },
+  {
+    "doc_id": "N010",
+    "name": "멀티탭",
+    "description": "전원 콘센트를 확장하는 장치",
+    "category": "전기"
+  },
+  {
+    "doc_id": "N011",
+    "name": "액세서리 보관함",
+    "description": "장신구를 보관하는 상자",
+    "category": "수납"
+  },
+  {
+    "doc_id": "N012",
+    "name": "리모컨",
+    "description": "원거리에서 장치를 조작하는 제어기",
+    "category": "전기"
+  },
+  {
+    "doc_id": "N013",
+    "name": "손전등",
+    "description": "어두운 곳을 밝히는 휴대 조명",
+    "category": "야외"
+  },
+  {
+    "doc_id": "N014",
+    "name": "책꽂이",
+    "description": "책을 세워 정리하는 받침",
+    "category": "사무"
+  },
+  {
+    "doc_id": "N015",
+    "name": "자외선차단제",
+    "description": "피부에 바르는 햇빛 보호 제품",
+    "category": "피부"
+  },
+  {
+    "doc_id": "N016",
+    "name": "원예용 전지가위",
+    "description": "나뭇가지를 자르는 도구",
+    "category": "원예"
+  },
+  {
+    "doc_id": "N017",
+    "name": "사진용 삼각대",
+    "description": "카메라를 고정하는 지지대",
+    "category": "사진"
+  },
+  {
+    "doc_id": "N018",
+    "name": "수평계",
+    "description": "기울기를 확인하는 측정 도구",
+    "category": "공구"
+  }
+]
