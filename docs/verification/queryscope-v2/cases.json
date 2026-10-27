@@ -166,7 +166,7 @@
   },
   {
     "id": "V12",
-    "query": "리모콘",
+    "query": "피펫트",
     "category": "candidate_failure",
     "family_hypothesis": "garbage_split",
     "qrels": {

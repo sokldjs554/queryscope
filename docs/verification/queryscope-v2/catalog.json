@@ -67,9 +67,9 @@
   },
   {
     "doc_id": "N012",
-    "name": "리모컨",
-    "description": "원거리에서 장치를 조작하는 제어기",
-    "category": "전기"
+    "name": "실험용 피펫",
+    "description": "소량 액체를 옮기는 측정 도구",
+    "category": "실험"
   },
   {
     "doc_id": "N013",
