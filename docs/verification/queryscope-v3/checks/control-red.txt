@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________________ test_invalid_control_prevents_llm_preparation _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-25/test_invalid_control_prevents_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fac1cc0a4b0>
+
+    def test_invalid_control_prevents_llm_preparation(tmp_path,monkeypatch):
+        import pytest
+        from searchclinic.evaluation import llm_campaign as campaign
+        original=campaign.campaign_bundle('queryscope-v3')
+        # Removing forced atomic indexing makes at least some controls invalid.
+        original['cases'][0]['query']='상품명이아닌말'
+        monkeypatch.setattr(campaign,'campaign_bundle',lambda _:original)
+>       with pytest.raises(ValueError,match='control_precondition_failed'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_queryscope_v3.py:65: Failed
+=========================== short test summary info ============================
+FAILED tests/test_queryscope_v3.py::test_invalid_control_prevents_llm_preparation
+1 failed in 4.32s

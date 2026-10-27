@@ -1,0 +1,29 @@
+....FF                                                                   [100%]
+=================================== FAILURES ===================================
+______ test_v3_preparation_uses_frozen_atomic_config_without_model_calls _______
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-23/test_v3_preparation_uses_froze0')
+
+    def test_v3_preparation_uses_frozen_atomic_config_without_model_calls(tmp_path):
+        from searchclinic.evaluation.llm_campaign import prepare
+>       result=prepare(tmp_path/'prep',suite='queryscope-v3')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: prepare() got an unexpected keyword argument 'suite'
+
+tests/test_queryscope_v3.py:41: TypeError
+_____________ test_suite_selection_is_validated_not_used_as_a_path _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-23/test_suite_selection_is_valida0')
+
+    def test_suite_selection_is_validated_not_used_as_a_path(tmp_path):
+        import pytest
+        from searchclinic.evaluation.llm_campaign import prepare
+        with pytest.raises(ValueError,match='unknown_suite'):
+>           prepare(tmp_path/'out',suite='../other')
+E           TypeError: prepare() got an unexpected keyword argument 'suite'
+
+tests/test_queryscope_v3.py:54: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_queryscope_v3.py::test_v3_preparation_uses_frozen_atomic_config_without_model_calls
+FAILED tests/test_queryscope_v3.py::test_suite_selection_is_validated_not_used_as_a_path
+2 failed, 4 passed in 4.00s

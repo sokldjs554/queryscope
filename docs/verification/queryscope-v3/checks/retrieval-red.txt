@@ -1,0 +1,44 @@
+FF.F                                                                     [100%]
+=================================== FAILURES ===================================
+_________ test_normal_suffix_token_coverage_is_not_a_missing_compound __________
+
+    def test_normal_suffix_token_coverage_is_not_a_missing_compound():
+        engine=SearchEngine([Document('D','휴대용 전지','작은 전원 공급 장치','전기')])
+        context,_=build_context(engine,KnowledgeRetriever(),'휴대용 배터리','원하는 물품을 찾습니다.')
+>       assert not any(s['kind']=='raw_substring_token_gap' for s in context['retrieval']['signals'])
+E       assert not True
+E        +  where True = any(<generator object test_normal_suffix_token_coverage_is_not_a_missing_compound.<locals>.<genexpr> at 0x7ff3d8957ac0>)
+
+tests/test_queryscope_v3.py:11: AssertionError
+_____________ test_frozen_v2_mode_preserves_its_known_false_signal _____________
+
+    def test_frozen_v2_mode_preserves_its_known_false_signal():
+        engine=SearchEngine([Document('D','휴대용 전지','작은 전원 공급 장치','전기')])
+>       context,_=build_context(engine,KnowledgeRetriever(),'휴대용 배터리','원하는 물품을 찾습니다.',strategy='observed_v2')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_queryscope_v3.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+engine = <searchclinic.index.engine.SearchEngine object at 0x7ff3d87a6bd0>
+retriever = <searchclinic.rag.retriever.KnowledgeRetriever object at 0x7ff3d87a7b60>
+query = '휴대용 배터리', problem = '원하는 물품을 찾습니다.', strategy = 'observed_v2'
+
+    def build_context(engine, retriever, query: str, problem: str, strategy: str = 'observed'):
+        if strategy not in {'legacy','observed'}:
+>           raise ValueError('unknown_retrieval_strategy')
+E           ValueError: unknown_retrieval_strategy
+
+src/searchclinic/rag/observations.py:81: ValueError
+________ test_excerpt_cache_is_bounded_and_never_changes_exact_offsets _________
+
+    def test_excerpt_cache_is_bounded_and_never_changes_exact_offsets():
+>       from searchclinic.rag.observations import excerpt,_window_terms
+E       ImportError: cannot import name '_window_terms' from 'searchclinic.rag.observations' (/workspace/work/queryscope/src/searchclinic/rag/observations.py)
+
+tests/test_queryscope_v3.py:28: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_queryscope_v3.py::test_normal_suffix_token_coverage_is_not_a_missing_compound
+FAILED tests/test_queryscope_v3.py::test_frozen_v2_mode_preserves_its_known_false_signal
+FAILED tests/test_queryscope_v3.py::test_excerpt_cache_is_bounded_and_never_changes_exact_offsets
+3 failed, 1 passed in 4.21s

@@ -1,0 +1,358 @@
+{
+  "created_at": "2026-10-27T12:24:32.712254+00:00",
+  "scope": "one local process, 72 catalog items, 24 development queries once per strategy, alternating order; context build only, no generation/network/production load",
+  "initialization_ms": 2058.36,
+  "new_api_calls": 0,
+  "summary": {
+    "observed_v2": {
+      "n": 24,
+      "p50_ms": 12.081,
+      "p95_ms": 287.68,
+      "max_ms": 290.94
+    },
+    "observed": {
+      "n": 24,
+      "p50_ms": 11.912,
+      "p95_ms": 90.661,
+      "max_ms": 163.792
+    }
+  },
+  "rows": [
+    {
+      "case_id": "H01",
+      "strategy": "observed_v2",
+      "milliseconds": 19.638,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H01",
+      "strategy": "observed",
+      "milliseconds": 13.754,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H02",
+      "strategy": "observed",
+      "milliseconds": 15.302,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H02",
+      "strategy": "observed_v2",
+      "milliseconds": 15.148,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H03",
+      "strategy": "observed_v2",
+      "milliseconds": 14.431,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H03",
+      "strategy": "observed",
+      "milliseconds": 14.283,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H04",
+      "strategy": "observed",
+      "milliseconds": 13.854,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H04",
+      "strategy": "observed_v2",
+      "milliseconds": 13.841,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H05",
+      "strategy": "observed_v2",
+      "milliseconds": 11.635,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H05",
+      "strategy": "observed",
+      "milliseconds": 11.467,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H06",
+      "strategy": "observed",
+      "milliseconds": 7.135,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H06",
+      "strategy": "observed_v2",
+      "milliseconds": 7.035,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H07",
+      "strategy": "observed_v2",
+      "milliseconds": 12.022,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H07",
+      "strategy": "observed",
+      "milliseconds": 11.912,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H08",
+      "strategy": "observed",
+      "milliseconds": 7.198,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H08",
+      "strategy": "observed_v2",
+      "milliseconds": 7.039,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H09",
+      "strategy": "observed_v2",
+      "milliseconds": 10.22,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H09",
+      "strategy": "observed",
+      "milliseconds": 10.045,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H10",
+      "strategy": "observed",
+      "milliseconds": 9.239,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H10",
+      "strategy": "observed_v2",
+      "milliseconds": 8.885,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H11",
+      "strategy": "observed_v2",
+      "milliseconds": 92.413,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H11",
+      "strategy": "observed",
+      "milliseconds": 90.661,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H12",
+      "strategy": "observed",
+      "milliseconds": 12.375,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H12",
+      "strategy": "observed_v2",
+      "milliseconds": 12.081,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H13",
+      "strategy": "observed_v2",
+      "milliseconds": 10.113,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H13",
+      "strategy": "observed",
+      "milliseconds": 9.628,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H14",
+      "strategy": "observed",
+      "milliseconds": 11.097,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H14",
+      "strategy": "observed_v2",
+      "milliseconds": 11.003,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H15",
+      "strategy": "observed_v2",
+      "milliseconds": 158.951,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H15",
+      "strategy": "observed",
+      "milliseconds": 71.831,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H16",
+      "strategy": "observed",
+      "milliseconds": 12.1,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H16",
+      "strategy": "observed_v2",
+      "milliseconds": 11.75,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H17",
+      "strategy": "observed_v2",
+      "milliseconds": 15.419,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H17",
+      "strategy": "observed",
+      "milliseconds": 14.069,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H18",
+      "strategy": "observed",
+      "milliseconds": 9.449,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H18",
+      "strategy": "observed_v2",
+      "milliseconds": 9.283,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H19",
+      "strategy": "observed_v2",
+      "milliseconds": 11.796,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H19",
+      "strategy": "observed",
+      "milliseconds": 8.162,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H20",
+      "strategy": "observed",
+      "milliseconds": 10.147,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H20",
+      "strategy": "observed_v2",
+      "milliseconds": 13.091,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H21",
+      "strategy": "observed_v2",
+      "milliseconds": 287.68,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H21",
+      "strategy": "observed",
+      "milliseconds": 163.792,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H22",
+      "strategy": "observed",
+      "milliseconds": 13.937,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H22",
+      "strategy": "observed_v2",
+      "milliseconds": 290.94,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H23",
+      "strategy": "observed_v2",
+      "milliseconds": 123.856,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H23",
+      "strategy": "observed",
+      "milliseconds": 0.742,
+      "documents": 3,
+      "status": "completed"
+    },
+    {
+      "case_id": "H24",
+      "strategy": "observed",
+      "milliseconds": 15.274,
+      "documents": 0,
+      "status": "completed"
+    },
+    {
+      "case_id": "H24",
+      "strategy": "observed_v2",
+      "milliseconds": 15.131,
+      "documents": 0,
+      "status": "completed"
+    }
+  ]
+}

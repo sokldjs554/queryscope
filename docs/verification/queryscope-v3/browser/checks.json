@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "viewports": [
+    1440,
+    320,
+    390,
+    650
+  ],
+  "source": "real static saved results",
+  "new_model_calls": 0,
+  "checks": [
+    "legacy replay 24 and live disabled",
+    "v3 navigation",
+    "all 24 paired cases",
+    "five family rows",
+    "healthy false signals 8 to 0",
+    "controlled ranking 24 rows",
+    "citation source disclosure",
+    "insufficient documents and out of scope visible",
+    "no horizontal overflow",
+    "preserved v1 comparison",
+    "failed fetch visible",
+    "no JavaScript errors"
+  ]
+}

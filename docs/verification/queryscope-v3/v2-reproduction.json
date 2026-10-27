@@ -1,0 +1,8 @@
+{
+  "development_repairs": true,
+  "development_retrieval": true,
+  "new_retrieval": true,
+  "new_catalog_ranking": true,
+  "novelty": true,
+  "legacy_audit": true
+}
