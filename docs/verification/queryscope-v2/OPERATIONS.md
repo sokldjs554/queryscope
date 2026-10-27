@@ -4,12 +4,16 @@
 
 ## 실제 실행한 로컬 검사
 
-- 전체 pytest: 369 passed, 1 skipped, 2 deselected (76.72초). [기록](checks/pytest.txt).
+- 전체 pytest: 370 passed, 1 skipped, 2 deselected (79.59초). [기록](checks/pytest.txt).
 - 기본 검색 기준선 평균 nDCG 0.5839 유지. [기록](checks/baseline.txt).
 - 실제 loopback HTTP: 준비2573.65ms, 준비 이후 순차 GET120회 모두200, p50 1.204ms / p95 **3.010ms** / 최대6.097ms. 기본 생성 요청503, 빈 입력422. 생성 요청 집계0, 생성 지연 p95=null. [원자료](operations/operations.json).
 - HTTP 수치는 정적 파일·상태 조회이다. 새 관측 검색 계산이나 실제 모델 응답·공개 서비스 SLA를 측정한 것이 아니다.
 - 브라우저: 1440/320/390/650px에서 v2 24개 입력 비교·5개 계열·3개 개발 수정·24개 순위행·원문 펼침·자료 로딩 실패·가로 넘침·JS 오류를 검사했다. [v2](browser/checks.json), [기존 응답/취소/오류/내보내기](browser-replay/checks.json).
 - 첫 v2 브라우저 검사에서 Playwright의 option `isDisabled` 판정 대신 실제 DOM `disabled` 속성을 확인하도록 검사 코드를 수정했다. 제품의 유료 생성 경로를 활성화하지 않았다. 실제 생성 상태 전환 테스트만 명시적 테스트 대역을 사용했다.
+
+## 관측·근거 검색 계산의 로컬 지연
+
+별도로 개발24질의를 각 방식에서1회씩, 실행 순서를 번갈아 총48회 context 생성했다. 모델과 네트워크는 사용하지 않았다. 기존 방식 p50 0.835ms / p95 2.072ms, 보완 방식 p50 13.871ms / p95 300.284ms이다. 모든48회가 완료됐다. 72상품의 단일 프로세스 수치이며 동시 부하나 공개 API 지연이 아니다. 근거 검색 보강에는 추가 계산 비용이 있음을 드러낸다. [원자료](operations/context-latency.json). 재현: `python scripts/measure_queryscope_context.py --output work/context-latency`.
 
 ## 공개 주소 접근
 

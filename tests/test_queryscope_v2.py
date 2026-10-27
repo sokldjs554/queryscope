@@ -72,6 +72,8 @@ def test_direct_prescription_models_reject_hidden_whitespace(factory):
 
 def test_campaign_error_is_not_abstention_and_approval_cannot_be_reused(tmp_path,monkeypatch):
     from searchclinic.evaluation.llm_campaign import prepare,execute,file_sha
+    import searchclinic.evaluation.llm_campaign as campaign
+    monkeypatch.setattr(campaign,'CAMPAIGN_STATE_ROOT',tmp_path/'state',raising=False)
     from searchclinic.rag import openai_provider as provider
     prepared=tmp_path/'prepared';prepare(prepared)
     approval=tmp_path/'approval.json'
@@ -95,4 +97,34 @@ def test_campaign_error_is_not_abstention_and_approval_cannot_be_reused(tmp_path
     assert result['summary']['all']['abstain']==23
     with pytest.raises(ValueError,match='campaign_already_claimed'):
         execute(prepared,tmp_path/'second',approval)
+    assert not (tmp_path/'second').exists()
+
+
+def test_copying_preparation_cannot_reuse_approval_after_partial_run(tmp_path,monkeypatch):
+    from searchclinic.evaluation import llm_campaign as campaign
+    from searchclinic.rag import openai_provider as provider
+    monkeypatch.setattr(campaign,'CAMPAIGN_STATE_ROOT',tmp_path/'state',raising=False)
+    original=tmp_path/'original';campaign.prepare(original)
+    copied=tmp_path/'copied';shutil.copytree(original,copied)
+    approval=tmp_path/'approval.json'
+    approval.write_text(json.dumps({'approved':True,'approved_by':'test fixture only',
+        'prepared_sha256':campaign.file_sha(original/'requests.json'),'model':provider.MODEL,
+        'calls':24,'max_usd':.30}),encoding='utf-8')
+    attempted=[]
+    class Interrupted:
+        def __init__(self,key,*,budget):self.budget=budget
+        def generate(self,context):
+            self.budget.reserve();attempted.append(context)
+            raise RuntimeError('simulated process interruption after reservation')
+    monkeypatch.setattr(provider,'OpenAIExplainer',Interrupted)
+    monkeypatch.setenv('OPENAI_API_KEY','fixture-not-a-real-key')
+    with pytest.raises(RuntimeError,match='simulated process interruption'):
+        campaign.execute(original,tmp_path/'first',approval)
+    with pytest.raises(ValueError,match='campaign_already_claimed'):
+        campaign.execute(copied,tmp_path/'second',approval)
+    assert len(attempted)==1
+    first=json.loads((tmp_path/'first/results.json').read_text(encoding='utf-8'))
+    assert first['complete'] is False and first['attempts']==1
+    state=tmp_path/'state'/campaign.file_sha(original/'requests.json')
+    assert json.loads((state/'budget.json').read_text(encoding='utf-8'))['calls']==1
     assert not (tmp_path/'second').exists()

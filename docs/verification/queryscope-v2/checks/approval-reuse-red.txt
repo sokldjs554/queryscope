@@ -1,0 +1,49 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_copying_preparation_cannot_reuse_approval_after_partial_run _______
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-20/test_copying_preparation_canno0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30498af350>
+
+    def test_copying_preparation_cannot_reuse_approval_after_partial_run(tmp_path,monkeypatch):
+        from searchclinic.evaluation import llm_campaign as campaign
+        from searchclinic.rag import openai_provider as provider
+        monkeypatch.setattr(campaign,'CAMPAIGN_STATE_ROOT',tmp_path/'state',raising=False)
+        original=tmp_path/'original';campaign.prepare(original)
+        copied=tmp_path/'copied';shutil.copytree(original,copied)
+        approval=tmp_path/'approval.json'
+        approval.write_text(json.dumps({'approved':True,'approved_by':'test fixture only',
+            'prepared_sha256':campaign.file_sha(original/'requests.json'),'model':provider.MODEL,
+            'calls':24,'max_usd':.30}),encoding='utf-8')
+        attempted=[]
+        class Interrupted:
+            def __init__(self,key,*,budget):self.budget=budget
+            def generate(self,context):
+                self.budget.reserve();attempted.append(context)
+                raise RuntimeError('simulated process interruption after reservation')
+        monkeypatch.setattr(provider,'OpenAIExplainer',Interrupted)
+        monkeypatch.setenv('OPENAI_API_KEY','fixture-not-a-real-key')
+        with pytest.raises(RuntimeError,match='simulated process interruption'):
+            campaign.execute(original,tmp_path/'first',approval)
+        with pytest.raises(ValueError,match='campaign_already_claimed'):
+>           campaign.execute(copied,tmp_path/'second',approval)
+
+tests/test_queryscope_v2.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/searchclinic/evaluation/llm_campaign.py:119: in execute
+    generated=provider.generate(request['context'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_queryscope_v2.test_copying_preparation_cannot_reuse_approval_after_partial_run.<locals>.Interrupted object at 0x7f3049774560>
+context = {'query': '프린타', 'problem': '이 표현으로 원하는 상품을 찾을 수 있는지 검색 결과를 점검해 주세요.', 'analysis': {'text': '프린타', 'session_id': None,...G', 'origin': 'kiwi'}], 'dropped': []}, 'search': {'query': '프린타', 'session_id': None, 'total': 0, 'results': []}, ...}
+
+    def generate(self,context):
+        self.budget.reserve();attempted.append(context)
+>       raise RuntimeError('simulated process interruption after reservation')
+E       RuntimeError: simulated process interruption after reservation
+
+tests/test_queryscope_v2.py:118: RuntimeError
+=========================== short test summary info ============================
+FAILED tests/test_queryscope_v2.py::test_copying_preparation_cannot_reuse_approval_after_partial_run
+1 failed in 3.46s

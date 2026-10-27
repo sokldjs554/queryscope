@@ -21,29 +21,29 @@
 - v1/기존36/새18상품 순위 및 테스트 응답/실제 응답이 섞이지 않을 것.
 
 ### Task 1: Freeze and diagnose
-- [ ] 새 catalog/cases/rubric/protocol manifest 커밋; baseline 코드·원시결과·CI·공개접속 확인 기록.
-- [ ] v1개발 사례 토큰/검색/원문 분석; 새로운 평가 점수는 아직 실행하지 않음.
+- [x] 새 catalog/cases/rubric/protocol manifest 커밋; baseline 코드·원시결과·CI·공개접속 확인 기록.
+- [x] v1개발 사례 토큰/검색/원문 분석; 새로운 평가 점수는 아직 실행하지 않음.
 
 ### Task 2: Observation retrieval
 Files: src/searchclinic/rag/observations.py, explanation_service.py; scripts/evaluate_queryscope.py; tests/test_observation_retrieval.py.
 Interface: build_context(engine, retriever, query, problem, strategy='observed') -> (context, docs). Inputs contain no evaluation metadata.
-- [ ] dropped/split, raw substring without index match, fuzzy spelling, excerpt offset, no label leak tests RED.
-- [ ] 관측 query 보강/발췌 구현; legacy 명시 경로 유지; focused tests GREEN.
+- [x] dropped/split, raw substring without index match, fuzzy spelling, excerpt offset, no label leak tests RED.
+- [x] 관측 query 보강/발췌 구현; legacy 명시 경로 유지; focused tests GREEN.
 
 ### Task 3: LLM preparation and separated assessment
 Files: src/searchclinic/evaluation/queryscope_v2.py, scripts/evaluate_queryscope_v2.py, scripts/evaluate_queryscope_llm.py, tests/test_queryscope_v2.py.
 Interfaces: load_bundle(path), prepare(output), score(raw, context, reference, engine, evalset); new only output directories.
-- [ ] hash tamper/default no provider/missing approval/output overwrite/abstention with patch tests RED.
-- [ ] offline runner+paired24call dry-run+approved-only live executor; rows/errors/receipts persisted, review template pending.
-- [ ] all tests GREEN; prepare but never live.
+- [x] hash tamper/default no provider/missing approval/output overwrite/abstention with patch tests RED.
+- [x] offline runner+paired24call dry-run+approved-only live executor; rows/errors/receipts persisted, review template pending.
+- [x] all tests GREEN; prepare but never live.
 
 ### Task 4: Failure repair and locked evaluation
 Files: candidate_review.py, scripts/evaluate_queryscope_v2.py, tests/test_queryscope_v2.py, docs/verification/queryscope-v2/run-v1/.
-- [ ] 카페트/초콜렛/워시 개발자료 분석과 후보 회귀 검사. malformed compound/whitespace/status contradictions tests RED then fix.
-- [ ] 개발 개선 코드 커밋 후 동결된 새셋 최초실행, 모든하락/계열별hit/새상품 overlap 기록. 결과보고후튜닝하지않음.
+- [x] 카페트/초콜렛/워시 개발자료 분석과 후보 회귀 검사. malformed compound/whitespace/status contradictions tests RED then fix.
+- [x] 개발 개선 코드 커밋 후 동결된 새셋 최초실행, 모든하락/계열별hit/새상품 overlap 기록. 결과보고후튜닝하지않음.
 
 ### Task 5: Demo, verification and application docs
 Files: web/evaluation-v2.*, scripts/browser_queryscope_v2.cjs, README, docs/application/*.
-- [ ] 결과기반 새화면 + legacy보존. local desktop/mobile/errors tests, HTTP operations, full pytest/baseline.
-- [ ] fresh whole-branch reviewer, 중요문제 RED->GREEN, 필요시 full suite.
+- [x] 결과기반 새화면 + legacy보존. local desktop/mobile/errors tests, HTTP operations, full pytest/baseline.
+- [x] fresh whole-branch reviewer, 중요문제 RED->GREEN, 필요시 full suite.
 - [ ] push new code, CI, Render 배포/공개접속 확인; 문서와 자소서 실제 결과로만 업데이트.

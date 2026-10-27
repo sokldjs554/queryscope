@@ -1,0 +1,19 @@
+{
+  "first_sha256": "3fad4165fe1f492d01d3a32d0c3459c30ccb42af50c4e6e71bed1c68dbc185ee",
+  "repeat_sha256": "38608437cb07db43ee2d4da50cecab36218b6a15eb4f2a721f39d5efdedfb9d4",
+  "compared_measurements": {
+    "development_repairs": true,
+    "development_retrieval": true,
+    "new_retrieval": true,
+    "new_catalog_ranking": true,
+    "novelty": true,
+    "legacy_audit": true,
+    "not_run": true
+  },
+  "excluded": [
+    "timestamps",
+    "environment timing",
+    "source hashes changed by budget fix"
+  ],
+  "new_api_calls": 0
+}

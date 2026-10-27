@@ -90,4 +90,10 @@ python -m searchclinic.api.explanation_api
 
 Playwright+Chromium 준비 후 `node scripts/browser_queryscope_v2.cjs`. 기본 캡처 폴더가 있으면 `QUERYSCOPE_BROWSER_OUTPUT`으로 새 폴더를 지정한다. 기존 재생 검사도 같은 환경변수로 새 출력 위치를 쓸 수 있어 v1 캡처를 덮어쓰지 않는다. 화면 검사는 1440/320/390/650px, 실제 저장자료 전환·원문 펼침·평가 비교·자료 로딩 실패를 포함한다. 실제 생성 화면 전환만 테스트 대역으로 확인하며 모델 호출 성과와 분리한다.
 
-첫 전체 검사에서 새 테스트 파일의 UTF-8 명시 누락1건을 발견해 수정했다. 수정 후 **369 passed, 1 skipped, 2 deselected**. [검사 근거](checks/)와 [새 화면](browser/checks.json), [기존 재생](browser-replay/checks.json)을 참조한다. 공개 접속/배포와 로컬 HTTP 지표는 별도 [운영 기록](OPERATIONS.md)에 기록한다.
+첫 전체 검사에서 새 테스트 파일의 UTF-8 명시 누락1건을 발견해 수정했다. 수정 후 **370 passed, 1 skipped, 2 deselected**. [검사 근거](checks/)와 [새 화면](browser/checks.json), [기존 재생](browser-replay/checks.json)을 참조한다. 공개 접속/배포와 로컬 HTTP 지표는 별도 [운영 기록](OPERATIONS.md)에 기록한다.
+
+## 최종 코드 리뷰
+
+별도 AI 코드 리뷰에서 승인 준비물의 폴더를 복사하면 같은 승인으로 두 캠페인을 실행할 수 있는 허점을 공급자 대역으로 확인했다(실제 API0회). 준비물 해시 기준의 공통 실행 기록·예산 원장으로 바꾸고, 부분 실행 후 복사본 재시도를 차단하는 테스트를 실패→통과로 검증했다. 원장은 현재 체크아웃에 지속되며 삭제하거나 다른 체크아웃으로 옮기는 것을 계정 수준에서 강제 제한하지는 않는다.
+
+실제 LLM 진단·보류, 인간 의미/정답 판정, 고객 일반화, 공급자 신뢰성, 공개 가용성은 코드 리뷰로 확인할 수 없으므로 미검증 상태를 유지한다. 리뷰 후 검색 알고리즘이나 고정 평가 정답은 변경하지 않았다. 재실행한 개발/새 검색·순위·이전 응답 감사의 모든 평가 값은 첫 기록과 같았다([재현 확인](checks/reproduction.json)).

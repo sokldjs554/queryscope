@@ -9,8 +9,12 @@ from searchclinic.index.engine import SearchEngine
 from searchclinic.rag.retriever import KnowledgeRetriever
 from searchclinic.rag.observations import model_context
 from searchclinic.evaluation.queryscope_v2 import (
-    load_bundle,file_sha,json_sha,write_json,paired_context,assess_generation,
+    ROOT,load_bundle,file_sha,json_sha,write_json,paired_context,assess_generation,
 )
+
+# Stable within this checkout, independent of copied input/output directories.
+# Preserve this durable local state across runs; it is not an account-wide quota.
+CAMPAIGN_STATE_ROOT=ROOT/'work/llm-campaigns'
 
 
 def prepare(output):
@@ -89,24 +93,29 @@ def summarize(rows):
 def execute(prepared_dir,output,approval_path):
     """Only explicit future authorization may call this; no retry/resume/overwrite."""
     from searchclinic.rag.openai_provider import Budget,OpenAIExplainer,ProviderError
-    check_approval(prepared_dir,approval_path)
+    approval=check_approval(prepared_dir,approval_path)
     output=Path(output)
     if output.exists():raise FileExistsError(output)
     key=os.environ.get('OPENAI_API_KEY')
     if not key:raise ValueError('provider_not_configured')
-    claim=Path(prepared_dir)/'execution-claim.json'
+    campaign_state=CAMPAIGN_STATE_ROOT/approval['prepared_sha256']
+    CAMPAIGN_STATE_ROOT.mkdir(parents=True,exist_ok=True)
     try:
-        with claim.open('x',encoding='utf-8') as stream:
-            json.dump({'approval_sha256':file_sha(approval_path),'output':str(output)},stream)
+        campaign_state.mkdir(exist_ok=False)
     except FileExistsError:
         raise ValueError('campaign_already_claimed') from None
+    # Claim before initialization/network. Crashes leave the campaign claimed.
+    write_json(campaign_state/'execution-claim.json',
+        {'approval_sha256':file_sha(approval_path),'prepared_sha256':approval['prepared_sha256'],
+         'output':str(output.resolve())})
     bundle=load_bundle();engine=SearchEngine(bundle['catalog'])
     evalset=[EvalQuery(c['query'],c['qrels']) for c in bundle['cases'] if c['qrels']]
     data=json.loads((Path(prepared_dir)/'requests.json').read_text(encoding='utf-8'))
     output.mkdir(parents=True,exist_ok=False)
-    budget=Budget(output/'budget.json',max_calls=24)
+    budget=Budget(campaign_state/'budget.json',max_calls=24)
     provider=OpenAIExplainer(key,budget=budget)
     report={'mode':'actual_api','prepared_sha256':file_sha(Path(prepared_dir)/'requests.json'),
+        'campaign_state_path':str(campaign_state.resolve()),
         'approval_sha256':file_sha(approval_path),'complete':False,'attempts':0,'responses':0,'errors':0,
         'estimated_usd':0,'semantic_review':'pending_independent_human_review','rows':[]}
     write_json(output/'results.json',report)
@@ -128,6 +137,9 @@ def execute(prepared_dir,output,approval_path):
         finally:
             report['attempts']=budget.calls
             report['reserved_usd']=round(budget.calls*.0125,6)
+            if budget.path.exists():
+                # Receipt for convenient inspection; never used as the authority.
+                write_json(output/'budget-receipt.json',json.loads(budget.path.read_text(encoding='utf-8')))
             write_json(output/'results.json',report)
     report['summary']=summarize(report['rows'])
     report['complete']=True;write_json(output/'results.json',report)
