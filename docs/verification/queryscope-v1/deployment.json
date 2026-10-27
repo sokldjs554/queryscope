@@ -1,0 +1,25 @@
+{
+  "workspace_name": "my2 workspace",
+  "workspace_id": "tea-db9hb2dg1s2s738nd1a0",
+  "service_id": "srv-dbg6rtflk1mc73cok690",
+  "deploy_id": "dep-dbg6rtvlk1mc73cok7hg",
+  "url": "https://queryscope-zwia.onrender.com",
+  "type": "static_site_saved_results_only",
+  "code_commit": "714600fb3eec47bcef9f983c96dbf79278bc1916",
+  "render_reported_status": "live",
+  "render_finished_at": "2026-10-27T09:25:28.793634Z",
+  "auto_deploy": false,
+  "public_http_browser_verification": "not_verified",
+  "public_verification_limitation": "Execution proxy rejected onrender.com CONNECT with 403; web connector also could not access the URL. No public availability or latency claim.",
+  "local_browser_checks": "browser/checks.json",
+  "local_http_checks": "operations/operations.json",
+  "github_actions": {
+    "url": "https://github.com/sokldjs554/queryscope/actions/runs/40480583240",
+    "ubuntu_tests": "success",
+    "windows_tests": "success",
+    "search_quality_gate": "success"
+  },
+  "new_paid_api_calls": 0,
+  "generation_backend_deployed": false,
+  "application_original_documents": "Library links supplied; content not accessible with current tools. Separate repository drafts only; original-preserving revision pending editable attachments."
+}

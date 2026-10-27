@@ -8,6 +8,9 @@
 
 ## 데모 실행
 
+**공개 저장 결과 데모:** [QueryScope](https://queryscope-zwia.onrender.com/) · [새 평가 비교](https://queryscope-zwia.onrender.com/evaluation.html).
+Render가 검증 코드 `714600f`의 배포를 `live`로 보고했습니다. 공개 주소의 외부 HTTP/브라우저 접속은 현재 검증 환경의 네트워크 제한으로 확인하지 못했습니다. 아래 로컬 실행과 화면 검사는 완료했습니다. [배포 확인 범위](docs/verification/queryscope-v1/deployment.json).
+
 Python 3.11 또는 3.12:
 
 ```bash
@@ -63,6 +66,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-1
 ```
 
 **최종 로컬 검사: 353 passed, 1 skipped, 2 deselected.** 기존 기준선 평균 nDCG 0.5839 유지, 수정 후 새 평가 재현 값 일치.
+검증 코드 `714600f`의 [GitHub Actions](https://github.com/sokldjs554/queryscope/actions/runs/40480583240)도 Ubuntu·Windows 테스트와 검색 품질 게이트 모두 통과했습니다.
 
 결과 디렉터리가 이미 있으면 중단합니다. 정답/프로토콜 파일의 해시가 다르면 평가를 시작하지 않습니다. 브라우저: Playwright/Chromium 준비 후 `node scripts/browser_queryscope.cjs`.
 

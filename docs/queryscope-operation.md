@@ -8,6 +8,17 @@ README의 `pip install -e '.[api]'` 후 `python -m searchclinic.api.explanation_
 
 정적 배포는 HTML/JS/저장 JSON만 제공한다. API 키·운영 토큰·생성 서버를 배포하지 않는다. 새 API 생성 선택지는 상태 API가 live 활성임을 반환할 때만 열린다. 원본 PR의 저장 응답과 새 오프라인 결과를 서로 다른 화면으로 표시한다.
 
+## 공개 정적 데모의 확인 범위
+
+- 주소: https://queryscope-zwia.onrender.com/ (새 평가: `/evaluation.html`).
+- 사용자 선택 작업공간 `my2 workspace`, 새 Render 정적 사이트 `queryscope`. 기존 서비스는 변경하지 않았다.
+- 배포 코드 `714600fb3eec47bcef9f983c96dbf79278bc1916`, Render 상태 `live`, 완료 시각 2026-10-27 09:25:28 UTC.
+- 게시 디렉터리 `src/searchclinic/web`, 빌드 명령 `true`, `SKIP_INSTALL_DEPS=true`. 자동 배포는 꺼 두어 검증한 코드 버전을 유지한다.
+- 공개 주소의 직접 HTTP 확인은 실행 환경 프록시에서 CONNECT 403으로 차단됐고 웹 연결 도구도 접근 불가였다. Render 배포 성공을 공개 접속 검사나 가용성 측정으로 간주하지 않는다. 로컬 브라우저 검사 기록은 별도로 보존한다.
+- 같은 코드의 GitHub Actions Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 성공했다. 이후 링크·배포 기록만 추가한 문서 커밋은 이 배포에 포함되지 않는다.
+
+[배포 기록](verification/queryscope-v1/deployment.json) · [CI 기록](https://github.com/sokldjs554/queryscope/actions/runs/40480583240).
+
 ## 비용
 
 기존 승인 24회는 소진됐다. OpenAIExplainer의 기본 Budget은 0회이며 종료된 evaluate_alba.py --live는 요청 전 중단된다. 과거 유료 workflow는 실행 폴더에서 제거하고 기록으로 보존했다.
