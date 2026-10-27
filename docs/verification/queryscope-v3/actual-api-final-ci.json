@@ -1,0 +1,28 @@
+{
+  "id": 40520729351,
+  "head_sha": "46bfdfb9d5da4243bb9513e77d81ee18d48d1cc0",
+  "status": "completed",
+  "conclusion": "success",
+  "html_url": "https://github.com/sokldjs554/queryscope/actions/runs/40520729351",
+  "updated_at": "2026-10-27T14:26:07Z",
+  "jobs": [
+    {
+      "id": 122246780505,
+      "name": "검색 품질 게이트",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 122246781087,
+      "name": "테스트 (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 122246781195,
+      "name": "테스트 (windows-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

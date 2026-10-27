@@ -1,0 +1,20 @@
+{
+  "workspace": "my2 workspace",
+  "serviceId": "srv-dbg6rtflk1mc73cok690",
+  "url": "https://queryscope-zwia.onrender.com/generation-v3.html",
+  "deploy": {
+    "commit": {
+      "createdAt": "2026-10-27T14:23:54Z",
+      "id": "46bfdfb9d5da4243bb9513e77d81ee18d48d1cc0",
+      "message": "Report approved v3 actual responses, failures and paired replay without altering primary verdicts"
+    },
+    "createdAt": "2026-10-27T14:24:11.848139Z",
+    "finishedAt": "2026-10-27T14:24:21.890858Z",
+    "id": "dep-dbgb82vlk1mc73b8m1f0",
+    "startedAt": "2026-10-27T14:24:11.84594Z",
+    "status": "live",
+    "trigger": "api",
+    "updatedAt": "2026-10-27T14:24:21.891081Z"
+  },
+  "scope": "Render live; public HTTP blocked by environment proxy CONNECT403; local browser passed"
+}
