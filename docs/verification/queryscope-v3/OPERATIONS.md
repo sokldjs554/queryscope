@@ -46,3 +46,7 @@ Render 배포 `dep-dbg9k5ek1f9s73boe6b0`는 코드 `b3cc7b8`에서 21:33:38 한�
 수정 커밋 `652f38d1afda215e9ccad19683f70cac4113e617`의 [CI40505257938](https://github.com/sokldjs554/queryscope/actions/runs/40505257938)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 성공했다(21:39:57 한국 시각). 각 OS 테스트359 passed, 2 skipped; CI는 api/mcp/dev만 설치하며 로컬 선택 의존성 구성과 달라 테스트 수를 합산하지 않는다. [최종 CI 원자료](ci-final.json).
 
 Render가 게시한 `b3cc7b8`과 최종 CI `652f38d`의 src/tests/scripts/.github/web 차이는 없다. 이후 CI/배포 확인을 문서에 추가한 커밋은 실행 코드와 공개 정적 자료를 바꾸지 않으며 자동배포도 꺼져 있다. 최종 공개 접속은 여전히 프록시 제한으로 확인하지 못했다. 로컬 스크린샷과 Render live/CI success를 외부 HTTP200으로 대체하지 않는다.
+
+## 공개 데모 사용자 확인 추가
+
+2026-10-27 사용자가 공개 데모 접속과 수동 테스트 완료를 보고했다. [사용자 확인 기록](USER-ACCEPTANCE.md). Codex 환경의 프록시 차단 기록과 구분하며, 독립 인간 의미 평가·장기 가용성 검증으로 해석하지 않는다.

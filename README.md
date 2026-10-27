@@ -12,7 +12,7 @@
 - [v2 보존 상품·무힌트 검색 비교](https://queryscope-zwia.onrender.com/evaluation-v2.html): 새 작성 자료의 개선, 하락, 미해결 사례.
 - [v1 보존 결과](https://queryscope-zwia.onrender.com/evaluation.html): 이전 24질의 결과. 이번 개선에는 개발 자료로 사용했습니다.
 
-공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. 검증 환경에서 공개 주소 접속은 프록시 CONNECT 403과 웹 도구 접근 제한으로 확인하지 못했습니다. 로컬 데스크톱·모바일 검사는 통과했습니다. 최신 배포 상태와 확인 범위는 [운영 기록](docs/verification/queryscope-v3/OPERATIONS.md)에 구분합니다.
+공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. 2026-10-27 사용자가 공개 접속과 수동 테스트 완료를 확인했습니다([확인 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)). Codex 환경의 직접 접속은 프록시 CONNECT403으로 차단됐던 기록을 유지합니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 최신 배포 상태와 확인 범위는 [운영 기록](docs/verification/queryscope-v3/OPERATIONS.md)에 구분합니다.
 
 ## 이번에 확인한 결과
 
@@ -68,7 +68,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. `evaluate_queryscope_llm.py` 기본 실행은 공급자를 만들지 않는 무료 준비 모드입니다. [전체 원자료·재현 근거](docs/verification/queryscope-v3/README.md).
 
-로컬 전체 검사 **383 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속과 실제 모델 품질은 별도 미확인입니다.
+로컬 전체 검사 **383 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속은 사용자 확인 기록이 있으며, 독립 인간 의미 평가와 장기 운영 성능은 별도 미완료입니다.
 
 ## 승인 후 실제 LLM 평가
 

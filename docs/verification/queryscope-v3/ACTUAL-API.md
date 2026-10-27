@@ -82,3 +82,7 @@ python scripts/audit_queryscope_actual.py \
 Render 정적 배포 `dep-dbgb82vlk1mc73b8m1f0`는 `46bfdfb`를 게시해 2026-10-27 23:24:21 한국 시각에 live가 됐다([배포 기록](actual-api-deployment.json)). 게시 후 실제 HTTPS 접속은 환경 프록시 CONNECT403으로 실패했다([기록](actual-api-checks/public-access.txt)). 외부 HTTP200/가용성을 확인한 것으로 표시하지 않는다. 이 화면은 저장 재생 전용이다.
 
 최종 게시 코드 `46bfdfb9d5da4243bb9513e77d81ee18d48d1cc0`의 [CI40520729351](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트 모두 성공했다([원자료](actual-api-final-ci.json)). 이후 확인 기록만 추가한 문서 커밋은 실행 코드와 정적 게시 파일을 바꾸지 않는다. 승인 파일도 변경하지 않아 추가 유료 실행이 발생하지 않는다.
+
+## 공개 데모 사용자 확인 추가
+
+2026-10-27 사용자가 공개 데모 접속과 수동 테스트 완료를 보고했다. [사용자 확인 기록](USER-ACCEPTANCE.md). Codex 환경의 프록시 차단 기록과 구분하며, 독립 인간 의미 평가·장기 가용성 검증으로 해석하지 않는다.
