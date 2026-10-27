@@ -1,0 +1,39 @@
+{
+  "run": {
+    "id": 40505257938,
+    "head_sha": "652f38d1afda215e9ccad19683f70cac4113e617",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/sokldjs554/queryscope/actions/runs/40505257938",
+    "updated_at": "2026-10-27T12:39:57Z"
+  },
+  "jobs": [
+    {
+      "id": 122192814262,
+      "name": "테스트 (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-27T12:38:51Z"
+    },
+    {
+      "id": 122192814723,
+      "name": "테스트 (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-27T12:39:56Z"
+    },
+    {
+      "id": 122192814870,
+      "name": "검색 품질 게이트",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-27T12:38:05Z"
+    }
+  ],
+  "ubuntu_summary": [
+    "2026-10-27T12:38:49.3497810Z 359 passed, 2 skipped in 46.28s"
+  ],
+  "windows_summary": [
+    "2026-10-27T12:39:52.3678194Z 359 passed, 2 skipped in 78.12s (0:01:18)\r"
+  ]
+}

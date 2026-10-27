@@ -67,7 +67,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. `evaluate_queryscope_llm.py` 기본 실행은 공급자를 만들지 않는 무료 준비 모드입니다. [전체 원자료·재현 근거](docs/verification/queryscope-v3/README.md).
 
-로컬 전체 검사 **378 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속과 실제 모델 품질은 별도 미확인입니다.
+로컬 전체 검사 **378 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40505257938)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속과 실제 모델 품질은 별도 미확인입니다.
 
 ## 실제 LLM 평가의 남은 단계
 

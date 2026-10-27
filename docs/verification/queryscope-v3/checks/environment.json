@@ -8,6 +8,6 @@
     "pytest": "9.1.1",
     "fastapi": "0.162.0"
   },
-  "verification_code": "080758a2d589f5e1c0779513e5480b2e2187947e",
-  "new_paid_api_calls": 0
+  "new_paid_api_calls": 0,
+  "captured_at_commit": "080758a2d589f5e1c0779513e5480b2e2187947e"
 }

@@ -13,4 +13,4 @@ Review focus: normal suffix token coverage vs true atomic compound gap; empty to
 - [x] Make bundle selection explicit in preparation/approval/execution without altering v2 prepared payloads. RED->GREEN for correct frozen config and cross-suite tampering.
 - [x] v3 runner preconditions abort before scoring; olddevelopment/newcontrolled results separate; all24paired contexts, all families including n=0, null model outputs. Commit code before first v3 scoring.
 - [x] Local tests/baseline/browser/operations; document new results and limits, update application originals without inventing contribution.
-- [ ] Fresh review, fix blockers, full suite, push/CI/Render, public access attempt and scoped final report.
+- [x] Fresh review, fix blockers, full suite, push/CI/Render, public access attempt and scoped final report.
