@@ -1,0 +1,21 @@
+{
+  "workspace": "my2 workspace",
+  "workspaceId": "tea-db9hb2dg1s2s738nd1a0",
+  "serviceId": "srv-dbg6rtflk1mc73cok690",
+  "url": "https://queryscope-zwia.onrender.com",
+  "deploy": {
+    "commit": {
+      "createdAt": "2026-10-27T12:32:37Z",
+      "id": "b3cc7b8d59772733d03aa257671db5062d5643fc",
+      "message": "docs: record v3 independent code review and preservation checks"
+    },
+    "createdAt": "2026-10-27T12:33:25.690804Z",
+    "finishedAt": "2026-10-27T12:33:38.204966Z",
+    "id": "dep-dbg9k5ek1f9s73boe6b0",
+    "startedAt": "2026-10-27T12:33:25.687566Z",
+    "status": "live",
+    "trigger": "api",
+    "updatedAt": "2026-10-27T12:33:38.205183Z"
+  },
+  "scope": "Render control-plane live; public access not verified"
+}
