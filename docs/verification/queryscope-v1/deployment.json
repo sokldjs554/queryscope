@@ -21,5 +21,5 @@
   },
   "new_paid_api_calls": 0,
   "generation_backend_deployed": false,
-  "application_original_documents": "Library links supplied; content not accessible with current tools. Separate repository drafts only; original-preserving revision pending editable attachments."
+  "application_original_documents": "Editable Markdown originals subsequently attached by the user. Revised preserving original section order and checked against recorded QueryScope results; see docs/application/REVISION-NOTES.md."
 }

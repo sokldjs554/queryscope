@@ -78,4 +78,4 @@ PR #2의 실제 API 24회·추정 $0.02903175와 저장 응답 사후 재검증�
 
 **미확인:** 새 질의에서 LLM의 힌트/무힌트 원인 정확도·설명 타당성·자연 발생 보류율, 독립 인간 의미 평가, 실제 채용 검색 성과, 공개 생성 API 장기 운영. [추가 평가안](docs/verification/queryscope-v1/PAID-EVALUATION-PROPOSAL.md)은 모델·24회·비용을 명시한 미승인 계획이며 실행하지 않았습니다.
 
-별도 초안(기존 Library 원본 대조 대기): [지원용 자소서 문안](docs/application/cover-letter.md) · [포트폴리오](docs/application/portfolio.md) · [기존 상세 검색 실험](README-legacy.md).
+첨부 원문의 구성·표현을 바탕으로 새 검증 결과를 반영한 [지원용 자소서](docs/application/cover-letter.md) · [포트폴리오](docs/application/portfolio.md) · [문서 수정 근거](docs/application/REVISION-NOTES.md) · [기존 상세 검색 실험](README-legacy.md).
