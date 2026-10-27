@@ -4,7 +4,7 @@
 
 알바천국 AI 개발자 지원용으로 [ko-search-clinic PR #2](https://github.com/sokldjs554/ko-search-clinic/pull/2)의 RAG 서비스와 전체 Git 이력을 이어받았습니다. 기준 커밋은 `493935f6`, 태그는 `upstream-pr2`입니다. [출처와 변경 이력](docs/PROVENANCE.md).
 
-직접 작성한 상품 72개를 사용합니다. 실제 채용 공고·알바천국 고객 데이터가 아닙니다. 구현·실험·문서 작성에 Codex를 사용했습니다.
+직접 작성한 상품 카탈로그 72건을 사용합니다. 기존 평가셋 36질의(건강 20 + 실패 16)는 회귀 게이트로 유지하고, 신규 24질의와 분리합니다. 실제 채용 공고·알바천국 고객 데이터가 아닙니다. 구현·실험·문서 작성에 Codex를 사용했습니다.
 
 ## 데모 실행
 
@@ -62,6 +62,8 @@ python scripts/evaluate_queryscope.py --output work/reproduction-1
 python scripts/verify_queryscope_operations.py --output work/operations-1
 ```
 
+**최종 로컬 검사: 353 passed, 1 skipped, 2 deselected.** 기존 기준선 평균 nDCG 0.5839 유지, 수정 후 새 평가 재현 값 일치.
+
 결과 디렉터리가 이미 있으면 중단합니다. 정답/프로토콜 파일의 해시가 다르면 평가를 시작하지 않습니다. 브라우저: Playwright/Chromium 준비 후 `node scripts/browser_queryscope.cjs`.
 
 [로컬 HTTP 측정](docs/verification/queryscope-v1/operations/operations.json): 120회 순차 GET 모두 200, 기본 생성 요청은 예상한 503, 빈 입력은 422. 준비 이후 p95 1.937ms는 로컬 정적 자료/상태 조회 수치이며 모델 지연·공개 운영 SLA가 아닙니다.
@@ -72,4 +74,4 @@ PR #2의 실제 API 24회·추정 $0.02903175와 저장 응답 사후 재검증�
 
 **미확인:** 새 질의에서 LLM의 힌트/무힌트 원인 정확도·설명 타당성·자연 발생 보류율, 독립 인간 의미 평가, 실제 채용 검색 성과, 공개 생성 API 장기 운영. [추가 평가안](docs/verification/queryscope-v1/PAID-EVALUATION-PROPOSAL.md)은 모델·24회·비용을 명시한 미승인 계획이며 실행하지 않았습니다.
 
-[지원용 자소서 문안](docs/application/cover-letter.md) · [포트폴리오](docs/application/portfolio.md) · [기존 상세 검색 실험](README-legacy.md).
+별도 초안(기존 Library 원본 대조 대기): [지원용 자소서 문안](docs/application/cover-letter.md) · [포트폴리오](docs/application/portfolio.md) · [기존 상세 검색 실험](README-legacy.md).

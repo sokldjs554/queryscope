@@ -6,7 +6,7 @@ The existing regression gate remains the authority for applying a candidate.
 from __future__ import annotations
 import re
 from typing import Literal
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 from searchclinic.patch.ir import Prescription
 from searchclinic.analysis.config import AnalyzerConfig
 from searchclinic.rag.knowledge import KnowledgeDoc
@@ -21,6 +21,13 @@ class Evidence(StrictModel):
 class Patch(StrictModel):
     kind: Literal['synonym', 'user_word', 'compound']
     terms: list[str] = Field(min_length=1, max_length=6)
+
+    @field_validator('terms')
+    @classmethod
+    def single_token_terms(cls, terms):
+        if any(not term or any(char.isspace() for char in term) for term in terms):
+            raise ValueError('patch_terms_must_be_nonempty_single_tokens')
+        return terms
 
 class Explanation(StrictModel):
     status: Literal['supported', 'abstain']

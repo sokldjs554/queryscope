@@ -1,0 +1,91 @@
+............FFFFF..                                                      [100%]
+=================================== FAILURES ===================================
+________ test_whitespace_patch_cannot_claim_verified_structure[patch0] _________
+
+patch = {'kind': 'synonym', 'terms': ['백\t팩', '배낭']}
+
+    @pytest.mark.parametrize('patch',[
+        {'kind':'synonym','terms':['백\t팩','배낭']},
+        {'kind':'user_word','terms':['백\n팩']},
+        {'kind':'compound','terms':['물 티슈','물 ','티슈']},
+    ])
+    def test_whitespace_patch_cannot_claim_verified_structure(patch):
+        raw={**RAW,'patches':[patch]};before=copy.deepcopy(raw)
+        result=validate_explanation(raw,[DOC],'백팩')
+>       assert result['prescription'] is None
+E       AssertionError: assert {'target_query': '백팩', 'diagnosis_family': 'garbage_split', 'reasoning': '형태소 분해가 검색 실패의 원인으로 확정되었습니다.', 'user_words': [], ...} is None
+
+tests/test_queryscope.py:98: AssertionError
+________ test_whitespace_patch_cannot_claim_verified_structure[patch1] _________
+
+patch = {'kind': 'user_word', 'terms': ['백\n팩']}
+
+    @pytest.mark.parametrize('patch',[
+        {'kind':'synonym','terms':['백\t팩','배낭']},
+        {'kind':'user_word','terms':['백\n팩']},
+        {'kind':'compound','terms':['물 티슈','물 ','티슈']},
+    ])
+    def test_whitespace_patch_cannot_claim_verified_structure(patch):
+        raw={**RAW,'patches':[patch]};before=copy.deepcopy(raw)
+        result=validate_explanation(raw,[DOC],'백팩')
+>       assert result['prescription'] is None
+E       AssertionError: assert {'target_query': '백팩', 'diagnosis_family': 'garbage_split', 'reasoning': '형태소 분해가 검색 실패의 원인으로 확정되었습니다.', 'user_words': [{'form': '백\n팩', 'tag': 'NNP'}], ...} is None
+
+tests/test_queryscope.py:98: AssertionError
+________ test_whitespace_patch_cannot_claim_verified_structure[patch2] _________
+
+patch = {'kind': 'compound', 'terms': ['물 티슈', '물 ', '티슈']}
+
+    @pytest.mark.parametrize('patch',[
+        {'kind':'synonym','terms':['백\t팩','배낭']},
+        {'kind':'user_word','terms':['백\n팩']},
+        {'kind':'compound','terms':['물 티슈','물 ','티슈']},
+    ])
+    def test_whitespace_patch_cannot_claim_verified_structure(patch):
+        raw={**RAW,'patches':[patch]};before=copy.deepcopy(raw)
+        result=validate_explanation(raw,[DOC],'백팩')
+>       assert result['prescription'] is None
+E       AssertionError: assert {'target_query': '백팩', 'diagnosis_family': 'garbage_split', 'reasoning': '형태소 분해가 검색 실패의 원인으로 확정되었습니다.', 'user_words': [], ...} is None
+
+tests/test_queryscope.py:98: AssertionError
+_________ test_generated_candidate_is_not_applied_until_gate_requested _________
+
+clinic = <searchclinic.service.ClinicService object at 0x7fd23d5bb6b0>
+
+    def test_generated_candidate_is_not_applied_until_gate_requested(clinic):
+        svc=ExplanationService(clinic,FixedProvider(['프라이팬','후라이팬']),FixedRetriever())
+        report=svc.explain('후라이팬','표기 변형 검색 누락')
+        assert report['gate'] is None
+        assert clinic.search('후라이팬')['total'] == 0
+        applied=svc.apply(report['id'])
+        assert applied['gate']['accepted'] is True
+>       assert applied['answer']['assessment']['patch_effect']=='accepted_on_evaluation_set'
+E       AssertionError: assert 'not_run' == 'accepted_on_evaluation_set'
+E         
+E         - accepted_on_evaluation_set
+E         + not_run
+
+tests/test_explanation_service.py:31: AssertionError
+___________ test_overbroad_generated_patch_is_rejected_by_real_gate ____________
+
+clinic = <searchclinic.service.ClinicService object at 0x7fd23d5bb6b0>
+
+    def test_overbroad_generated_patch_is_rejected_by_real_gate(clinic):
+        svc=ExplanationService(clinic,FixedProvider(['프라이팬','후라이팬','팬']),FixedRetriever())
+        report=svc.explain('후라이팬','표기 변형')
+        applied=svc.apply(report['id'])
+        assert applied['gate']['accepted'] is False
+>       assert applied['answer']['assessment']['patch_effect']=='rejected_on_evaluation_set'
+E       AssertionError: assert 'not_run' == 'rejected_on_evaluation_set'
+E         
+E         - rejected_on_evaluation_set
+E         + not_run
+
+tests/test_explanation_service.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_queryscope.py::test_whitespace_patch_cannot_claim_verified_structure[patch0]
+FAILED tests/test_queryscope.py::test_whitespace_patch_cannot_claim_verified_structure[patch1]
+FAILED tests/test_queryscope.py::test_whitespace_patch_cannot_claim_verified_structure[patch2]
+FAILED tests/test_explanation_service.py::test_generated_candidate_is_not_applied_until_gate_requested
+FAILED tests/test_explanation_service.py::test_overbroad_generated_patch_is_rejected_by_real_gate
+5 failed, 14 passed in 6.06s

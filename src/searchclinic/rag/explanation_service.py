@@ -66,4 +66,7 @@ class ExplanationService:
                 self.clinic.delete_session(sid)
                 raise
             report.update(gate=gate,session_id=sid)
+            report['answer']['assessment']['patch_effect'] = (
+                'accepted_on_evaluation_set' if gate['accepted'] else 'rejected_on_evaluation_set'
+            )
             return copy.deepcopy(report)

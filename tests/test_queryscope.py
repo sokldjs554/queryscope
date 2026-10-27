@@ -85,3 +85,16 @@ def test_frozen_protocol_tampering_stops_evaluation(tmp_path):
     (tmp_path/'cases.json').write_text('[]',encoding='utf-8')
     with pytest.raises(ValueError,match='frozen_input_changed'):
         runner.load_frozen(tmp_path)
+
+
+@pytest.mark.parametrize('patch',[
+    {'kind':'synonym','terms':['백\t팩','배낭']},
+    {'kind':'user_word','terms':['백\n팩']},
+    {'kind':'compound','terms':['물 티슈','물 ','티슈']},
+])
+def test_whitespace_patch_cannot_claim_verified_structure(patch):
+    raw={**RAW,'patches':[patch]};before=copy.deepcopy(raw)
+    result=validate_explanation(raw,[DOC],'백팩')
+    assert result['prescription'] is None
+    assert result['assessment']['patch_structure']!='verified'
+    assert raw==before

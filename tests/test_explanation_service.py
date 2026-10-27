@@ -28,6 +28,7 @@ def test_generated_candidate_is_not_applied_until_gate_requested(clinic):
     assert clinic.search('후라이팬')['total'] == 0
     applied=svc.apply(report['id'])
     assert applied['gate']['accepted'] is True
+    assert applied['answer']['assessment']['patch_effect']=='accepted_on_evaluation_set'
     assert svc.apply(report['id'])['gate'] == applied['gate']
     assert clinic.search('후라이팬')['total'] == 0
 
@@ -36,6 +37,7 @@ def test_overbroad_generated_patch_is_rejected_by_real_gate(clinic):
     report=svc.explain('후라이팬','표기 변형')
     applied=svc.apply(report['id'])
     assert applied['gate']['accepted'] is False
+    assert applied['answer']['assessment']['patch_effect']=='rejected_on_evaluation_set'
     assert clinic.describe_session(applied['session_id'])['accepted_count'] == 0
 
 def test_outside_evalset_cannot_claim_a_validated_patch(clinic):

@@ -1,5 +1,7 @@
 # QueryScope 포트폴리오
 
+기존 Library 포트폴리오를 읽기 전 작성한 별도 초안입니다. 기존 원문의 구성·표현 대조는 원본 파일 제공 후 진행합니다.
+
 한국어 검색 실패를 관측하고, RAG 설명의 근거와 수정 효과를 구분해서 검증하는 Python 프로젝트입니다. [저장소](https://github.com/sokldjs554/queryscope) · [실행과 데모 안내](../../README.md) · [검증 원자료](../verification/queryscope-v1/run-v1/results.json).
 
 ## 만든 이유와 개발 범위
