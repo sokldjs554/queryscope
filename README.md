@@ -62,7 +62,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v2
 
 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. `evaluate_queryscope_llm.py` 기본 실행은 공급자를 만들지 않는 무료 준비 모드입니다. [전체 원자료·환경·재현 근거](docs/verification/queryscope-v2/README.md).
 
-로컬 전체 검사 **370 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG 0.5839를 유지합니다. 1440/320/390/650px에서 기존 재생과 새 비교 화면을 검사했습니다. 공개 접속·실제 공급자 장애·생성 지연 검증은 이 검사에 포함하지 않습니다.
+로컬 전체 검사 **370 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG 0.5839를 유지합니다. 검증 코드 `18beac2`의 [Ubuntu·Windows 테스트와 검색 품질 CI](https://github.com/sokldjs554/queryscope/actions/runs/40497362426)도 모두 통과했습니다. 1440/320/390/650px에서 기존 재생과 새 비교 화면을 검사했습니다. 공개 접속·실제 공급자 장애·생성 지연 검증은 이 검사에 포함하지 않습니다.
 
 ## 실제 LLM 평가의 남은 단계
 

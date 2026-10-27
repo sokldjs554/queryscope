@@ -46,4 +46,4 @@ Files: candidate_review.py, scripts/evaluate_queryscope_v2.py, tests/test_querys
 Files: web/evaluation-v2.*, scripts/browser_queryscope_v2.cjs, README, docs/application/*.
 - [x] 결과기반 새화면 + legacy보존. local desktop/mobile/errors tests, HTTP operations, full pytest/baseline.
 - [x] fresh whole-branch reviewer, 중요문제 RED->GREEN, 필요시 full suite.
-- [ ] push new code, CI, Render 배포/공개접속 확인; 문서와 자소서 실제 결과로만 업데이트.
+- [x] push new code, CI, Render 배포/공개접속 확인; 문서와 자소서 실제 결과로만 업데이트.
