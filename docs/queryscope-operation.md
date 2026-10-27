@@ -1,5 +1,7 @@
 # QueryScope 운영과 재현
 
+최신 v2 검사·배포 범위는 [v2 운영 기록](verification/queryscope-v2/OPERATIONS.md), 현재 모델 평가 준비는 [새 승인 계획](verification/queryscope-v2/PAID-EVALUATION-PROPOSAL.md)을 따른다. 아래 초기 공개 배포 정보는 v1 시점 기록이다.
+
 ## 기본 실행
 
 README의 `pip install -e '.[api]'` 후 `python -m searchclinic.api.explanation_api`.

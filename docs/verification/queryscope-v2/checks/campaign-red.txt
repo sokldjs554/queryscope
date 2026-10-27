@@ -1,0 +1,91 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+___________ test_frozen_bundle_tamper_and_unknown_qrels_are_rejected ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-10/test_frozen_bundle_tamper_and_0')
+
+    def test_frozen_bundle_tamper_and_unknown_qrels_are_rejected(tmp_path):
+>       from searchclinic.evaluation.queryscope_v2 import load_bundle
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.queryscope_v2'
+
+tests/test_queryscope_v2.py:12: ModuleNotFoundError
+________ test_prepare_never_constructs_provider_and_keeps_paired_inputs ________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-10/test_prepare_never_constructs_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fd181127a40>
+
+    def test_prepare_never_constructs_provider_and_keeps_paired_inputs(tmp_path,monkeypatch):
+>       from searchclinic.evaluation.llm_campaign import prepare, check_approval
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.llm_campaign'
+
+tests/test_queryscope_v2.py:21: ModuleNotFoundError
+______ test_live_requires_exact_approval_and_refuses_modified_preparation ______
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-10/test_live_requires_exact_appro0')
+
+    def test_live_requires_exact_approval_and_refuses_modified_preparation(tmp_path):
+>       from searchclinic.evaluation.llm_campaign import prepare, check_approval, file_sha
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.llm_campaign'
+
+tests/test_queryscope_v2.py:39: ModuleNotFoundError
+__________ test_invalid_patch_is_not_counted_as_successful_abstention __________
+
+    def test_invalid_patch_is_not_counted_as_successful_abstention():
+>       from searchclinic.evaluation.queryscope_v2 import assess_generation
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.queryscope_v2'
+
+tests/test_queryscope_v2.py:52: ModuleNotFoundError
+_____ test_direct_prescription_models_reject_hidden_whitespace[<lambda>0] ______
+
+factory = <function <lambda> at 0x7fd184639300>
+
+    @pytest.mark.parametrize('factory',[
+        lambda:UserWord(form='백\t팩'),
+        lambda:SynonymGroup(terms=['백\n팩','배낭']),
+        lambda:CompoundExpansion(word='물\t티슈',parts=['물\t','티슈']),
+    ])
+    def test_direct_prescription_models_reject_hidden_whitespace(factory):
+>       with pytest.raises(ValueError):factory()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_queryscope_v2.py:70: Failed
+_____ test_direct_prescription_models_reject_hidden_whitespace[<lambda>1] ______
+
+factory = <function <lambda> at 0x7fd1810f98a0>
+
+    @pytest.mark.parametrize('factory',[
+        lambda:UserWord(form='백\t팩'),
+        lambda:SynonymGroup(terms=['백\n팩','배낭']),
+        lambda:CompoundExpansion(word='물\t티슈',parts=['물\t','티슈']),
+    ])
+    def test_direct_prescription_models_reject_hidden_whitespace(factory):
+>       with pytest.raises(ValueError):factory()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_queryscope_v2.py:70: Failed
+_____ test_direct_prescription_models_reject_hidden_whitespace[<lambda>2] ______
+
+factory = <function <lambda> at 0x7fd1810f9940>
+
+    @pytest.mark.parametrize('factory',[
+        lambda:UserWord(form='백\t팩'),
+        lambda:SynonymGroup(terms=['백\n팩','배낭']),
+        lambda:CompoundExpansion(word='물\t티슈',parts=['물\t','티슈']),
+    ])
+    def test_direct_prescription_models_reject_hidden_whitespace(factory):
+>       with pytest.raises(ValueError):factory()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_queryscope_v2.py:70: Failed
+=========================== short test summary info ============================
+FAILED tests/test_queryscope_v2.py::test_frozen_bundle_tamper_and_unknown_qrels_are_rejected
+FAILED tests/test_queryscope_v2.py::test_prepare_never_constructs_provider_and_keeps_paired_inputs
+FAILED tests/test_queryscope_v2.py::test_live_requires_exact_approval_and_refuses_modified_preparation
+FAILED tests/test_queryscope_v2.py::test_invalid_patch_is_not_counted_as_successful_abstention
+FAILED tests/test_queryscope_v2.py::test_direct_prescription_models_reject_hidden_whitespace[<lambda>0]
+FAILED tests/test_queryscope_v2.py::test_direct_prescription_models_reject_hidden_whitespace[<lambda>1]
+FAILED tests/test_queryscope_v2.py::test_direct_prescription_models_reject_hidden_whitespace[<lambda>2]
+7 failed in 0.11s

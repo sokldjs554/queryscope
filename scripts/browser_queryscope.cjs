@@ -2,7 +2,7 @@
 const {chromium}=require('playwright');
 const fs=require('fs');const path=require('path');const cp=require('child_process');const assert=require('assert');
 (async()=>{
- const root=path.resolve(__dirname,'..');const out=path.join(root,'docs/verification/queryscope-v1/browser');fs.mkdirSync(out,{recursive:true});
+ const root=path.resolve(__dirname,'..');const out=process.env.QUERYSCOPE_BROWSER_OUTPUT||path.join(root,'work/browser-checks');fs.mkdirSync(out,{recursive:true});
  const server=cp.spawn('python',['-m','http.server','8765','--bind','127.0.0.1','--directory',path.join(root,'src/searchclinic')],{stdio:'ignore'});
  let browser;
  try{

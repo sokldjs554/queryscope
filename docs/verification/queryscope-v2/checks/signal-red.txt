@@ -1,0 +1,13 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_observed_fragmentation_is_not_drowned_out_by_incidental_latin_product_names _
+
+    def test_observed_fragmentation_is_not_drowned_out_by_incidental_latin_product_names():
+        context, _ = ExplanationService(ClinicService()).context('노트북 아답터', '휴대용 상품을 찾습니다.')
+>       assert {'K001','K002','K003','K005','K011','K016','K017'} & {d['id'] for d in context['documents']}
+E       AssertionError: assert ({'K001', 'K002', 'K003', 'K005', 'K011', 'K016', ...} & {'K006', 'K007', 'K008'})
+
+tests/test_observation_retrieval.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_retrieval.py::test_observed_fragmentation_is_not_drowned_out_by_incidental_latin_product_names
+1 failed in 2.05s

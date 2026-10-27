@@ -1,0 +1,269 @@
+{
+  "status": "pending_independent_human_review",
+  "rows": [
+    {
+      "case_id": "V01",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V01",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V04",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V04",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V07",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V07",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V10",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V10",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V13",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V13",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V16",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V16",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V17",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V17",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V19",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V19",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V21",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V21",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V22",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V22",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V23",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V23",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V24",
+      "condition": "no_hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    },
+    {
+      "case_id": "V24",
+      "condition": "hint",
+      "reviewer": null,
+      "independent": null,
+      "cause_sufficiency": null,
+      "semantic_support": null,
+      "abstention_appropriateness": null,
+      "patch_semantics": null,
+      "reason": null
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_generation_records_exact_compact_input_without_search_probe_instructions _
+
+    def test_generation_records_exact_compact_input_without_search_probe_instructions():
+        sent=[]
+        class Provider:
+            def generate(self,context):
+                sent.append(context)
+                return {'raw':{'status':'abstain','family':'unknown','summary':'독립 근거가 부족하여 판단을 보류합니다.','evidence':[],'patches':[]}}
+        report=ExplanationService(ClinicService(),provider=Provider()).explain('노트북 아답터','검색 결과를 점검합니다.')
+>       assert 'retrieval' not in sent[0]
+E       AssertionError: assert 'retrieval' not in {'query': '노트북 아답터', 'problem': '검색 결과를 점검합니다.', 'analysis': {'text': '노트북 아답터', 'session_id': None, 'tokens': [{'toke...tched_terms': ['노트북']}, {'doc_id': 'P035', 'name': 'C타입 충전 어댑터 65W', 'score': 3.1135, 'matched_terms': ['노트북']}]}, ...}
+
+tests/test_observation_retrieval.py:74: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_retrieval.py::test_generation_records_exact_compact_input_without_search_probe_instructions
+1 failed in 2.08s

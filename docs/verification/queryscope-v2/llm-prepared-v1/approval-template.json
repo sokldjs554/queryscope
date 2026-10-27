@@ -1,0 +1,8 @@
+{
+  "approved": false,
+  "approved_by": null,
+  "prepared_sha256": "899d2ecb705f32b37a53f8fd69024652ec8ded1bffdcadff95b9a66ca0d0e0c9",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "calls": 24,
+  "max_usd": 0.3
+}

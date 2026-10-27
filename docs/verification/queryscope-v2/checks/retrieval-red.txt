@@ -1,0 +1,60 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_service_uses_actual_token_and_raw_observations_without_root_cause_hint __
+
+    def test_service_uses_actual_token_and_raw_observations_without_root_cause_hint():
+        context, _ = ExplanationService(ClinicService()).context('워시', '세정용 상품을 찾습니다.')
+>       assert context.get('retrieval', {}).get('strategy') == 'observed'
+E       AssertionError: assert None == 'observed'
+E        +  where None = <built-in method get of dict object at 0x7fdf8a81f8c0>('strategy')
+E        +    where <built-in method get of dict object at 0x7fdf8a81f8c0> = {}.get
+E        +      where {} = <built-in method get of dict object at 0x7fdf8a861380>('retrieval', {})
+E        +        where <built-in method get of dict object at 0x7fdf8a861380> = {'query': '워시', 'problem': '세정용 상품을 찾습니다.', 'analysis': {'text': '워시', 'session_id': None, 'tokens': [{'token': '워시', ...NG', 'origin': 'kiwi'}], 'dropped': []}, 'search': {'query': '워시', 'session_id': None, 'total': 0, 'results': []}, ...}.get
+
+tests/test_observation_retrieval.py:13: AssertionError
+_______ test_dropped_and_fragmented_surface_is_visible_but_not_diagnosed _______
+
+    def test_dropped_and_fragmented_surface_is_visible_but_not_diagnosed():
+        context, _ = ExplanationService(ClinicService()).context('아답터', '결과를 점검해 주세요.')
+>       assert any(s['kind'] == 'fragmented_surface' for s in context.get('retrieval', {}).get('signals', []))
+E       assert False
+E        +  where False = any(<generator object test_dropped_and_fragmented_surface_is_visible_but_not_diagnosed.<locals>.<genexpr> at 0x7fdf8ae40ba0>)
+
+tests/test_observation_retrieval.py:20: AssertionError
+___ test_spelling_neighbors_are_only_candidates_and_require_catalog_support ____
+
+    def test_spelling_neighbors_are_only_candidates_and_require_catalog_support():
+>       from searchclinic.rag.observations import build_context
+E       ModuleNotFoundError: No module named 'searchclinic.rag.observations'
+
+tests/test_observation_retrieval.py:26: ModuleNotFoundError
+________ test_excerpt_is_contiguous_body_and_records_offsets_not_title _________
+
+    def test_excerpt_is_contiguous_body_and_records_offsets_not_title():
+>       from searchclinic.rag.observations import build_context
+E       ModuleNotFoundError: No module named 'searchclinic.rag.observations'
+
+tests/test_observation_retrieval.py:37: ModuleNotFoundError
+________________ test_family_metadata_does_not_change_retrieval ________________
+
+    def test_family_metadata_does_not_change_retrieval():
+>       from searchclinic.rag.observations import build_context
+E       ModuleNotFoundError: No module named 'searchclinic.rag.observations'
+
+tests/test_observation_retrieval.py:48: ModuleNotFoundError
+______________ test_legacy_context_is_exact_original_input_shape _______________
+
+    def test_legacy_context_is_exact_original_input_shape():
+>       service = ExplanationService(ClinicService(), retrieval_strategy='legacy')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: ExplanationService.__init__() got an unexpected keyword argument 'retrieval_strategy'
+
+tests/test_observation_retrieval.py:56: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_observation_retrieval.py::test_service_uses_actual_token_and_raw_observations_without_root_cause_hint
+FAILED tests/test_observation_retrieval.py::test_dropped_and_fragmented_surface_is_visible_but_not_diagnosed
+FAILED tests/test_observation_retrieval.py::test_spelling_neighbors_are_only_candidates_and_require_catalog_support
+FAILED tests/test_observation_retrieval.py::test_excerpt_is_contiguous_body_and_records_offsets_not_title
+FAILED tests/test_observation_retrieval.py::test_family_metadata_does_not_change_retrieval
+FAILED tests/test_observation_retrieval.py::test_legacy_context_is_exact_original_input_shape
+6 failed in 2.46s

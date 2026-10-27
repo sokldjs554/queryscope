@@ -1,0 +1,767 @@
+{
+  "created_at": "2026-10-27T11:24:33.971660+00:00",
+  "scope": "single local loopback process, sequential warmed GETs; no model latency or production SLA",
+  "new_api_calls": 0,
+  "cold_start_ms": 2573.65,
+  "warmed_gets": 120,
+  "p50_ms": 1.204,
+  "p95_ms": 3.01,
+  "max_ms": 6.097,
+  "status_counts": {
+    "200": 120,
+    "503": 1,
+    "422": 1
+  },
+  "server_state": {
+    "live_enabled": false,
+    "metrics": {
+      "requests": 0,
+      "supported": 0,
+      "abstain": 0,
+      "invalid": 0,
+      "upstream_errors": 0,
+      "busy": 0,
+      "gate_accepted": 0,
+      "gate_rejected": 0
+    },
+    "latency_ms_p95": null,
+    "scope": "현재 프로세스 / 최근 100회, 고객 서비스 SLA 아님"
+  },
+  "rows": [
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 4.618
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.145
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.08
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.182
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.12
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 2.476
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.442
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.186
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.132
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.186
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.204
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 2.734
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.976
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 0.959
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 4.002
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.15
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 0.921
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 6.097
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 0.944
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.329
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.222
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.283
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.279
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.168
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.267
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.131
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.142
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.124
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.158
+    },
+    {
+      "method": "GET",
+      "path": "/demo/",
+      "status": 200,
+      "elapsed_ms": 1.1
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.627
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.251
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.17
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.252
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.129
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.272
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.119
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.144
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.195
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.289
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.292
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.222
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.284
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.162
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.2
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.156
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.137
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.177
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.223
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.135
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.519
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.733
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.221
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.09
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.45
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.329
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.424
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.122
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.015
+    },
+    {
+      "method": "GET",
+      "path": "/demo/replay.json",
+      "status": 200,
+      "elapsed_ms": 1.237
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.64
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.833
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.091
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.103
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 3.01
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.811
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.875
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.839
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.142
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.653
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.322
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.957
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 3.079
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.897
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.782
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.135
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 3.025
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 3.365
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.187
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.643
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.531
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.695
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.669
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.844
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.737
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.898
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.802
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.73
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 2.011
+    },
+    {
+      "method": "GET",
+      "path": "/demo/evaluation.json",
+      "status": 200,
+      "elapsed_ms": 1.773
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.933
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.76
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.723
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.691
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.719
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.691
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.749
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.687
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.705
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.697
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 1.542
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.782
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.717
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.711
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.823
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.788
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.717
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.704
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.734
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.774
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.695
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.687
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.716
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.714
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.679
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.844
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.745
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.707
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.672
+    },
+    {
+      "method": "GET",
+      "path": "/explanation-status",
+      "status": 200,
+      "elapsed_ms": 0.717
+    },
+    {
+      "method": "POST",
+      "path": "/explanations",
+      "status": 503,
+      "expected": 503,
+      "elapsed_ms": 1.288
+    },
+    {
+      "method": "POST",
+      "path": "/explanations",
+      "status": 422,
+      "expected": 422,
+      "elapsed_ms": 0.863
+    }
+  ],
+  "passed": true
+}
