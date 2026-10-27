@@ -89,7 +89,8 @@ def main():
     token=os.environ.get('CLINIC_LIVE_TOKEN')
     if os.environ.get('CLINIC_ENABLE_LIVE')=='1':
         provider=OpenAIExplainer(os.environ.get('OPENAI_API_KEY',''),
-            budget=Budget(path=Path(os.environ.get('CLINIC_BUDGET_PATH','.clinic-budget.json'))))
+            budget=Budget(path=Path(os.environ.get('CLINIC_BUDGET_PATH','.clinic-budget.json')),
+                          max_calls=int(os.environ.get('CLINIC_MAX_CALLS','0'))))
     uvicorn.run(create_explanation_app(provider=provider,token=token),host='127.0.0.1',port=8000)
 
 if __name__=='__main__': main()

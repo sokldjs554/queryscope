@@ -32,9 +32,9 @@ class Budget:
     A durable ledger and exclusive file guard protect multiple server processes.
     A leftover guard after a process crash fails closed for operator review.
     """
-    def __init__(self, path: Path | None = None, max_calls: int = 24):
-        if not 1 <= max_calls <= 24:
-            raise ValueError('max_calls must be between 1 and 24')
+    def __init__(self, path: Path | None = None, max_calls: int = 0):
+        if not 0 <= max_calls <= 24:
+            raise ValueError('max_calls must be between 0 and 24')
         self.path = Path(path) if path else None
         self.max_calls = max_calls
         self.calls = 0

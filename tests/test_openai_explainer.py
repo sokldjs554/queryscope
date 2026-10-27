@@ -17,7 +17,7 @@ def test_request_is_structured_bounded_and_does_not_store_data():
         assert body['text']['format']['strict'] is True
         assert 'qrels' not in str(body)
         return httpx.Response(200,json=response('{"status":"abstain"}'))
-    provider = OpenAIExplainer('test-key', client=httpx.Client(transport=httpx.MockTransport(handler)))
+    provider = OpenAIExplainer('test-key', budget=Budget(max_calls=1), client=httpx.Client(transport=httpx.MockTransport(handler)))
     result = provider.generate({'query':'후라이팬','documents':[]})
     assert result['raw'] == {'status':'abstain'}
     assert result['usage']['input_tokens'] == 100
@@ -41,7 +41,7 @@ def test_http_failure_is_redacted_and_charged_without_retry(status):
 @pytest.mark.parametrize('payload', [response(status='incomplete'), response('not JSON'),
     {'status':'completed','output':[], 'usage':{}}])
 def test_incomplete_or_malformed_output_is_not_success(payload):
-    provider = OpenAIExplainer('test-key', client=httpx.Client(transport=httpx.MockTransport(
+    provider = OpenAIExplainer('test-key', budget=Budget(max_calls=1), client=httpx.Client(transport=httpx.MockTransport(
         lambda r:httpx.Response(200,json=payload))))
     with pytest.raises(ProviderError):
         provider.generate({'query':'후라이팬'})

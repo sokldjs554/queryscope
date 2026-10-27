@@ -22,9 +22,11 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--live',action='store_true')
-    parser.add_argument('--output',type=Path,default=ROOT/'docs/verification/alba-20261027/run')
+    parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
-    args.output.mkdir(parents=True,exist_ok=True)
+    if args.live:
+        parser.error('retired campaign: the approved 24 calls are already exhausted')
+    args.output.mkdir(parents=True,exist_ok=False)
     cases_path=ROOT/'docs/verification/alba-20261027/cases.json'
     cases=json.loads(cases_path.read_text(encoding='utf-8'))
     svc=ExplanationService(ClinicService())

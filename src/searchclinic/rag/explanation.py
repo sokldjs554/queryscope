@@ -65,7 +65,7 @@ def source_quote(quote: str, body: str) -> tuple[str, bool]:
     # Return an actual substring of the provided body, never a paraphrase.
     return body[offsets[start]:offsets[start+len(needle)-1]+1], True
 
-def validate_explanation(raw: dict, docs: list[KnowledgeDoc], query: str) -> dict:
+def _validate_explanation(raw: dict, docs: list[KnowledgeDoc], query: str) -> dict:
     """Return a safe envelope; invalid output never contains executable changes."""
     failure = 'output_schema'
     recovered = False
@@ -107,3 +107,17 @@ def validate_explanation(raw: dict, docs: list[KnowledgeDoc], query: str) -> dic
         return {'status':'invalid', 'summary':'생성 결과의 형식 또는 원문 인용을 확인하지 못했습니다.',
                 'family':'unknown','evidence':[], 'patches':[], 'prescription':None,
                 'validation_error':failure, 'citation_format_recovered':False}
+
+
+def validate_explanation(raw: dict, docs: list[KnowledgeDoc], query: str) -> dict:
+    """Keep traceability, semantic review and measured effect separate."""
+    result = _validate_explanation(raw, docs, query)
+    valid = result['status'] != 'invalid'
+    result['assessment'] = {
+        'cause': 'requires_human_review' if valid else 'not_evaluated',
+        'citation_trace': ('verified' if result['evidence'] else 'not_provided') if valid else 'failed_or_not_evaluated',
+        'semantic_support': 'requires_human_review' if valid else 'not_evaluated',
+        'patch_structure': 'verified' if result['prescription'] else 'no_executable_candidate',
+        'patch_effect': 'not_run',
+    }
+    return result
