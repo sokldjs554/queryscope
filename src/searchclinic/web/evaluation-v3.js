@@ -28,6 +28,6 @@ const tableRow=(id,cells)=>{const tr=node('tr','');cells.forEach(c=>tr.append(no
   const rank=data.controlled_counterfactual_ranking;
   get('rank-summary').textContent=`16질의 평균 nDCG@10 ${rank.summary.mean_ndcg_before} → ${rank.summary.mean_ndcg_after} · 개선 ${rank.summary.improved} · 측정 지표 하락 ${rank.summary.decreases.length}`;
   for(const r of rank.rows)tableRow('rank-rows',[r.query,r.before.ndcg??'평가 제외',r.after.ndcg??'평가 제외']);
-  get('v3-status').textContent='저장한 오프라인 결과 · 실제 LLM 생성 없음 · 추가 유료 호출 0회';
+  get('v3-status').textContent='이 오프라인 비교는 모델 호출 없음 · 후속 실제24응답은 별도 화면';
  }catch(error){get('v3-status').textContent=error.message;}
 })();

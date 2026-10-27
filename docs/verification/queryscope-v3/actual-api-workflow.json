@@ -1,0 +1,109 @@
+{
+  "run": {
+    "id": 40517959206,
+    "head_sha": "1adcc4241ff9b1689bc516ca3d9f896a02006a2b",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-27T14:06:26Z",
+    "updated_at": "2026-10-27T14:08:28Z",
+    "html_url": "https://github.com/sokldjs554/queryscope/actions/runs/40517959206"
+  },
+  "jobs": [
+    {
+      "id": 122236472177,
+      "name": "evaluate",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install evaluation dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check secret presence without reading it into logs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validate and claim this approval exactly once",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Execute approved frozen requests with no retries",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Save result and durable budget receipts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Upload actual responses even after a scoring failure",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preserve results on a dedicated branch",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "execution_commit_ci": {
+    "run_id": 40517959465,
+    "jobs": [
+      {
+        "id": 122236471050,
+        "name": "검색 품질 게이트",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 122236471430,
+        "name": "테스트 (windows-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 122236471922,
+        "name": "테스트 (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  }
+}

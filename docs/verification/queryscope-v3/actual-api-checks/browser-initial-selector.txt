@@ -1,0 +1,8 @@
+locator.click: Error: strict mode violation: locator('a[href="generation-v3.html"]') resolved to 2 elements:
+    1) <a href="generation-v3.html">새 실제24응답 비교</a> aka getByRole('link', { name: '새 실제24응답 비교' })
+    2) <a href="generation-v3.html">새 실제 응답과 차단·보류 비교 →</a> aka getByRole('link', { name: '새 실제 응답과 차단·보류 비교 →' })
+
+Call log:
+[2m  - waiting for locator('a[href="generation-v3.html"]')[22m
+
+    at /workspace/work/queryscope/scripts/browser_queryscope_actual.cjs:39:54

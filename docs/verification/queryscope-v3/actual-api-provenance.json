@@ -1,0 +1,17 @@
+{
+  "actual_mode": "actual_api",
+  "actual_response_ids": 24,
+  "prior_response_ids": 24,
+  "overlap": [],
+  "source_sha256": "9b26fb126d6acb4ae1881abd172404cf9d0e858d2f9c57ce5305cba3559b4d5a",
+  "approval_sha256": "378a539f140d97f929c8b694fd8640127682b95291573dfe1a2591be614cf913",
+  "prepared_sha256": "dfb4442ed8935b804cecfb5428ac374a765862c9ee96354cd8ddba556bdf3dfb",
+  "workflow_run": 40517959206,
+  "workflow_url": "https://github.com/sokldjs554/queryscope/actions/runs/40517959206",
+  "budget_calls": 24,
+  "model_snapshots": [
+    "gpt-5.4-mini-2026-03-17"
+  ],
+  "all_24_contexts_match_frozen_preparation": true,
+  "approval_file_hash_matches": true
+}

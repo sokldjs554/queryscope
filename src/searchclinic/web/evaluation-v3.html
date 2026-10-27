@@ -5,7 +5,7 @@
 <header><a class="brand" href="./">QueryScope<span>검색 진단과 검증</span></a><span>v3 · 저장한 오프라인 평가</span></header>
 <main class="evaluation"><p class="eyebrow">TOKEN COVERAGE → EVIDENCE → REVIEW</p><h1>정상 분석을<br>검색 오류로 오해하지 않도록</h1>
 <p>실제 분석 토큰이 문서에 있는지 확인하도록 수정했습니다. 새로 작성한 16개 상품·24개 질의를 사전에 고정해 정상 검색과 통제된 누락을 구분했습니다.</p>
-<nav aria-label="실험 선택"><a href="./">과거 실제 API 응답 재생</a><a href="evaluation-v2.html">v2 보존 결과</a><a href="evaluation.html">v1 보존 결과</a><a href="https://github.com/sokldjs554/queryscope/tree/main/docs/verification/queryscope-v3">기준 · 원자료 · 재현</a></nav>
+<nav aria-label="실험 선택"><a href="generation-v3.html">새 실제24응답 비교</a><a href="./">과거 실제 API 응답 재생</a><a href="evaluation-v2.html">v2 보존 결과</a><a href="evaluation.html">v1 보존 결과</a><a href="https://github.com/sokldjs554/queryscope/tree/main/docs/verification/queryscope-v3">기준 · 원자료 · 재현</a></nav>
 <div id="v3-status" role="status" aria-live="polite">저장 결과를 불러오는 중입니다.</div>
 <section><h2>1. 개선된 것과 그대로인 것</h2><p id="healthy-summary" class="result"></p><p id="retrieval-summary" class="result"></p>
 <p>원인 계열의 일반 원칙 문서가 상위 3개에 있는지를 셉니다. 실제 모델의 진단 정확도나 보류 성공률이 아닙니다. 기존 v2와 보완 v3에 같은 입력·기준을 적용했습니다.</p>
@@ -15,5 +15,5 @@
 <section><h2>3. 통제된 수정의 효과</h2><p id="rank-summary"></p><p>강제로 만든 통짜 색인을 원래 부분어로 분해하는 4개 수동 수정을 적용했습니다. 자동으로 새 수정안을 발견한 성과가 아닙니다. 정답 문서 없는 8개는 순위 평균에서 제외합니다.</p>
 <div class="scroll"><table><thead><tr><th>질의</th><th>nDCG@10 전</th><th>후</th></tr></thead><tbody id="rank-rows"></tbody></table></div>
 <p>팔래트·파스탤·microscope·박자기는 순위 문제가 남았습니다. 기존 카페트·초콜렛·워시의 수정 및 향초 잔여 문제는 v2 기록을 보존하고 다시 검사했습니다.</p></section>
-<section><h2>4. 실제 생성과 사람 평가는 미실행</h2><p><strong>추가 유료 호출 0회 · 새 모델 응답 0건.</strong> 정상·원인 불명·근거 부족·범위 밖 요청을 포함한 12사례 × 힌트 유무 24회 입력을 준비했습니다. 이전 모델 응답과 테스트 응답은 새 결과에 포함하지 않았습니다.</p><p>원인 분류·인용 추적·의미적 지지·수정 구조·실제 효과는 별도 판정입니다. 독립적인 사람의 의미 평가는 미완료입니다. 새 분석 어휘 78개 중 19개가 과거 자료와 겹치며, 같은 작성자·도메인·접미 표현을 공유합니다.</p></section>
+<section><h2>4. 후속 실제 모델 평가</h2><p>이 페이지의 근거 검색 비교는 모델 호출 없이 수행했습니다. 이후 별도 승인을 받아 고정12사례 × 힌트 유무를 실제24회 호출했습니다. <a href="generation-v3.html">새 실제 응답과 차단·보류 비교 →</a></p><p>원인 분류·인용 추적·의미적 지지·수정 구조·실제 효과는 별도 판정이며 독립적인 사람의 의미 평가는 미완료입니다. 새 분석 어휘78개 중19개가 과거 자료와 겹치며, 같은 작성자·도메인·접미 표현을 공유합니다.</p></section>
 </main><script src="evaluation-v3.js"></script></body></html>

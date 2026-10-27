@@ -6,6 +6,7 @@
 
 ## 먼저 보기
 
+- [v3 새 실제 모델 응답 24건](https://queryscope-zwia.onrender.com/generation-v3.html): 힌트 유무, 인용 차단, 보류와 수정 효과 비교.
 - [과거 실제 API 응답 재생](https://queryscope-zwia.onrender.com/): 기존에 생성한 24응답과 수정안 채택·기각 기록.
 - [v3 정상 검색·통제된 누락 비교](https://queryscope-zwia.onrender.com/evaluation-v3.html): 정상 검색의 잘못된 누락 신호와 미개선 사례.
 - [v2 보존 상품·무힌트 검색 비교](https://queryscope-zwia.onrender.com/evaluation-v2.html): 새 작성 자료의 개선, 하락, 미해결 사례.
@@ -67,14 +68,23 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. `evaluate_queryscope_llm.py` 기본 실행은 공급자를 만들지 않는 무료 준비 모드입니다. [전체 원자료·재현 근거](docs/verification/queryscope-v3/README.md).
 
-로컬 전체 검사 **378 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40505257938)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속과 실제 모델 품질은 별도 미확인입니다.
+로컬 전체 검사 **383 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40505257938)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속과 실제 모델 품질은 별도 미확인입니다.
 
-## 실제 LLM 평가의 남은 단계
+## 승인 후 실제 LLM 평가
 
-**이번 추가 유료 호출0, 새 모델 응답0**입니다. 이전 승인24회는 소진됐고 기본 호출 한도0과 종료 캠페인 차단을 유지합니다. v3 새 사례12개×힌트유무=24회의 입력·예산·독립 인간 검토표와 실행 코드를 준비했습니다.
+고정12사례×힌트유무를 `gpt-5.4-mini-2026-03-17`로 **24회 실행해 실제 응답24건·API오류0건**을 확보했습니다. 토큰 기준 추정 비용은 **$0.0385605**, 예약 상한은$0.30이었습니다. 이번 승인은 소진됐으며 새 호출은 하지 않습니다. 과거 PR의24응답과 별도 결과입니다.
 
-[미승인 평가안](docs/verification/queryscope-v3/PAID-EVALUATION-PROPOSAL.md): `gpt-5.4-mini-2026-03-17`, 24회, 비용 예약 상한 **$0.30**. 별도 사용자 승인과 준비물 해시에 결합된 승인 파일 없이는 실행하지 않습니다. v2 준비물도 별도 보존하며 합쳐48회로 승인된 것은 아닙니다. 오류·invalid·보류·잘못된 패치를 분리하고 이전/테스트 응답을 새 결과로 집계하지 않습니다.
+| 일차 자동 판정 | 무힌트12 | 힌트12 |
+|---|---:|---:|
+| 인용·형식 통과 / 보류 / 차단 | 3 / 5 / 4 | 4 / 4 / 4 |
+| 작성 원인 계열 라벨 일치 | 4/6 | 5/6 |
+| 보류+무패치+검증 통과 계약 | **4/6** | **4/6** |
+| 보류 필요 사례에 패치 제안 | 0/6 | 0/6 |
 
-**미실행:** 새 질의의 실제 모델 진단·보류·설명 타당성, 독립 인간 의미/정답 평가, 실제 채용 데이터 성능, 공개 생성 API 장기 운영. 기존 [실제 API24회 결과](docs/verification/alba-20261027/README.md)와 [v1 원자료](docs/verification/queryscope-v1/README.md)는 별도로 보존합니다.
+8응답은 상품ID를 운영 지식 인용 출처로 사용해 차단됐습니다. 인용을 통과한7후보 중4응답(서로 다른2질의)은 nDCG0→1로 게이트 채택,3응답은 효과가 없어 기각됐습니다. 계열 라벨 일치나 인용 통과를 진단 정확도·의미적 지지로 표현하지 않습니다. 독립 인간 의미 평가는24건 모두 미완료입니다.
+
+[실제 응답·실패 분석·비용·재현](docs/verification/queryscope-v3/ACTUAL-API.md). GitHub 시크릿은 실행 단계에서만 사용했고 값은 저장하지 않았습니다. 원격 실행 표식과24회 예산 원장을 보존해 자동 재실행을 차단합니다. 공개 사이트는 실제 응답을 **저장 재생**하며 API 키와 생성 서버를 게시하지 않습니다.
+
+**남은 한계:** 정상 검색의 상태/인용 계약 실패, 원인 계열 혼동과 효과 없는 수정, 독립 인간 의미·정답 평가, 실제 채용 데이터 성능과 공개 장기 운영. 기존 [PR 실제 API24회](docs/verification/alba-20261027/README.md), v1/v2/v3 오프라인 기록은 별도로 보존합니다.
 
 [지원용 자소서](docs/application/cover-letter.md) · [포트폴리오](docs/application/portfolio.md) · [문서 수정 근거](docs/application/REVISION-NOTES.md) · [기존 상세 검색 실험](README-legacy.md).
