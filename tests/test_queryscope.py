@@ -1,6 +1,5 @@
 """Independent failure contracts; all network transports below are test doubles."""
 import copy
-import json
 import subprocess
 import sys
 from pathlib import Path
@@ -83,6 +82,6 @@ def test_frozen_protocol_tampering_stops_evaluation(tmp_path):
     for file in (ROOT/'docs/verification/queryscope-v1').glob('*'):
         if file.is_file():shutil.copyfile(file,tmp_path/file.name)
     runner.load_frozen(tmp_path)
-    (tmp_path/'cases.json').write_text('[]')
+    (tmp_path/'cases.json').write_text('[]',encoding='utf-8')
     with pytest.raises(ValueError,match='frozen_input_changed'):
         runner.load_frozen(tmp_path)

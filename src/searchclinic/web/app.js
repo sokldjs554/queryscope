@@ -15,6 +15,7 @@ function render(report){
  text('tokens',(context.analysis?.tokens||[]).map(t=>`${t.token} / ${t.tag}`).join(' · ')||'없음');
  text('hits',(context.search?.results||[]).map(h=>h.name).join(' / ')||'검색 결과 없음');
  text('metadata',`${generation.model||'모델 응답 없음'} · ${generation.latency_ms??'—'}ms · 추정 $${generation.estimated_usd??'—'} · ${report.condition||'retrieved'}`);
+ text('assessment','원인 분류 · 인용의 의미적 지지: 검토 필요 / 수정 효과: '+(report.gate?'아래 회귀 검사 참조':'미검사'));
  text('summary',answer.summary||report.error||'응답을 받지 못했습니다.');
  if(answer.citation_format_recovered)$('summary').append(node('p','인용의 줄바꿈·강조 기호 차이를 원문 위치로 대응했습니다.','small'));
  if(answer.validation_error)$('summary').append(node('p','차단 단계: '+answer.validation_error,'small'));
@@ -41,13 +42,14 @@ async function load(){
   records.forEach((r,i)=>{const b=node('button',`${r.case_id} · ${r.context.query}`);b.type='button';b.append(node('small',`${r.condition==='no_documents'?'근거 제거':'운영 지식 제공'} · ${labels[r.answer?.status]||'생성 오류'}`));b.addEventListener('click',()=>selectRecord(i));$('cases').append(b);});
   if(records.length)selectRecord(0);else throw Error('저장된 생성 기록이 비어 있습니다.');
  }catch(e){$('cases').replaceChildren(node('p','저장 기록 없음','empty'));status(e.message);}
+ try{const response=await fetch('/explanation-status');if(response.ok){const state=await response.json();document.querySelector('option[value=live]').disabled=!state.live_enabled;}}catch{}
  setMode();
 }
 function setMode(){
  const live=$('mode').value==='live';epoch++;clearResult();
  $('live-controls').hidden=!live;$('query').readOnly=!live;$('problem').readOnly=!live;
  $('cases').inert=live;
- text('mode-note',live?'로컬 서버에서 새 API 요청이 발생합니다. 승인된 예산 범위에서만 실행하세요.':'이 화면에서는 새 API 요청이 발생하지 않습니다.');
+ text('mode-note',live?'새 API 생성은 별도 예산 승인이 필요합니다. 기존 24회는 소진됐으며 현재 기본 한도는 0회입니다.':'이 화면에서는 새 API 요청이 발생하지 않습니다.');
  if(live){status('로컬 API 서버와 운영 토큰이 필요합니다. 공개 정적 화면에서는 생성할 수 없습니다.');}
  else if(records.length)selectRecord(0);
 }

@@ -1,3 +1,5 @@
+> PR #2 당시 운영 문서입니다. QueryScope의 기본 호출 한도는 0회이며 기존 유료 캠페인은 종료됐습니다. 현재 절차는 [QueryScope 운영 문서](queryscope-operation.md)를 따르세요.
+
 # 실행과 운영 범위
 
 ## 저장 결과

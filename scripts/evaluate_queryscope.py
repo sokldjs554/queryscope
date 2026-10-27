@@ -36,13 +36,13 @@ def encoded_sha(obj):
 
 
 def load_frozen(data=DATA):
-    manifest=json.loads((data/'manifest.json').read_text())
+    manifest=json.loads((data/'manifest.json').read_text(encoding='utf-8'))
     for name,expected in manifest.items():
         if digest(data/name)!=expected:
             raise ValueError('frozen_input_changed: '+name)
-    cases=json.loads((data/'cases.json').read_text())
+    cases=json.loads((data/'cases.json').read_text(encoding='utf-8'))
     old={q.query for q in load_evalset()}
-    old.update(c['query'] for c in json.loads((ROOT/'docs/verification/alba-20261027/cases.json').read_text()))
+    old.update(c['query'] for c in json.loads((ROOT/'docs/verification/alba-20261027/cases.json').read_text(encoding='utf-8')))
     if len({c['query'] for c in cases})!=len(cases) or old & {c['query'] for c in cases}:
         raise ValueError('duplicate_or_development_query')
     catalog={d.doc_id for d in load_catalog()}
@@ -92,8 +92,8 @@ def ablations(cases,svc):
 def legacy_audit():
     src=ROOT/'docs/verification/alba-20261027/run/results.json'
     revalidated=ROOT/'docs/verification/alba-20261027/run/revalidated.json'
-    old=json.loads(revalidated.read_text())
-    original=json.loads(src.read_text())
+    old=json.loads(revalidated.read_text(encoding='utf-8'))
+    original=json.loads(src.read_text(encoding='utf-8'))
     reviewed=[]
     notes={
         'A01':'원문 어미를 바꾼 인용. 의미가 비슷해도 자동 복원 금지; 그대로 차단.',
@@ -136,7 +136,7 @@ def main():
         'source_sha256':{str(p.relative_to(ROOT)):digest(p) for p in sorted((ROOT/'src/searchclinic').rglob('*.py'))},
         'runner_sha256':digest(Path(__file__)),'scope':'offline local authored data; no customer/generalization/LLM accuracy claim'}
     path=args.output/'results.json'
-    def save():path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    def save():path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     save()
     engine=SearchEngine(load_catalog());oldset=load_evalset()
     candidates=[];config=engine.config
@@ -176,7 +176,7 @@ def main():
     save()
     svc=ExplanationService(ClinicService())
     report['new_hint_ablation']=ablations(cases,svc)
-    oldcases=json.loads((ROOT/'docs/verification/alba-20261027/cases.json').read_text())
+    oldcases=json.loads((ROOT/'docs/verification/alba-20261027/cases.json').read_text(encoding='utf-8'))
     report['legacy_hint_ablation']=ablations([{'id':c['id'],'query':c['query'],'family':c['category'],
         'problem_hint':c['problem'],'problem_no_hint':'검색 결과를 점검해 주세요.'} for c in oldcases],svc)
     report['legacy_audit']=legacy_audit()

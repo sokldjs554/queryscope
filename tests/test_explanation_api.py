@@ -41,3 +41,28 @@ def test_p95_nearest_rank_keeps_slow_tail_for_small_samples():
     assert latency_p95([100,10000]) == 10000
     assert latency_p95(list(range(1,25))) == 23
     assert latency_p95([]) is None
+
+
+def test_concurrent_generation_returns_busy_and_counts_timeout():
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+    entered=threading.Event();release=threading.Event()
+    class BlockedProvider:
+        def generate(self,context):
+            entered.set()
+            if not release.wait(10):raise AssertionError('test release timeout')
+            raise ProviderError('upstream_timeout')
+    app=create_explanation_app(provider=BlockedProvider(),token='x'*24)
+    headers={'Authorization':'Bearer '+'x'*24}
+    with TestClient(app) as client,ThreadPoolExecutor(max_workers=1) as pool:
+        first=pool.submit(client.post,'/explanations',json={'query':'백팩'},headers=headers)
+        try:
+            assert entered.wait(10)
+            assert client.post('/explanations',json={'query':'백팩'},headers=headers).status_code==429
+        finally:release.set()
+        assert first.result(timeout=10).status_code==502
+        state=client.get('/explanation-status').json()
+        assert state['metrics']['busy']==1
+        assert state['metrics']['upstream_errors']==1
+        assert state['metrics']['requests']==1
+        assert state['latency_ms_p95'] is not None
