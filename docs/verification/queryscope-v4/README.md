@@ -38,7 +38,8 @@ v3 자료를 확인한 뒤 보완했으므로 이제 개발 자료입니다. 기
 | 출처 연결 변조 회귀 |5개 실패를 먼저 확인한 뒤 수정·통과 — [실패 기록](checks/lineage-red.txt), [수정 후 기록](checks/review-fixes.txt) |
 | 최종 브라우저 |24행,1440/320/390/650px,12검사 통과 — [검사 JSON](browser-final/checks.json), [1440px](browser-final/runtime-1440.png), [320px](browser-final/runtime-320.png) |
 | 과거 자료 보존 |159파일 모두 일치 — [보존 기록](preservation.json) |
-| v4 CI·배포 |**확인 진행 중**. 이 로컬 검증으로 성공을 주장하지 않으며 운영 기록을 별도 추가할 예정 |
+| v4 CI |Ubuntu·Windows 각각 **400 passed, 2 skipped**, 검색 품질 게이트 통과 — [CI](https://github.com/sokldjs554/queryscope/actions/runs/40711959844) |
+| v4 배포 |기존 Render 정적 사이트 **live**. 공개 HTML·JS·JSON 모두 HTTP 200·로컬 바이트 일치 — [운영 기록과 확인 범위](OPERATIONS.md) |
 
 화면은 원래24응답·일차 판정·후속 판정·효과를 나란히 보여줍니다. 새 입력 펼침에는 모델 응답이 미생성임을 표시합니다. 루트와 v3 화면 사이의 이동, 없는 대표어 차단, 보류 유지, 유효한 개선 유지, 무효과 후보 기각, 출처 고지, 로딩 실패 표시, 가로 넘침 및 JavaScript 오류를 검사했습니다. 화면에서 모델을 호출하지 않습니다. v3의 과거 CI·배포·사용자 접속 확인은 [기존 운영 기록](../queryscope-v3/OPERATIONS.md)에 있으며 v4 운영 확인과 구분합니다.
 

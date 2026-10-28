@@ -6,14 +6,14 @@
 
 ## 먼저 보기
 
-- [v4 후속 검사·검토 자료](docs/verification/queryscope-v4/README.md): 같은 실제 24응답의 원판정과 새 적용 검사를 비교합니다. 신규 모델 호출은 0회이며 로컬 `/demo/review-v4.html`에서 확인합니다. v4 CI·배포 확인은 진행 중입니다.
+- [v4 후속 검사 화면](https://queryscope-zwia.onrender.com/review-v4.html): 같은 실제 24응답의 원판정과 새 적용 검사를 비교합니다. 신규 모델 호출은 0회입니다. [검증 자료](docs/verification/queryscope-v4/README.md).
 - [v3 새 실제 모델 응답 24건](https://queryscope-zwia.onrender.com/generation-v3.html): 힌트 유무, 인용 차단, 보류와 수정 효과 비교.
 - [과거 실제 API 응답 재생](https://queryscope-zwia.onrender.com/): 기존에 생성한 24응답과 수정안 채택·기각 기록.
 - [v3 정상 검색·통제된 누락 비교](https://queryscope-zwia.onrender.com/evaluation-v3.html): 정상 검색의 잘못된 누락 신호와 미개선 사례.
 - [v2 보존 상품·무힌트 검색 비교](https://queryscope-zwia.onrender.com/evaluation-v2.html): 새 작성 자료의 개선, 하락, 미해결 사례.
 - [v1 보존 결과](https://queryscope-zwia.onrender.com/evaluation.html): 이전 24질의 결과. 이번 개선에는 개발 자료로 사용했습니다.
 
-공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. 2026-10-27 사용자가 공개 접속과 수동 테스트 완료를 확인했습니다([확인 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)). Codex 환경의 직접 접속은 프록시 CONNECT403으로 차단됐던 기록을 유지합니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 최신 배포 상태와 확인 범위는 [운영 기록](docs/verification/queryscope-v3/OPERATIONS.md)에 구분합니다.
+공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. v4를 기존 사이트에 배포했고 공개 HTML·JavaScript·JSON이 모두 HTTP 200을 반환하며 로컬 검증본과 일치함을 확인했습니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 공개 브라우저 추가 검사의 인증서 오류와 접속 확인 범위는 [최신 운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)에 남겼습니다. 2026-10-27의 사용자 공개 접속·수동 테스트 완료 확인은 [당시 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)에 보존합니다.
 
 ## 최신 v4: 원응답 보존과 실행 전 검사
 
@@ -85,7 +85,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. v4는 실제 원응답·입력·준비 해시·응답ID의 연결도 검사하며 저장된24응답의 재검사와48입력 준비만 수행합니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/README.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
 
-최신 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). v4 CI·배포 확인은 진행 중이며 성공 여부는 별도 운영 기록에 추가합니다.
+최신 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). [최신 CI](https://github.com/sokldjs554/queryscope/actions/runs/40711959844)는 Ubuntu·Windows 각각400 passed·2 skipped와 검색 품질 게이트를 통과했습니다. 같은 코드 커밋의 Render 배포가 live이며 공개 파일 응답도 확인했습니다([운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)).
 
 과거 v3의 [CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트를 통과했고, 공개 접속은 사용자 확인 기록이 있습니다. 이는 v4의 배포 확인과 구분합니다. [v3 검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 독립 인간 의미 평가와 장기 운영 성능은 미완료입니다.
 

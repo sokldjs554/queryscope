@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-28T15:06:05.980876+00:00",
+  "rows": [
+    {
+      "url": "https://queryscope-zwia.onrender.com/review-v4.html",
+      "status": 200,
+      "bytes": 4123,
+      "sha256": "98b7820624a188e70c0d0589fa78634223cfed8f7c847eb0513753b8d563cf10",
+      "matches_local": true
+    },
+    {
+      "url": "https://queryscope-zwia.onrender.com/review-v4.js",
+      "status": 200,
+      "bytes": 4509,
+      "sha256": "c407a4bb938782e2ce3619a8f00e00a34b13d76cd9e8d2bc9dc75d935c357db7",
+      "matches_local": true
+    },
+    {
+      "url": "https://queryscope-zwia.onrender.com/review-v4.json",
+      "status": 200,
+      "bytes": 422174,
+      "sha256": "d3cdfbbf3c0b5232cd71452f82f5459085f87d96a48157980200054985811933",
+      "matches_local": true
+    }
+  ]
+}

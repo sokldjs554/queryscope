@@ -1,0 +1,41 @@
+{
+  "code_commit": "829d478d3cedce974251c3dcf77d0d8674e010ca",
+  "ci": {
+    "run_id": 40711959844,
+    "url": "https://github.com/sokldjs554/queryscope/actions/runs/40711959844",
+    "conclusion": "success",
+    "completed_at": "2026-10-28T15:05:11Z",
+    "ubuntu": {
+      "job_id": 122899308311,
+      "passed": 400,
+      "skipped": 2,
+      "seconds": 86.54
+    },
+    "windows": {
+      "job_id": 122899308363,
+      "passed": 400,
+      "skipped": 2,
+      "seconds": 86.64
+    },
+    "quality_gate": {
+      "job_id": 122899307554,
+      "conclusion": "success"
+    }
+  },
+  "render": {
+    "service_id": "srv-dbg6rtflk1mc73cok690",
+    "deploy_id": "dep-dbh0uigu01pc73b8sjdg",
+    "status": "live",
+    "commit": "829d478d3cedce974251c3dcf77d0d8674e010ca",
+    "finished_at": "2026-10-28T15:06:00.887539Z",
+    "auto_deploy": "no",
+    "url": "https://queryscope-zwia.onrender.com/review-v4.html"
+  },
+  "verification_scope": {
+    "public_http": "3 files returned HTTP 200 with normal certificate validation; bytes match local files",
+    "public_browser": "Chrome headless smoke blocked by net::ERR_CERT_AUTHORITY_INVALID; TLS verification was not bypassed",
+    "local_browser": "12 checks, 24 stored responses, 1440/320/390/650px passed",
+    "new_model_calls": 0,
+    "independent_human_reviews_completed": 0
+  }
+}
