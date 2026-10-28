@@ -86,7 +86,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. v4는 실제 원응답·입력·준비 해시·응답ID의 연결도 검사하며 저장된24응답의 재검사와48입력 준비만 수행합니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/README.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
 
-후속 실제 실행 준비 코드의 최신 로컬 전체 검사는 **468 passed, 1 skipped, 2 deselected**입니다([검증과 로그](docs/verification/queryscope-v4/LIVE-PREPARATION.md)). 실제 API를 호출하는 테스트는 아닙니다.
+후속 실제 실행 준비 코드의 최신 로컬 전체 검사는 **468 passed, 1 skipped, 2 deselected**입니다. [새 CI](https://github.com/sokldjs554/queryscope/actions/runs/40721662846)는 Ubuntu·Windows 각각 **449 passed, 2 skipped**와 검색 품질 게이트를 통과했습니다([검증과 로그](docs/verification/queryscope-v4/LIVE-PREPARATION.md)). 실제 API를 호출하는 테스트는 아닙니다.
 
 이미 공개한 v4 화면 코드의 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). [화면 공개 시 CI](https://github.com/sokldjs554/queryscope/actions/runs/40711959844)는 Ubuntu·Windows 각각400 passed·2 skipped와 검색 품질 게이트를 통과했습니다. 같은 코드 커밋의 Render 배포가 live이며 공개 파일 응답도 확인했습니다([운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)).
 

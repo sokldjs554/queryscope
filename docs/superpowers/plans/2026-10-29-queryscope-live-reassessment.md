@@ -38,9 +38,9 @@
 - `assess_runtime_generation(raw, context, case, engine, evalset) -> dict`: runtime 적용 검사 후 gate, 기존 요약 키와 호환.
 - `CAMPAIGN_STATE_ROOT`, `SUITE`, `MAX_CALLS`, `MAX_USD`: CLI/워크플로가 사용할 상수.
 
-- [ ] RED: import 가능 여부만이 아닌 준비48건·provider 생성0, 거짓/변조 승인 거절, 중복 재실행, 49번째 예약 거절, 평가 실패 시 raw 보존, 없는 대표어 gate 미실행을 확인하는 테스트 작성/실행.
-- [ ] GREEN: 별도 모듈로 위 계약만 구현. 기존 모듈 수정 없음. SHA뿐 아니라 고정 payload 집합 identity로 복사/날짜 변경도 재실행 거절.
-- [ ] Verify: `pytest tests/test_runtime_campaign.py tests/test_queryscope_v2.py tests/test_queryscope_v3.py tests/test_runtime_audit.py -q`; 모두 통과.
+- [x] RED: import 가능 여부만이 아닌 준비48건·provider 생성0, 거짓/변조 승인 거절, 중복 재실행, 49번째 예약 거절, 평가 실패 시 raw 보존, 없는 대표어 gate 미실행을 확인하는 테스트 작성/실행.
+- [x] GREEN: 별도 모듈로 위 계약만 구현. 기존 모듈 수정 없음. SHA뿐 아니라 고정 payload 집합 identity로 복사/날짜 변경도 재실행 거절.
+- [x] Verify: `pytest tests/test_runtime_campaign.py tests/test_queryscope_v2.py tests/test_queryscope_v3.py tests/test_runtime_audit.py -q`; 모두 통과.
 
 ## Task 2: CLI, remote claim and inert workflow
 
@@ -48,25 +48,25 @@
 
 **Interfaces:** Task1의 prepare/check/execute/state 상수를 사용한다. CLI 기본은 무료 준비; --live는 --prepared/--approval 필수. 원격 ref는 `refs/tags/queryscope-v4-runtime-paid-<canonical_campaign_sha256>`이며 execute 내부에서 `acquire_remote_claim`을 반드시 호출한다. `RecordingClient`가 HTTP 응답을 파싱 전에 저장하고 `verify_generation_provenance`가 관측 모델·ID를 확인한다.
 
-- [ ] RED: 승인 전 provider/network0, 잘못된 GitHub repository/attempt/commit/approval 거절, 기존 원격 ref 재사용·4xx/5xx에서 retry0 테스트.
-- [ ] GREEN: 새로운 live-approval.json 생성 push만 실행하는 워크플로. 실제 승인 파일은 만들지 않음. key 존재확인→실행기 내 승인검증·원격claim→실행→always 영수증·artifact·별도 결과branch 보존. 별도 claim-only CLI는 제공하지 않는다.
-- [ ] Verify: CLI/claim 테스트, actionlint(사용가능 시), 전체 pytest. 기존 워크플로 바이트 불변 확인.
+- [x] RED: 승인 전 provider/network0, 잘못된 GitHub repository/attempt/commit/approval 거절, 기존 원격 ref 재사용·4xx/5xx에서 retry0 테스트.
+- [x] GREEN: 새로운 live-approval.json 생성 push만 실행하는 워크플로. 실제 승인 파일은 만들지 않음. key 존재확인→실행기 내 승인검증·원격claim→실행→always 영수증·artifact·별도 결과branch 보존. 별도 claim-only CLI는 제공하지 않는다.
+- [x] Verify: CLI/claim 테스트, actionlint(사용가능 시), 전체 pytest. 기존 워크플로 바이트 불변 확인.
 
-**코드 검토 후 수정:** 실행기 외부 claim 단계가 선택적으로 우회되는 문제, provider 실패의 원문 손실, 모델·ID의 기본값/중복 허용을 중요 결함으로 받아들였다. 실제 provider와 HTTP MockTransport를 사용하는 11개 실패 재현을 먼저 확인하고, 실행기 내부 claim·응답 기록기·관측 출처 검증으로 수정한다. 초기 별도 claim 스크립트 설계는 이 구조로 대체했다.
+**코드 검토 후 수정:** 실행기 외부 claim 단계가 선택적으로 우회되는 문제, provider 실패의 원문 손실, 모델·ID의 기본값/중복 허용을 중요 결함으로 받아들였다. 실제 provider와 HTTP MockTransport를 사용하는 11개 실패 재현을 먼저 확인하고, 실행기 내부 claim·응답 기록기·관측 출처 검증으로 수정했다. 초기 별도 claim 스크립트 설계는 이 구조로 대체했다.
 
 ## Task 3: Complete explicit AI semantic assessments
 
 **Files:** Create `docs/verification/queryscope-v4/ai-semantic-review-v1.json`, `AI-SEMANTIC-REVIEW.md`.
 
-- [ ] 원응답24건을 읽고 원인근거·원문인용·의미지지·패치의미/효과·보류적절성의 판정·이유·불확실성을 기록.
-- [ ] source_sha/response_id/context_sha/JSON Pointer 연결, 24고유쌍·5축 확인, 사람 원본 해시 불변 확인.
-- [ ] 원본 작성자의 가설·과거 AI메모에 접근했다는 한계를 명시; AI 정확도를 사람 정답률로 합산하지 않음.
+- [x] 원응답24건을 읽고 원인근거·원문인용·의미지지·패치의미/효과·보류적절성의 판정·이유·불확실성을 기록.
+- [x] source_sha/response_id/context_sha/JSON Pointer 연결, 24고유쌍·5축 확인, 사람 원본 해시 불변 확인.
+- [x] 원본 작성자의 가설·과거 AI메모에 접근했다는 한계를 명시; AI 정확도를 사람 정답률로 합산하지 않음.
 
 ## Task 4: Freeze, review, publish and request final paid approval
 
 **Files:** `docs/verification/queryscope-v4/live-prepared-v1/`, `LIVE-EVALUATION-PROPOSAL.md`, free verification reports, updated v4 README.
 
-- [ ] 48입력을 고정하고 모델·입력·토큰/요청 제한·횟수·현행 단가·비용 예상 및 상한·실패 처리·기존24짝비교 범위를 구체화.
-- [ ] 별도 코드 검토 후 중요 결함은 실패 재현→수정→전체 검증으로 처리.
-- [ ] 원격 CI까지 확인하고 모든 과거 기록 보존. actual API 결과 파일은 생성하지 않음.
+- [x] 48입력을 고정하고 모델·입력·토큰/요청 제한·횟수·현행 단가·비용 예상 및 상한·실패 처리·기존24짝비교 범위를 구체화.
+- [x] 별도 코드 검토 후 중요 결함은 실패 재현→수정→전체 검증으로 처리.
+- [x] 원격 CI까지 확인하고 모든 과거 기록 보존. actual API 결과 파일은 생성하지 않음. CI 40721662846: Ubuntu·Windows 각449 passed·2 skipped, 검색 품질 게이트 통과.
 - [ ] 사용자에게 무료로 완료한 작업과 준비물을 제시하고 48회/$0.60에 대한 최종 확인만 요청.

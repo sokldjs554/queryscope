@@ -30,9 +30,11 @@
 | 최종 로컬 전체 테스트 | **468 passed, 1 skipped, 2 deselected**, 120.22초 — [로그](live-preparation-checks/pytest-final.txt) |
 | 워크플로 구문 검사 | actionlint v1.7.7 통과, 종료 코드 0 — [출력](live-preparation-checks/actionlint.txt) |
 | 고정 입력 준비·검증 | 48건 준비 및 검증, API 호출 0회 — [로그](live-preparation-checks/preparation.txt) |
-| 원격 CI | 게시 후 Ubuntu·Windows와 검색 품질 게이트 결과를 기록할 예정 |
+| 원격 CI | Ubuntu·Windows 각각 **449 passed, 2 skipped**, 검색 품질 게이트 통과 — [CI 실행](https://github.com/sokldjs554/queryscope/actions/runs/40721662846), [결과 기록](live-preparation-checks/ci.json) |
 
 최종 전체 테스트는 코드 검토 세 가지 수정이 모두 반영된 상태에서 실행했습니다. 공개 사이트 파일은 이번 준비 작업에서 변경하지 않았으며 이전 [배포 기록](OPERATIONS.md)의 범위를 그대로 유지합니다.
+
+CI가 검사한 코드 커밋은 `0df20cbd4108570fbba4090972b2c8693fcd8ea4`입니다. 해당 커밋에서 실행된 워크플로는 일반 CI뿐이며 유료 평가 워크플로는 시작되지 않았습니다. 검색 품질 게이트의 평균 nDCG는 0.5839를 유지했습니다. 로컬 전체 검사는 선택 의존성 `scale`을 포함했고 기존 CI는 `api,mcp,dev` 구성으로 실행했습니다.
 
 ## 실행 전 남아 있는 확인 범위
 

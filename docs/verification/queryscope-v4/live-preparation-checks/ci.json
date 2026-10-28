@@ -1,0 +1,33 @@
+{
+  "run_id": 40721662846,
+  "url": "https://github.com/sokldjs554/queryscope/actions/runs/40721662846",
+  "code_commit": "0df20cbd4108570fbba4090972b2c8693fcd8ea4",
+  "conclusion": "success",
+  "updated_at_utc": "2026-10-28T16:03:18Z",
+  "jobs": [
+    {
+      "job_id": 122933910588,
+      "name": "tests (ubuntu-latest)",
+      "conclusion": "success",
+      "pytest_summary": "449 passed, 2 skipped in 52.12s"
+    },
+    {
+      "job_id": 122933910507,
+      "name": "tests (windows-latest)",
+      "conclusion": "success",
+      "pytest_summary": "449 passed, 2 skipped in 78.41s (0:01:18)"
+    },
+    {
+      "job_id": 122933909998,
+      "name": "search quality gate",
+      "conclusion": "success",
+      "summary": "검색 품질 유지 — 평균 nDCG 0.5839"
+    }
+  ],
+  "workflows_for_code_commit": [
+    "CI"
+  ],
+  "new_paid_calls": 0,
+  "actual_approval_created": false,
+  "scope": "Tests use mocked provider/HTTP; this CI does not run the paid model evaluation."
+}
