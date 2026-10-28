@@ -1,0 +1,10 @@
+{
+  "approved": false,
+  "approved_by": null,
+  "suite": "queryscope-v4-runtime",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "calls": 48,
+  "max_usd": 0.6,
+  "prepared_sha256": "ef8185eaaf37dd3b950c561a9de89d55638a709c4feb8315032aea85a6822fba",
+  "canonical_campaign_sha256": "38375811eb5fae4581f08367d2e1ca604c84d65502c11d7bb81451bd60b68029"
+}

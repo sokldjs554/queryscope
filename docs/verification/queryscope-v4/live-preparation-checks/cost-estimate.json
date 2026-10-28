@@ -1,0 +1,22 @@
+{
+  "pricing_checked_date_kst": "2026-10-29",
+  "pricing_url": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "input_usd_per_million": 0.75,
+  "output_usd_per_million": 4.5,
+  "requests": 48,
+  "max_output_tokens_per_request": 800,
+  "max_request_bytes_limit": 11000,
+  "max_observed_payload_bytes": 7444,
+  "new_payload_bytes_total": 318786,
+  "historical_payload_bytes_total": 127968,
+  "historical_input_tokens": 27636,
+  "historical_output_tokens": 3963,
+  "estimate_method": "scale historical input tokens by serialized payload bytes and output tokens by request count; not an actual charge",
+  "estimated_input_tokens": 68845,
+  "estimated_output_tokens": 7926,
+  "estimated_usd": 0.087301,
+  "current_payload_byte_upper_bound_usd": 0.430322,
+  "reservation_limit_usd": 0.6,
+  "scope": "standard API token charges only, no tools, no automatic retries; tax and unrelated account usage excluded"
+}

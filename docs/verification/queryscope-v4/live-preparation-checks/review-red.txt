@@ -1,0 +1,404 @@
+FFFFFFFFFFF                                                              [100%]
+=================================== FAILURES ===================================
+_________ test_remote_claim_is_required_even_with_a_fresh_local_state __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_remote_claim_is_required_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe57e7e0>
+
+    def test_remote_claim_is_required_even_with_a_fresh_local_state(tmp_path, monkeypatch):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = {'github': 0, 'model': 0}
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                calls['github'] += 1
+                return httpx.Response(201 if calls['github'] == 1 else 422, json={})
+            assert request.url.host == 'api.openai.com'
+            calls['model'] += 1
+            return httpx.Response(200, json=envelope(calls['model']))
+        install_transport(monkeypatch, handler)
+        campaign.execute_runtime_campaign(prepared, tmp_path / 'first', approval)
+        monkeypatch.setattr(campaign, 'CAMPAIGN_STATE_ROOT', tmp_path / 'fresh-checkout-state')
+>       with pytest.raises(RuntimeError, match='remote_claim_failed_422'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests/test_runtime_campaign_transport.py:55: Failed
+_____ test_received_failure_envelope_survives_provider_parsing[incomplete] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_received_failure_envelope0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe3bd520>
+kind = 'incomplete'
+
+    @pytest.mark.parametrize('kind', ['incomplete', 'refusal', 'invalid_json', 'missing_usage', 'http_error'])
+    def test_received_failure_envelope_survives_provider_parsing(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        payload = envelope()
+        status = 200
+        if kind == 'incomplete':
+            payload.update(status='incomplete', incomplete_details={'reason': 'max_output_tokens'})
+        elif kind == 'refusal':
+            payload['output'][0]['content'] = [{'type': 'refusal', 'refusal': 'cannot answer'}]
+        elif kind == 'invalid_json':
+            payload['output'][0]['content'][0]['text'] = '{not json'
+        elif kind == 'missing_usage':
+            del payload['usage']
+        else:
+            status = 503
+            payload = {'error': {'type': 'upstream_error', 'message': 'unavailable'}}
+        model_calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            model_calls.append(request)
+            if len(model_calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(status, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        row = report['rows'][0]
+        assert row['generation_status'] == 'api_error'
+        capture = row.get('http_response')
+>       assert capture is not None, 'paid HTTP response was discarded by provider parsing'
+E       AssertionError: paid HTTP response was discarded by provider parsing
+E       assert None is not None
+
+tests/test_runtime_campaign_transport.py:93: AssertionError
+______ test_received_failure_envelope_survives_provider_parsing[refusal] _______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_received_failure_envelope1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe274980>
+kind = 'refusal'
+
+    @pytest.mark.parametrize('kind', ['incomplete', 'refusal', 'invalid_json', 'missing_usage', 'http_error'])
+    def test_received_failure_envelope_survives_provider_parsing(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        payload = envelope()
+        status = 200
+        if kind == 'incomplete':
+            payload.update(status='incomplete', incomplete_details={'reason': 'max_output_tokens'})
+        elif kind == 'refusal':
+            payload['output'][0]['content'] = [{'type': 'refusal', 'refusal': 'cannot answer'}]
+        elif kind == 'invalid_json':
+            payload['output'][0]['content'][0]['text'] = '{not json'
+        elif kind == 'missing_usage':
+            del payload['usage']
+        else:
+            status = 503
+            payload = {'error': {'type': 'upstream_error', 'message': 'unavailable'}}
+        model_calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            model_calls.append(request)
+            if len(model_calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(status, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        row = report['rows'][0]
+        assert row['generation_status'] == 'api_error'
+        capture = row.get('http_response')
+>       assert capture is not None, 'paid HTTP response was discarded by provider parsing'
+E       AssertionError: paid HTTP response was discarded by provider parsing
+E       assert None is not None
+
+tests/test_runtime_campaign_transport.py:93: AssertionError
+____ test_received_failure_envelope_survives_provider_parsing[invalid_json] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_received_failure_envelope2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fee01bfae10>
+kind = 'invalid_json'
+
+    @pytest.mark.parametrize('kind', ['incomplete', 'refusal', 'invalid_json', 'missing_usage', 'http_error'])
+    def test_received_failure_envelope_survives_provider_parsing(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        payload = envelope()
+        status = 200
+        if kind == 'incomplete':
+            payload.update(status='incomplete', incomplete_details={'reason': 'max_output_tokens'})
+        elif kind == 'refusal':
+            payload['output'][0]['content'] = [{'type': 'refusal', 'refusal': 'cannot answer'}]
+        elif kind == 'invalid_json':
+            payload['output'][0]['content'][0]['text'] = '{not json'
+        elif kind == 'missing_usage':
+            del payload['usage']
+        else:
+            status = 503
+            payload = {'error': {'type': 'upstream_error', 'message': 'unavailable'}}
+        model_calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            model_calls.append(request)
+            if len(model_calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(status, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        row = report['rows'][0]
+        assert row['generation_status'] == 'api_error'
+        capture = row.get('http_response')
+>       assert capture is not None, 'paid HTTP response was discarded by provider parsing'
+E       AssertionError: paid HTTP response was discarded by provider parsing
+E       assert None is not None
+
+tests/test_runtime_campaign_transport.py:93: AssertionError
+___ test_received_failure_envelope_survives_provider_parsing[missing_usage] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_received_failure_envelope3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe277e30>
+kind = 'missing_usage'
+
+    @pytest.mark.parametrize('kind', ['incomplete', 'refusal', 'invalid_json', 'missing_usage', 'http_error'])
+    def test_received_failure_envelope_survives_provider_parsing(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        payload = envelope()
+        status = 200
+        if kind == 'incomplete':
+            payload.update(status='incomplete', incomplete_details={'reason': 'max_output_tokens'})
+        elif kind == 'refusal':
+            payload['output'][0]['content'] = [{'type': 'refusal', 'refusal': 'cannot answer'}]
+        elif kind == 'invalid_json':
+            payload['output'][0]['content'][0]['text'] = '{not json'
+        elif kind == 'missing_usage':
+            del payload['usage']
+        else:
+            status = 503
+            payload = {'error': {'type': 'upstream_error', 'message': 'unavailable'}}
+        model_calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            model_calls.append(request)
+            if len(model_calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(status, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        row = report['rows'][0]
+        assert row['generation_status'] == 'api_error'
+        capture = row.get('http_response')
+>       assert capture is not None, 'paid HTTP response was discarded by provider parsing'
+E       AssertionError: paid HTTP response was discarded by provider parsing
+E       assert None is not None
+
+tests/test_runtime_campaign_transport.py:93: AssertionError
+_____ test_received_failure_envelope_survives_provider_parsing[http_error] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_received_failure_envelope4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe3dc260>
+kind = 'http_error'
+
+    @pytest.mark.parametrize('kind', ['incomplete', 'refusal', 'invalid_json', 'missing_usage', 'http_error'])
+    def test_received_failure_envelope_survives_provider_parsing(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        payload = envelope()
+        status = 200
+        if kind == 'incomplete':
+            payload.update(status='incomplete', incomplete_details={'reason': 'max_output_tokens'})
+        elif kind == 'refusal':
+            payload['output'][0]['content'] = [{'type': 'refusal', 'refusal': 'cannot answer'}]
+        elif kind == 'invalid_json':
+            payload['output'][0]['content'][0]['text'] = '{not json'
+        elif kind == 'missing_usage':
+            del payload['usage']
+        else:
+            status = 503
+            payload = {'error': {'type': 'upstream_error', 'message': 'unavailable'}}
+        model_calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            model_calls.append(request)
+            if len(model_calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(status, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        row = report['rows'][0]
+        assert row['generation_status'] == 'api_error'
+        capture = row.get('http_response')
+>       assert capture is not None, 'paid HTTP response was discarded by provider parsing'
+E       AssertionError: paid HTTP response was discarded by provider parsing
+E       assert None is not None
+
+tests/test_runtime_campaign_transport.py:93: AssertionError
+_ test_unproven_model_or_response_id_is_preserved_but_not_scored[missing_model] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_unproven_model_or_respons0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe1efb90>
+kind = 'missing_model'
+
+    @pytest.mark.parametrize('kind', ['missing_model', 'wrong_model', 'missing_id', 'duplicate_id'])
+    def test_unproven_model_or_response_id_is_preserved_but_not_scored(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            calls.append(request)
+            payload = envelope(len(calls))
+            if kind == 'missing_model':
+                del payload['model']
+            elif kind == 'wrong_model':
+                payload['model'] = 'unapproved-model'
+            elif kind == 'missing_id':
+                del payload['id']
+            else:
+                payload['id'] = 'duplicate-response-id'
+            return httpx.Response(200, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+>       with pytest.raises(RuntimeError, match='response_provenance_invalid'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests/test_runtime_campaign_transport.py:122: Failed
+_ test_unproven_model_or_response_id_is_preserved_but_not_scored[wrong_model] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_unproven_model_or_respons1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe276a80>
+kind = 'wrong_model'
+
+    @pytest.mark.parametrize('kind', ['missing_model', 'wrong_model', 'missing_id', 'duplicate_id'])
+    def test_unproven_model_or_response_id_is_preserved_but_not_scored(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            calls.append(request)
+            payload = envelope(len(calls))
+            if kind == 'missing_model':
+                del payload['model']
+            elif kind == 'wrong_model':
+                payload['model'] = 'unapproved-model'
+            elif kind == 'missing_id':
+                del payload['id']
+            else:
+                payload['id'] = 'duplicate-response-id'
+            return httpx.Response(200, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+>       with pytest.raises(RuntimeError, match='response_provenance_invalid'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests/test_runtime_campaign_transport.py:122: Failed
+__ test_unproven_model_or_response_id_is_preserved_but_not_scored[missing_id] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_unproven_model_or_respons2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe274440>
+kind = 'missing_id'
+
+    @pytest.mark.parametrize('kind', ['missing_model', 'wrong_model', 'missing_id', 'duplicate_id'])
+    def test_unproven_model_or_response_id_is_preserved_but_not_scored(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            calls.append(request)
+            payload = envelope(len(calls))
+            if kind == 'missing_model':
+                del payload['model']
+            elif kind == 'wrong_model':
+                payload['model'] = 'unapproved-model'
+            elif kind == 'missing_id':
+                del payload['id']
+            else:
+                payload['id'] = 'duplicate-response-id'
+            return httpx.Response(200, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+>       with pytest.raises(RuntimeError, match='response_provenance_invalid'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests/test_runtime_campaign_transport.py:122: Failed
+_ test_unproven_model_or_response_id_is_preserved_but_not_scored[duplicate_id] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_unproven_model_or_respons3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe007b30>
+kind = 'duplicate_id'
+
+    @pytest.mark.parametrize('kind', ['missing_model', 'wrong_model', 'missing_id', 'duplicate_id'])
+    def test_unproven_model_or_response_id_is_preserved_but_not_scored(tmp_path, monkeypatch, kind):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            calls.append(request)
+            payload = envelope(len(calls))
+            if kind == 'missing_model':
+                del payload['model']
+            elif kind == 'wrong_model':
+                payload['model'] = 'unapproved-model'
+            elif kind == 'missing_id':
+                del payload['id']
+            else:
+                payload['id'] = 'duplicate-response-id'
+            return httpx.Response(200, json=payload)
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+>       with pytest.raises(RuntimeError, match='response_provenance_invalid'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests/test_runtime_campaign_transport.py:122: Failed
+_______________ test_response_recording_redacts_exact_credential _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-25/test_response_recording_redact0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fedfe3455b0>
+
+    def test_response_recording_redacts_exact_credential(tmp_path, monkeypatch):
+        prepared, approval = setup_campaign(tmp_path, monkeypatch)
+        calls = []
+        def handler(request):
+            if request.url.host == 'api.github.com':
+                return httpx.Response(201, json={})
+            calls.append(request)
+            if len(calls) > 1:
+                raise RuntimeError('stop_after_first_received_response')
+            return httpx.Response(401, json={'error': {'message': 'Bad key: unit-test-not-a-real-key'}})
+        install_transport(monkeypatch, handler)
+        output = tmp_path / 'out'
+        with pytest.raises(RuntimeError, match='stop_after_first_received_response'):
+            campaign.execute_runtime_campaign(prepared, output, approval)
+        files = [p for p in output.rglob('*') if p.is_file()]
+        assert all(b'unit-test-not-a-real-key' not in p.read_bytes() for p in files)
+        report = json.loads((output / 'results.json').read_text(encoding='utf-8'))
+        capture = report['rows'][0].get('http_response')
+>       assert capture is not None and capture['secret_redacted'] is True
+E       assert (None is not None)
+
+tests/test_runtime_campaign_transport.py:153: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_runtime_campaign_transport.py::test_remote_claim_is_required_even_with_a_fresh_local_state
+FAILED tests/test_runtime_campaign_transport.py::test_received_failure_envelope_survives_provider_parsing[incomplete]
+FAILED tests/test_runtime_campaign_transport.py::test_received_failure_envelope_survives_provider_parsing[refusal]
+FAILED tests/test_runtime_campaign_transport.py::test_received_failure_envelope_survives_provider_parsing[invalid_json]
+FAILED tests/test_runtime_campaign_transport.py::test_received_failure_envelope_survives_provider_parsing[missing_usage]
+FAILED tests/test_runtime_campaign_transport.py::test_received_failure_envelope_survives_provider_parsing[http_error]
+FAILED tests/test_runtime_campaign_transport.py::test_unproven_model_or_response_id_is_preserved_but_not_scored[missing_model]
+FAILED tests/test_runtime_campaign_transport.py::test_unproven_model_or_response_id_is_preserved_but_not_scored[wrong_model]
+FAILED tests/test_runtime_campaign_transport.py::test_unproven_model_or_response_id_is_preserved_but_not_scored[missing_id]
+FAILED tests/test_runtime_campaign_transport.py::test_unproven_model_or_response_id_is_preserved_but_not_scored[duplicate_id]
+FAILED tests/test_runtime_campaign_transport.py::test_response_recording_redacts_exact_credential
+11 failed in 8.89s

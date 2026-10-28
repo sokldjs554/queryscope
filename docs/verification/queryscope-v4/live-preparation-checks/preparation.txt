@@ -1,0 +1,2 @@
+prepared=48; new API calls=0; separate paid approval required
+validated=48; new API calls=0; approval not implied

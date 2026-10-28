@@ -1,0 +1,296 @@
+FFFFFFFFFFF                                                              [100%]
+=================================== FAILURES ===================================
+___________ test_default_cli_prepares_without_constructing_provider ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_default_cli_prepares_with0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f2c14724c50>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f2c144e70e0>
+
+    def test_default_cli_prepares_without_constructing_provider(tmp_path, monkeypatch, capsys):
+        from searchclinic.rag import openai_provider
+        monkeypatch.setenv('OPENAI_API_KEY', 'test-only-not-a-credential')
+        monkeypatch.setattr(openai_provider, 'OpenAIExplainer',
+                            lambda *a, **k: pytest.fail('free command constructed provider'))
+>       command = script('evaluate_queryscope_runtime_llm.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:26:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'evaluate_queryscope_runtime_llm.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: evaluate_queryscope_runtime_llm.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/evaluate_queryscope_runtime_llm.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+___________ test_live_cli_requires_explicit_preparation_and_approval ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_live_cli_requires_explici0')
+
+    def test_live_cli_requires_explicit_preparation_and_approval(tmp_path):
+>       command = script('evaluate_queryscope_runtime_llm.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:37:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'evaluate_queryscope_runtime_llm.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: evaluate_queryscope_runtime_llm.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/evaluate_queryscope_runtime_llm.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+_________________ test_remote_claim_is_atomic_and_not_reusable _________________
+
+    def test_remote_claim_is_atomic_and_not_reusable():
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:45:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+__________________ test_remote_claim_error_has_no_retry[401] ___________________
+
+status = 401
+
+    @pytest.mark.parametrize('status', [401, 403, 500])
+    def test_remote_claim_error_has_no_retry(status):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:62:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+__________________ test_remote_claim_error_has_no_retry[403] ___________________
+
+status = 403
+
+    @pytest.mark.parametrize('status', [401, 403, 500])
+    def test_remote_claim_error_has_no_retry(status):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:62:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+__________________ test_remote_claim_error_has_no_retry[500] ___________________
+
+status = 500
+
+    @pytest.mark.parametrize('status', [401, 403, 500])
+    def test_remote_claim_error_has_no_retry(status):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:62:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+_ test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-test-only-2-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-rerun_not_authorized] _
+
+commit = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', token = 'test-only'
+attempt = '2'
+identity = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+error = 'rerun_not_authorized'
+
+    @pytest.mark.parametrize('commit,token,attempt,identity,error', [
+        ('a' * 40, 'test-only', '2', 'b' * 64, 'rerun_not_authorized'),
+        ('bad', 'test-only', '1', 'b' * 64, 'invalid_commit'),
+        ('a' * 40, '', '1', 'b' * 64, 'github_token_missing'),
+        ('a' * 40, 'test-only', '1', 'bad', 'invalid_campaign_identity'),
+    ])
+    def test_bad_claim_metadata_is_rejected_before_network(commit, token, attempt, identity, error):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+_ test_bad_claim_metadata_is_rejected_before_network[bad-test-only-1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-invalid_commit] _
+
+commit = 'bad', token = 'test-only', attempt = '1'
+identity = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+error = 'invalid_commit'
+
+    @pytest.mark.parametrize('commit,token,attempt,identity,error', [
+        ('a' * 40, 'test-only', '2', 'b' * 64, 'rerun_not_authorized'),
+        ('bad', 'test-only', '1', 'b' * 64, 'invalid_commit'),
+        ('a' * 40, '', '1', 'b' * 64, 'github_token_missing'),
+        ('a' * 40, 'test-only', '1', 'bad', 'invalid_campaign_identity'),
+    ])
+    def test_bad_claim_metadata_is_rejected_before_network(commit, token, attempt, identity, error):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+_ test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-github_token_missing] _
+
+commit = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', token = '', attempt = '1'
+identity = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+error = 'github_token_missing'
+
+    @pytest.mark.parametrize('commit,token,attempt,identity,error', [
+        ('a' * 40, 'test-only', '2', 'b' * 64, 'rerun_not_authorized'),
+        ('bad', 'test-only', '1', 'b' * 64, 'invalid_commit'),
+        ('a' * 40, '', '1', 'b' * 64, 'github_token_missing'),
+        ('a' * 40, 'test-only', '1', 'bad', 'invalid_campaign_identity'),
+    ])
+    def test_bad_claim_metadata_is_rejected_before_network(commit, token, attempt, identity, error):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+_ test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-test-only-1-bad-invalid_campaign_identity] _
+
+commit = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', token = 'test-only'
+attempt = '1', identity = 'bad', error = 'invalid_campaign_identity'
+
+    @pytest.mark.parametrize('commit,token,attempt,identity,error', [
+        ('a' * 40, 'test-only', '2', 'b' * 64, 'rerun_not_authorized'),
+        ('bad', 'test-only', '1', 'b' * 64, 'invalid_commit'),
+        ('a' * 40, '', '1', 'b' * 64, 'github_token_missing'),
+        ('a' * 40, 'test-only', '1', 'bad', 'invalid_campaign_identity'),
+    ])
+    def test_bad_claim_metadata_is_rejected_before_network(commit, token, attempt, identity, error):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+______________ test_wrong_repository_is_rejected_before_approval _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f2c10fa3f20>
+
+    def test_wrong_repository_is_rejected_before_approval(monkeypatch):
+>       command = script('claim_queryscope_runtime_campaign.py')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_runtime_campaign_cli.py:87:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'claim_queryscope_runtime_campaign.py'
+
+    def script(name):
+        path = ROOT / 'scripts' / name
+>       assert path.is_file(), f'v4 command is not implemented: {name}'
+E       AssertionError: v4 command is not implemented: claim_queryscope_runtime_campaign.py
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/scratch/5264be9efd7e/queryscope/scripts/claim_queryscope_runtime_campaign.py').is_file
+
+tests/test_runtime_campaign_cli.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_runtime_campaign_cli.py::test_default_cli_prepares_without_constructing_provider
+FAILED tests/test_runtime_campaign_cli.py::test_live_cli_requires_explicit_preparation_and_approval
+FAILED tests/test_runtime_campaign_cli.py::test_remote_claim_is_atomic_and_not_reusable
+FAILED tests/test_runtime_campaign_cli.py::test_remote_claim_error_has_no_retry[401]
+FAILED tests/test_runtime_campaign_cli.py::test_remote_claim_error_has_no_retry[403]
+FAILED tests/test_runtime_campaign_cli.py::test_remote_claim_error_has_no_retry[500]
+FAILED tests/test_runtime_campaign_cli.py::test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-test-only-2-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-rerun_not_authorized]
+FAILED tests/test_runtime_campaign_cli.py::test_bad_claim_metadata_is_rejected_before_network[bad-test-only-1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-invalid_commit]
+FAILED tests/test_runtime_campaign_cli.py::test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--1-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-github_token_missing]
+FAILED tests/test_runtime_campaign_cli.py::test_bad_claim_metadata_is_rejected_before_network[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-test-only-1-bad-invalid_campaign_identity]
+FAILED tests/test_runtime_campaign_cli.py::test_wrong_repository_is_rejected_before_approval
+11 failed in 0.23s
