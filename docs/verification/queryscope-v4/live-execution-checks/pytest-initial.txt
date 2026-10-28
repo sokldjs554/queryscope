@@ -1,0 +1,31 @@
+........................................................................ [ 15%]
+........................................................................ [ 30%]
+........................................F............................... [ 45%]
+........................................................................ [ 60%]
+........................................................................ [ 75%]
+........................................................................ [ 90%]
+.............................................                            [100%]
+=================================== FAILURES ===================================
+____________________ test_every_file_open_declares_encoding ____________________
+
+    def test_every_file_open_declares_encoding():
+        """소스 전체: 텍스트 파일을 여는 모든 호출은 encoding을 명시해야 한다."""
+        offenders = [
+            line
+            for path in _python_files()
+            for line in find_unencoded_opens(
+                path.read_text(encoding="utf-8"), str(path.relative_to(ROOT))
+            )
+        ]
+>       assert not offenders, (
+            "encoding 없이 텍스트 파일을 엽니다 — 한국어 Windows(cp949)에서 깨집니다:\n  "
+            + "\n  ".join(offenders)
+        )
+E       AssertionError: encoding 없이 텍스트 파일을 엽니다 — 한국어 Windows(cp949)에서 깨집니다:
+E           tests/test_runtime_export.py:111: read_text(...) — encoding 없음
+E       assert not ['tests/test_runtime_export.py:111: read_text(...) — encoding 없음']
+
+tests/test_portability.py:101: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_portability.py::test_every_file_open_declares_encoding - As...
+1 failed, 476 passed, 1 skipped, 2 deselected in 115.81s (0:01:55)

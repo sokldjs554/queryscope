@@ -1,0 +1,9 @@
+{
+  "historical_files": 159,
+  "all_historical_hashes_match": true,
+  "legacy_code_unchanged": true,
+  "prepared_sha256": "ef8185eaaf37dd3b950c561a9de89d55638a709c4feb8315032aea85a6822fba",
+  "actual_result_sha256": "8f4429ad3fb91c939aa64a3727addab0e3c0a8e4e107785d4e7bb52a005f3a56",
+  "paid_calls_this_approval": 48,
+  "additional_paid_calls_after_run": 0
+}

@@ -4,11 +4,11 @@
 
 검색 품질을 점검하는 개발자를 위한 개인 프로젝트입니다. 실패한 검색어의 관찰·원문 근거·수정 후보를 연결하고, 실제 검색 효과를 검사합니다.
 
-후속 개선·검증: 2026-10-28 | Codex 활용
+후속 개선·검증: 2026-10-29 | Codex 활용
 
 Python · FastAPI · Kiwi · BM25 · OpenAI Responses API · Pydantic · GitHub Actions
 
-[소스와 실행 안내](https://github.com/sokldjs554/queryscope) · [저장 결과 데모](https://queryscope-zwia.onrender.com/) · [v4 검토 화면](https://queryscope-zwia.onrender.com/review-v4.html) · [기반 PR #2](https://github.com/sokldjs554/ko-search-clinic/pull/2)
+[소스와 실행 안내](https://github.com/sokldjs554/queryscope) · [새 실제48응답](https://queryscope-zwia.onrender.com/generation-v4.html) · [기존24응답 재검사](https://queryscope-zwia.onrender.com/review-v4.html) · [기반 PR #2](https://github.com/sokldjs554/ko-search-clinic/pull/2)
 
 ## 개발 배경
 
@@ -24,7 +24,7 @@ QueryScope는 관찰을 모아 원인을 설명하는 단계부터 수정안의 
 
 ko-search-clinic의 RAG 서비스와 검증을 포함한 PR #2 커밋 `493935f6`에서 새 저장소로 이어받았습니다. 전체 Git 이력과 기준 태그 `upstream-pr2`를 보존하고 기존 저장소는 변경하지 않았습니다. 검색 엔진·회귀 게이트·과거 실제 API 응답을 유지하면서 평가 분리, 수동 수정 후보, 생성 결과 검사와 데모를 보완했습니다.
 
-후속 v4에서는 v3의 실제 24응답을 같은 입력으로 재검사하는 경로와, 보완된 입력 48개를 새로 준비하는 경로를 분리했습니다. 전자는 저장 응답에 대한 사후 분석이고, 후자는 모델 응답이 없는 준비 결과입니다. 과거 기록 159개 파일을 보존했으며 기존 준비 입력 48개의 문맥과 요청 본문도 동일하게 재현했습니다. [출처·보존 이력](https://github.com/sokldjs554/queryscope/blob/main/docs/PROVENANCE.md) · [v4 보존 대조](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/preservation.json)
+후속 v4에서는 기존 실제 24응답의 재검사와 보완된 입력의 새 실제 생성을 분리했습니다. 새 생성은 기존 12사례×힌트 유무의 직접 비교 24회와 추가 12사례×힌트 유무의 24회입니다. 추가 사례도 같은 v3 개발 자료에 속하며 새 독립 평가셋이 아닙니다. 과거 기록 159개 파일과 기존 준비 입력 48개의 재현 이력도 보존했습니다. [출처](https://github.com/sokldjs554/queryscope/blob/main/docs/PROVENANCE.md) · [보존 대조](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/preservation.json)
 
 ## 기술 선택
 
@@ -65,39 +65,55 @@ v4에서 추가한 검사는 동의어 대표어가 실제 색인에 존재하�
 | v3 당시 원칙 검색 | 무힌트 7/8, 힌트 8/8 | 관련 운영 원칙의 hit@3이며 모델 원인 진단 정확도가 아닙니다. |
 | v4 보완 후 같은 개발 자료 | 무힌트 7/8→8/8, 힌트 8/8→8/8 | 설명 단서로 후보를 보완한 검색 결과. 새 독립 평가가 아닙니다. |
 
-**v3 실제 모델 평가:** 실행 전에 고정한 12사례를 힌트 유무로 나누어 GPT-5.4-mini 스냅샷을 24회 호출했습니다. 응답 24건·API 오류 0건, 토큰 사용량에 따른 비용 추정은 $0.0385605였습니다. 최초 자동 검증은 인용·형식 통과 7건, 보류 9건, 차단 8건입니다. `supported`는 의미적으로 옳다는 판정이 아닙니다. 원인 계열 라벨의 일치도 역시 작성 가설 대조이며 사람의 원인 판정을 대신하지 않습니다.
+**기준선과 새 실제 생성:** v3는 고정한 12사례를 힌트 유무로 나누어 24회 생성했습니다. v4는 같은 GPT-5.4-mini 스냅샷으로 직접 비교 24회와 추가 24회를 실행했습니다. 기존 응답에 새 검사를 적용한 결과를 새 생성과 섞지 않았습니다.
 
-차단 8건은 상품 ID를 운영 지식의 인용 출처로 사용했습니다. 정상 검색인 휴대용 계수기·연습용 오카리나도 해당하며, 무힌트 두 응답은 정상이라는 설명과 달리 raw 상태를 supported로 반환했습니다. 접착제는 목공접착제의 누락을 설명하면서 접착제 자체를 분해해 효과가 없었습니다. 이런 실패를 최초 결과에서 제거하지 않았습니다.
+| 평가 범위 | 응답 수 | 인용·형식 통과 | 보류 | 차단 |
+|---|---:|---:|---:|---:|
+| v3 최초 실제 생성 기준선 | 24 | 7 | 9 | 8 |
+| 같은 v3 저장 응답의 v4 재검사 | 24 | 6 | 9 | 9 |
+| v4 새 생성: 직접 비교 | 24 | 7 | 13 | 4 |
+| v4 새 생성: 추가 사례 | 24 | 1 | 18 | 5 |
+| v4 새 생성 전체 | 48 | 8 | 31 | 9 |
 
-**v4 저장 응답 재검사:** 원응답과 당시 문맥을 그대로 두고 새 적용 검사를 통과하는지 비교했습니다. 최초 7/9/8 판정은 유지하고, 새 경로에서는 통과 6·보류 9·차단 9가 됐습니다. 차이는 microscope 힌트 응답 1건이 대표어 존재 검사에서 추가 차단된 것입니다.
+통과는 `supported` 검사 상태이며 의미적 정답 수가 아닙니다. v4 새 생성은 48시도·48응답·API 오류 0건으로 완료됐습니다. 요청과 응답의 출처 무결성 오류도 0건이지만 이는 인용 문구 오류가 없다는 뜻과 다릅니다. 사용량 기준 비용 추정은 **$0.08442375**, 승인 예약 상한은 $0.60입니다. v3 최초 비용 추정 $0.0385605와 분리했습니다. 모두 청구 금액 확정값은 아닙니다.
 
-| 새 경로에서 효과를 측정한 응답 | 응답 수 | 표적 nDCG | 게이트 결과 |
-|---|---:|---|---|
-| 팔래트 → 팔레트, 두 조건 | 2 | 0→1 | 채택 |
-| 파스탤 → 파스텔, 두 조건 | 2 | 0→1 | 채택 |
-| 박자기 → 박자, 두 조건 | 2 | 0→0 | 기각 |
+**직접 비교 24응답:** 원래 12사례의 차단은 최초 8건에서 새 생성 4건으로 바뀌었습니다. 정상·불명·근거 부족·범위 밖의 보류·무패치·검증 통과 계약은 8/12에서 11/12로 바뀌었습니다. 같은 개발 사례에 입력과 검사 규칙을 함께 보완한 단일 배치의 결과이므로 새 상품의 진단 정확도나 개별 변경의 인과 효과로 표현하지 않습니다.
 
-6응답 중 4응답이 채택됐지만 서로 다른 질의로는 2개입니다. 각 후보를 따로 적용해 기존 36질의와 v3 정답 있는 16질의를 측정한 결과 지표 하락은 0건이었습니다. 박자기는 자모 유사도만으로 같은 의미가 확인되지 않았고 원래 의도한 메트로놈 검색도 해결하지 못했습니다. 차단됐던 건조대 후보의 과거 가상 적용 결과는 최초 성공에 합산하지 않았습니다.
+이번 48응답에서 상품 ID를 운영 지식 인용 출처로 사용한 오류는 없었습니다. 다만 원인용 90구절을 별도로 대조하면 87구절은 일치하고 3구절은 문구가 다릅니다. 인용 오류가 일차 차단 사유인 응답은 2건이고, microscope 힌트 응답의 추가 문구 불일치는 형식 검사가 먼저 차단해 일차 사유에 드러나지 않았습니다. 인용 오류가 모두 해결됐다고 계산하지 않았습니다. [인용 전수 대조·실행 분석](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/actual-api-analysis-v1/analysis.json)
 
-**새 입력 준비와 사람 검토:** 보완 경로의 입력 48개를 준비했으며 모델 응답은 없습니다. 최대 요청 본문은 7,444바이트로 제한 11,000바이트 이내였습니다. v4 추가 유료 호출은 0회입니다. 실제 24응답의 사람 평가는 여전히 미완료이며, 다섯 축의 검토 안내와 응답별 AI 사전 검토를 준비했습니다. AI가 쓴 메모는 독립적인 사람의 평가로 계산하지 않습니다. [실측 원자료](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/run-v1/audit.json) · [사람 검토 안내](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md)
+**수정 효과:** 새 생성에서 검사를 통과한 8후보를 각각 별도 엔진에서 측정했습니다. 7응답이 채택됐으나 서로 다른 질의로는 5개이며, 1응답은 효과가 없어 기각됐습니다.
+
+| 범위 | 채택된 응답 | 기각된 응답 |
+|---|---|---|
+| 직접 비교 24회 | 접착제 무힌트·건조대 힌트·팔래트 양 조건·파스탤 양 조건: 6응답, 4질의 | 박자기 힌트: 1응답 |
+| 추가 24회 | 측정기 무힌트: 1응답, 1질의 | 없음 |
+
+채택된 각 후보의 표적 nDCG는 0→1, 박자기 힌트는 0→0이었습니다. 8후보 각각에 대해 기존 36질의와 개발 자료의 정답 있는 16질의를 검사한 지표 하락은 0건이었습니다. 후보들을 함께 적용한 결합 성능이나 평가셋 밖의 무회귀를 검증한 실험은 아닙니다.
+
+**남은 실패:** 접착제는 무힌트에서 목공접착제를 올바르게 분해해 개선됐지만 힌트에서는 중복·빈 구성 요소로 차단됐습니다. 건조대 무힌트와 보호대 양 조건, 측정기 힌트는 실제 색인 복합어 대신 질의 자체를 분해해 차단됐습니다. microscope는 무힌트에서 대응 근거 부족으로 보류했고 힌트에서는 ‘광학 현미경’처럼 여러 단어로 된 대표어가 형식 조건을 통과하지 못했습니다. 박자기는 무힌트에서 미확인 의미 대응을 보류했지만 힌트에서는 다시 박자와 연결해 검색이 개선되지 않았습니다. 원인 계열 라벨이 맞더라도 패치의 의미와 효과가 보장되지 않는 사례입니다.
+
+**의미 검토:** 기존 v3 24응답에는 원인 근거·원문 인용·의미적 지지·수정안·보류의 5축, 총 120개 AI 판정과 이유·불확실성을 작성했습니다. 같은 작업의 AI가 기존 메모·작성 qrels·게이트 결과를 본 사후 평가이며 독립적인 사람의 평가가 아닙니다. 이 평가를 새 48응답의 의미 판정으로 전용하지 않았습니다. 기존 응답과 새 응답의 사람 의미 평가는 미완료입니다. [새 실제 48응답](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/actual-api-v1/results.json) · [기존 24응답 AI 의미 평가](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/AI-SEMANTIC-REVIEW.md)
 
 ## 사용 화면
 
-[v4 검토 화면](https://queryscope-zwia.onrender.com/review-v4.html)은 저장 응답의 최초 판정과 새 적용 검사, 차단 이유, 효과 측정을 비교하도록 구성했습니다. microscope의 추가 차단을 확인하고 사람 검토 자료로 이동할 수 있습니다. [v3 실제 응답 재생](https://queryscope-zwia.onrender.com/generation-v3.html)에서는 원래 24응답의 입력·원응답·인용 오류·게이트 결과를 확인합니다.
+[새 실제48응답 화면](https://queryscope-zwia.onrender.com/generation-v4.html)에서는 직접 비교24와 추가24를 나누고 힌트 유무의 입력·원응답·인용·차단 이유·수정 효과를 대조합니다. 응답 ID와 사용량, 기존24응답의 원판정도 확인할 수 있습니다. 원인용의 문구 대조는 최초 차단 사유와 별도로 표시합니다.
 
-[평가 비교 화면](https://queryscope-zwia.onrender.com/evaluation-v3.html)에서는 질의·토큰·관련 문서와 원문 발췌를 확인할 수 있습니다. 기반 PR의 과거 응답과 [v1 기록](https://queryscope-zwia.onrender.com/evaluation.html)도 별도 보존했습니다. 공개 화면은 저장 결과를 재생하는 정적 데모이며 모델 API 키를 전달하지 않습니다. 이번 문서의 URL은 화면 경로 안내이며 최신 공개 배포나 접속 검증 완료를 뜻하지 않습니다.
+[기존24응답 재검사 화면](https://queryscope-zwia.onrender.com/review-v4.html)은 당시 원판정과 새 적용 검사를 보존합니다. [v3 실제 응답](https://queryscope-zwia.onrender.com/generation-v3.html), [평가 비교](https://queryscope-zwia.onrender.com/evaluation-v3.html), 기반 PR의 과거 응답과 [v1 기록](https://queryscope-zwia.onrender.com/evaluation.html)도 별도입니다. 공개 화면은 저장 결과를 재생하는 정적 데모이며 모델 API 키를 전달하지 않습니다. 배포 SHA·공개 파일 대조·로컬 화면 검증 범위는 [최신 운영 기록](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/LIVE-OPERATIONS.md)에 남깁니다.
 
 ## 운영 설정과 한계
 
-실제 생성은 서버에서 명시적으로 활성화하고 운영 토큰으로 접근합니다. API 키는 화면에 전달하지 않습니다. 요청 전에 비용을 예약하고 자동 재시도 없이 호출 수를 제한합니다. 과거 승인으로 완료한 평가와 새 입력 준비를 분리하고, 새 유료 호출이 자동으로 이어지지 않도록 했습니다.
+실제 생성은 서버에서 명시적으로 활성화하고 운영 토큰으로 접근합니다. API 키는 화면에 전달하지 않습니다. 요청 전에 비용을 예약하고 자동 재시도 없이 호출 수를 제한합니다. v3의 과거 승인과 v4의 48회·최대 $0.60 승인을 구분하고, 완료된 승인이 새 호출로 자동 반복되지 않도록 했습니다.
 
-이번에 확인한 것은 작성 자료에서의 검색·검사 결과입니다. 서로 다른 문자 체계의 후보를 찾았다는 사실이나 대표어가 색인에 있다는 사실만으로 동의어의 의미가 입증되지는 않습니다. 자연 발생 분해 오류 평가, 작성 가설·정답의 모호성 검토, 사람의 의미 평가가 남아 있습니다. 정상 검색 응답의 상태·인용 오류도 새 모델 응답으로 해결됐다고 확인한 상태는 아닙니다.
+이번에 확인한 것은 작성 자료에서의 검색·검사 결과입니다. 서로 다른 문자 체계의 후보를 찾았다는 사실이나 대표어가 색인에 있다는 사실만으로 동의어의 의미가 입증되지는 않습니다. 자연 발생 분해 오류 평가, 작성 가설·정답의 모호성 검토, 사람의 의미 평가가 남아 있습니다. 새 생성에서 상품 ID 인용 오류는 사라졌지만 문구 불일치, 정상 응답의 상태 오류, 잘못된 분해와 의미 대응은 남았습니다.
 
-실고객 효과, 평가셋 밖의 무회귀, 장기 공개 생성 API 운영, 독립 평가셋에서의 일반화는 주장하지 않습니다. 모델 학습이나 LangChain·LlamaIndex 사용 경험으로 소개하지도 않습니다. 다음 생성 실험은 입력·모델·호출 수·비용을 별도 확정한 뒤 실시하고, 새 응답과 기존 저장 응답 재검사를 나누어 비교해야 합니다.
+실고객 효과, 평가셋 밖의 무회귀, 장기 공개 생성 API 운영, 독립 평가셋에서의 일반화는 주장하지 않습니다. 모델 학습이나 LangChain·LlamaIndex 사용 경험으로 소개하지도 않습니다. 같은 개발 사례의 재실행만으로 재현성과 일반화가 확인되지는 않습니다. 다음 실험도 입력·모델·호출 수·비용을 별도로 정하고 새 응답과 저장 응답 재검사를 구분해야 합니다.
 
 ## 검증 자료
 
-- [v4 원자료: 최초·새 검사 판정, 효과, 48개 준비 입력](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/run-v1/audit.json)
+- [실제48응답 분석·남은 실패·검증 재현](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/ACTUAL-API.md) · [최신 CI·배포·화면 검증](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/LIVE-OPERATIONS.md)
+- [v4 실제 48응답·직접 비교와 추가 사례](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/actual-api-v1/results.json)
+- [기존 24응답 × 5축 AI 의미 평가](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/AI-SEMANTIC-REVIEW.md)
+- [v4 저장 응답 재검사와 입력 준비](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/run-v1/audit.json)
 - [기존 159개 파일 보존 대조](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/preservation.json)
 - [사람 검토 안내](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md) · [24응답 AI 사전 검토](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/AI-REVIEW.md)
 - [v3 실제 API 원응답·비용·실패 분석](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/ACTUAL-API.md) · [v3 평가 구성](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/README.md)

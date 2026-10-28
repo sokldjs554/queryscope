@@ -1,6 +1,8 @@
 # QueryScope v4: 원응답 보존과 런타임 적용 검사
 
-2026-10-29 후속 작업으로 **기존 24응답의 AI 의미 평가 120개 판정**과 **새 48요청의 실제 실행 준비**를 완료했습니다. [AI 의미 평가](AI-SEMANTIC-REVIEW.md) · [실행 직전 계획과 비용](LIVE-EVALUATION-PROPOSAL.md) · [준비 검증](LIVE-PREPARATION.md). 이번 실험의 승인 양식은 `approved=false`, 새 유료 호출은 0회입니다. 아래는 2026-10-28에 수행한 원응답 재검사 기록입니다.
+2026-10-29 사용자 승인 후 **새 실제48응답**을 확보했습니다. API·출처 연결 오류0건, 토큰 기준 추정 비용$0.08442375, 예약 상한$0.60입니다. 기존과 겹친24응답은 7통과·13보류·4차단, 추가24응답은 1통과·18보류·5차단입니다. [실제 결과·실패·전후 비교](ACTUAL-API.md) · [새48응답 화면](https://queryscope-zwia.onrender.com/generation-v4.html) · [최신 운영 검증](LIVE-OPERATIONS.md).
+
+**기존24응답의 AI 의미 평가120개 판정**도 완료했습니다([AI 의미 평가](AI-SEMANTIC-REVIEW.md)). [실행 직전 계획과 비용](LIVE-EVALUATION-PROPOSAL.md), [승인 전 준비 검증](LIVE-PREPARATION.md)은 당시 기록으로 보존합니다. 아래는 2026-10-28에 수행한 옛 응답 재검사이며 새 생성 결과와 구분합니다.
 
 2026-10-28 후속 검증. **새 API 호출0회·새 모델 응답0건**이며, v3의 실제24응답을 원래 입력으로 다시 검사했습니다. 최초 판정과 원응답은 보존하고 새 검사를 별도로 기록했습니다. 바뀐 입력48건은 준비만 했으며 `model_answer=null`, `generation_status=not_run`입니다. [전체 원자료](run-v1/audit.json).
 

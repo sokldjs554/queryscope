@@ -1,0 +1,36 @@
+{
+  "date_kst": "2026-10-29",
+  "cover_pages": 2,
+  "portfolio_pages": 5,
+  "visually_reviewed_pages": 7,
+  "korean_fonts_embedded": true,
+  "portfolio_link_annotations": 33,
+  "body_paragraphs_kept_together": true,
+  "five_column_table_widths_adjusted": true,
+  "artifacts": [
+    {
+      "name": "Yoon_Gihyeok_Alba_CoverLetter.md",
+      "bytes": 6305,
+      "sha256": "3475771b64c073f304c03483e151da080f3be3eb77d25a8c0fc64d6f2cb56b50",
+      "pages": null
+    },
+    {
+      "name": "Yoon_Gihyeok_Alba_CoverLetter.pdf",
+      "bytes": 45051,
+      "sha256": "19ff04bfde2a9fdee72d37737c31bcc17a4e9b15a215e2ad5928870c059634a3",
+      "pages": 2
+    },
+    {
+      "name": "Yoon_Gihyeok_KoSearch_Portfolio.md",
+      "bytes": 17802,
+      "sha256": "de9a051a981a9d6c76b26f8c0ffc797eb61767652b1eecece13ad86a3cb21899",
+      "pages": null
+    },
+    {
+      "name": "Yoon_Gihyeok_KoSearch_Portfolio.pdf",
+      "bytes": 68756,
+      "sha256": "7fbfc08a3466b7f323645cdf558c820d195743cdae4b3ff719a61d911162e478",
+      "pages": 5
+    }
+  ]
+}

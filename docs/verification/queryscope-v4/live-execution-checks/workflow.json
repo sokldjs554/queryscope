@@ -1,0 +1,13 @@
+{
+  "run_id": 40723946171,
+  "url": "https://github.com/sokldjs554/queryscope/actions/runs/40723946171",
+  "head_sha": "a961c5aac0e747fd504f1e3902b83d7afb90aeda",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-28T16:14:09Z",
+  "updated_at": "2026-10-28T16:16:17Z",
+  "run_attempt": 1,
+  "raw_result_commit": "6febc3eddde6a00bbb8454d29d482ee0049d4bbd",
+  "max_calls": 48,
+  "reservation_usd": 0.6
+}

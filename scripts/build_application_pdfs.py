@@ -13,7 +13,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, LongTable, TableStyle, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, LongTable, TableStyle, PageBreak, KeepTogether
 
 ROOT = Path(__file__).resolve().parents[1]
 INK = colors.HexColor('#252522')
@@ -47,7 +47,8 @@ def table(lines, sheet, width):
     rows = [[c.strip() for c in line.strip().strip('|').split('|')] for line in lines]
     rows = [row for row in rows if not all(re.fullmatch(r'[:\- ]+', cell or '-') for cell in row)]
     n = len(rows[0])
-    ratios = {2:[.31,.69], 3:[.25,.29,.46], 4:[.43,.13,.20,.24]}.get(n,[1/n]*n)
+    ratios = {2:[.31,.69], 3:[.25,.29,.46], 4:[.43,.13,.20,.24],
+              5:[.40,.12,.20,.14,.14]}.get(n,[1/n]*n)
     values = [[Paragraph(inline(c),sheet['th' if i==0 else 'table']) for c in row]
               for i,row in enumerate(rows)]
     result = LongTable(values,colWidths=[width*x for x in ratios],repeatRows=1,hAlign='LEFT')
@@ -91,13 +92,14 @@ def render(source, target, kind):
         while i<len(lines) and lines[i].strip() and not lines[i].startswith(('#','|','- ')):
             paragraph.append(lines[i].strip());i+=1
         style=sheet['meta'] if section==0 else sheet['body']
-        story.append(Paragraph(inline(' '.join(paragraph)),style))
+        block=Paragraph(inline(' '.join(paragraph)),style)
+        story.append(KeepTogether([block]) if section else block)
     def page(canvas, document):
         canvas.saveState()
         canvas.setStrokeColor(colors.HexColor('#d4d2ca'));canvas.setLineWidth(.4)
         canvas.line(44,33,A4[0]-44,33)
         canvas.setFont('NotoKR',7.4);canvas.setFillColor(MUTED)
-        canvas.drawString(44,21,'윤기혁 / 알바천국 AI 개발자' if kind=='cover' else '윤기혁 / QueryScope / 2026-10-28')
+        canvas.drawString(44,21,'윤기혁 / 알바천국 AI 개발자' if kind=='cover' else '윤기혁 / QueryScope / 2026-10-29')
         canvas.drawRightString(A4[0]-44,21,str(document.page))
         canvas.restoreState()
     doc.build(story,onFirstPage=page,onLaterPages=page)

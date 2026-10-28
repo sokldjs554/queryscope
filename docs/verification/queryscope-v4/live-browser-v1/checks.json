@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "source_sha256": "8f4429ad3fb91c939aa64a3727addab0e3c0a8e4e107785d4e7bb52a005f3a56",
+  "slots_checked": 48,
+  "viewports": [
+    1440,
+    320,
+    390,
+    650
+  ],
+  "new_model_calls": 0,
+  "checks": [
+    "all48 input/answer/citation/response IDs match saved projection",
+    "all summary cells traced",
+    "paired24/additional24 separate",
+    "gate and both regression scopes preserved",
+    "old24 response distinction",
+    "navigation links",
+    "no overflow",
+    "503 and invalid data visibly fail closed",
+    "zero external requests",
+    "no JavaScript errors"
+  ]
+}

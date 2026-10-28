@@ -1,0 +1,12 @@
+{
+  "scope": "local copy verification; original remote evidence is intact",
+  "source_commit": "6febc3eddde6a00bbb8454d29d482ee0049d4bbd",
+  "files_checked": 104,
+  "identical_files_initially": 101,
+  "mismatches_initially": [
+    {"path": "raw-http/response-008.receipt.json", "local_bytes": 0, "original_bytes": 875},
+    {"path": "raw-http/response-019.receipt.json", "local_bytes": 0, "original_bytes": 879},
+    {"path": "raw-http/response-035.txt", "local_bytes": 0, "original_bytes": 6003}
+  ],
+  "action": "reported to root; analysis agent did not modify source files; final analysis requires all 104 files to match"
+}

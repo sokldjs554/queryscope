@@ -1,0 +1,26 @@
+{
+  "source_commit": "6febc3eddde6a00bbb8454d29d482ee0049d4bbd",
+  "raw_files_checked": 104,
+  "all_git_blobs_match": true,
+  "retrieval_copies_restored_from_source": [
+    {
+      "path": "docs/verification/queryscope-v4/actual-api-v1/raw-http/response-008.receipt.json",
+      "local_bytes_before": 0,
+      "expected_blob": "c644096d81909fd20c1c79c620620c945b34ed69",
+      "source_bytes": 875
+    },
+    {
+      "path": "docs/verification/queryscope-v4/actual-api-v1/raw-http/response-019.receipt.json",
+      "local_bytes_before": 0,
+      "expected_blob": "b133bbeb442e8a1efa3beb80128e79c67a0915ba",
+      "source_bytes": 879
+    },
+    {
+      "path": "docs/verification/queryscope-v4/actual-api-v1/raw-http/response-035.txt",
+      "local_bytes_before": 0,
+      "expected_blob": "7fa1421cd9d7e284ea3d62cb90efaa768351a198",
+      "source_bytes": 6003
+    }
+  ],
+  "scope": "Local retrieval copies only; source commit and original model output were never modified."
+}

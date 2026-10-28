@@ -6,8 +6,9 @@
 
 ## 먼저 보기
 
-- [v4 실제 재평가 실행 계획](docs/verification/queryscope-v4/LIVE-EVALUATION-PROPOSAL.md): 새 48요청 준비, 예상 약 $0.09·예약 상한 $0.60, 이번 실험의 비용 승인 대기. [기존 24응답의 AI 의미 평가](docs/verification/queryscope-v4/AI-SEMANTIC-REVIEW.md)도 다섯 축으로 완료했습니다. 새 유료 호출은 0회입니다.
-- [v4 후속 검사 화면](https://queryscope-zwia.onrender.com/review-v4.html): 같은 실제 24응답의 원판정과 새 적용 검사를 비교합니다. 신규 모델 호출은 0회입니다. [검증 자료](docs/verification/queryscope-v4/README.md).
+- [v4 새 실제 응답 48건](https://queryscope-zwia.onrender.com/generation-v4.html): 보완된 입력으로 재평가했습니다. 기존과 직접 비교하는 24응답과 추가 24응답, 실패·보류·수정 효과를 구분합니다. [실제 결과와 원자료](docs/verification/queryscope-v4/ACTUAL-API.md).
+- [기존 24응답의 AI 의미 평가](docs/verification/queryscope-v4/AI-SEMANTIC-REVIEW.md): 다섯 축 120개 판정과 이유·근거·불확실성. 실제 사람 검토와 구분합니다.
+- [v4 후속 검사 화면](https://queryscope-zwia.onrender.com/review-v4.html): 기존 실제 24응답의 원판정과 새 적용 검사를 비교하는 당시 기록입니다. [검증 자료](docs/verification/queryscope-v4/README.md).
 - [v3 새 실제 모델 응답 24건](https://queryscope-zwia.onrender.com/generation-v3.html): 힌트 유무, 인용 차단, 보류와 수정 효과 비교.
 - [과거 실제 API 응답 재생](https://queryscope-zwia.onrender.com/): 기존에 생성한 24응답과 수정안 채택·기각 기록.
 - [v3 정상 검색·통제된 누락 비교](https://queryscope-zwia.onrender.com/evaluation-v3.html): 정상 검색의 잘못된 누락 신호와 미개선 사례.
@@ -16,19 +17,24 @@
 
 공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. v4를 기존 사이트에 배포했고 공개 HTML·JavaScript·JSON이 모두 HTTP 200을 반환하며 로컬 검증본과 일치함을 확인했습니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 공개 브라우저 추가 검사의 인증서 오류와 접속 확인 범위는 [최신 운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)에 남겼습니다. 2026-10-27의 사용자 공개 접속·수동 테스트 완료 확인은 [당시 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)에 보존합니다.
 
-## 최신 v4: 원응답 보존과 실행 전 검사
+## 최신 v4: 입력 보완 후 실제 48회 평가
 
 v3 실제 응답에서 상품 관찰 ID를 지식 출처로 인용한 오류와 색인에 없는 대표어 후보를 확인해 런타임 계약을 보완했습니다. 지식 문서 ID만 인용하도록 입력에 허용 목록을 넣고, 기존 원문 인용 검사를 통과한 뒤에도 실제 색인 대표어·복합어 전체·질의와 수정 대상의 관계를 검사합니다. 상품 설명으로 찾은 후보는 의미 관계가 확인되지 않은 관찰로만 전달합니다.
 
-| 측정 | v4 후속 결과 | 해석 |
-|---|---|---|
-| 저장된 실제24응답 재검사: 통과 / 보류 / 차단 | **7 / 9 / 8 → 6 / 9 / 9** | `microscope` 힌트 응답의 없는 대표어1건 추가 차단; 최초 판정 보존 |
-| 실행 조건을 통과한6후보 | **4응답 채택 / 2응답 기각** | 채택은 고유2질의, 의미적 타당성은 사람 검토 필요 |
-| v3 개발8개 계열: 무힌트 근거 hit@3 | **7/8 → 8/8** | 이미 본 개발 자료의 일반 원칙 검색, 새 모델 진단 성능 아님 |
-| 새 런타임 입력 | **48건 준비 / 모델 응답0건** | 최대7,444바이트, 기존11,000바이트 한도 이내 |
-| 과거 원자료·검토 | **159파일 보존 / 사람24건 pending** | AI 사전 검토와 독립 인간 판정을 구분 |
+2026-10-29, 사용자가 승인한 `gpt-5.4-mini-2026-03-17` **48회 실행·실제 응답 48건**을 완료했습니다. API 오류와 출처 연결 오류는 0건, 토큰 기준 추정 비용은 **$0.08442375**, 예약 상한은 $0.60입니다. 입력·승인·응답 ID·원 HTTP 본문·usage·두 예산 원장을 보존했습니다. [승인 계획](docs/verification/queryscope-v4/LIVE-EVALUATION-PROPOSAL.md) · [실행 기록](https://github.com/sokldjs554/queryscope/actions/runs/40723946171).
 
-추가 모델 호출·새 모델 응답은 **0건**입니다. 인용 추적과 적용 가능성 검사를 보완했으며, 새 프롬프트가 생성 오류를 줄였다는 실측은 없습니다. 자료를 본 뒤 보완했으므로 v3는 이제 개발 자료입니다. [원자료·구현·검증·남은 한계](docs/verification/queryscope-v4/README.md) · [AI 사전 검토](docs/verification/queryscope-v4/AI-REVIEW.md) · [사람 검토 안내](docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md).
+| 측정 | v4 실제 재평가 결과 | 해석 |
+|---|---|---|
+| 직접 비교 24응답: 통과 / 보류 / 차단 | **v3 최초 7/9/8 → 새 v4 7/13/4** | 옛 응답의 현재 검사 결과는 6/9/9로 별도 보존 |
+| 직접 비교의 보류·무패치·검증 통과 계약 | **8/12 → 11/12** | 원인 진단 정확도나 사람 의미 판정이 아님 |
+| 직접 비교의 개별 수정 효과 | **6응답 채택·1기각, 고유4질의 채택** | 옛 응답의 현재 기준은 4채택·2기각, 고유2질의 |
+| 추가 24응답: 통과 / 보류 / 차단 | **1/18/5**, 1후보 채택 | 기존24와 분모가 다른 별도 개발 평가 |
+| 전체 48응답: 통과 / 보류 / 차단 | **8/31/9** | 8후보 개별 검사에서 7채택·1기각, 고유5질의 |
+| 원문 인용 전수 대조 | **90인용 중 87일치·3불일치**, 상품ID 인용0 | 최초 인용 차단2응답 외에 schema 차단1응답의 인용 불일치도 포함 |
+
+채택된 후보는 표적 nDCG0→1을 기록했습니다. 각 후보를 따로 적용한 개발16질의와 기존36질의에서 기록된 하락은 0건이며, 여러 후보를 결합한 성능은 측정하지 않았습니다. 잘못된 복합어 대상, schema·인용·상태 계약 오류가 남았고 `박자기` 힌트 후보는 효과가 없어 기각됐습니다. `microscope`도 해결되지 않았습니다.
+
+이미 본 개발 자료에서 입력 관측·프롬프트·검증 절차를 함께 보완한 1회씩의 생성 비교입니다. 특정 변경 하나의 인과 효과, 독립 정답률, 고객 데이터의 성능으로 일반화하지 않습니다. 이전 자료159파일과 독립 인간 검토의 pending 상태는 보존했습니다. [전체 분석·제약·재현](docs/verification/queryscope-v4/ACTUAL-API.md) · [기존24응답 AI 의미 평가](docs/verification/queryscope-v4/AI-SEMANTIC-REVIEW.md) · [사람 검토 안내](docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md).
 
 ## v3에서 확인한 결과
 
@@ -71,30 +77,31 @@ pip install -e '.[api,mcp,dev,scale]'
 python -m searchclinic.api.explanation_api
 ```
 
-[http://127.0.0.1:8000/demo/](http://127.0.0.1:8000/demo/) → **후속 검사·검토**에서 같은24응답의 원판정·후속 검사·미생성 입력을 비교합니다. **v3 비교 보기**에서는 이전 입력·토큰·문서·인용 원문을 확인합니다. API 키 없이 동작합니다.
+[http://127.0.0.1:8000/demo/generation-v4.html](http://127.0.0.1:8000/demo/generation-v4.html)에서 새48응답과 기존24응답의 대응을 확인합니다. **후속 검사·검토**는 옛 응답의 사후 검사와 당시 준비 입력을 보존한 화면입니다. API 키 없이 동작합니다.
 
 ```bash
 python -m pytest -q
 clinic baseline
 python scripts/evaluate_queryscope_runtime.py --output work/reproduction-v4
 python scripts/export_queryscope_runtime.py --input work/reproduction-v4/audit.json --output work/review-v4.json
+python scripts/export_generation_v4.py --input docs/verification/queryscope-v4/actual-api-v1/results.json --previous docs/verification/queryscope-v3/actual-api-v1/results.json --cases docs/verification/queryscope-v3/cases.json --output work/generation-v4.json
 python scripts/evaluate_queryscope_v3.py --output work/reproduction-v3
 python scripts/evaluate_queryscope_v2.py --output work/reproduction-v2
 python scripts/evaluate_queryscope_llm.py --suite queryscope-v3 --output work/llm-prepared-v3
 python scripts/verify_queryscope_operations.py --output work/operations-v3
 ```
 
-평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. v4는 실제 원응답·입력·준비 해시·응답ID의 연결도 검사하며 저장된24응답의 재검사와48입력 준비만 수행합니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/README.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
+평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. 위 명령은 저장된 응답 재검사·입력 준비·정적 결과 내보내기만 수행합니다. 실제 모델 실행은 별도 승인 파일과 단일 원격 실행 표식이 필요한 경로이며 이번48회 승인은 소진됐습니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/ACTUAL-API.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
 
-후속 실제 실행 준비 코드의 최신 로컬 전체 검사는 **468 passed, 1 skipped, 2 deselected**입니다. [새 CI](https://github.com/sokldjs554/queryscope/actions/runs/40721662846)는 Ubuntu·Windows 각각 **449 passed, 2 skipped**와 검색 품질 게이트를 통과했습니다([검증과 로그](docs/verification/queryscope-v4/LIVE-PREPARATION.md)). 실제 API를 호출하는 테스트는 아닙니다.
+새 실제 결과 화면·exporter를 포함한 최종 로컬 전체 검사는 **477 passed, 1 skipped, 2 deselected**입니다([로그](docs/verification/queryscope-v4/live-execution-checks/pytest-final.txt)). 실제 실행 준비 당시의468통과와 [준비 코드 CI](https://github.com/sokldjs554/queryscope/actions/runs/40721662846)의 Ubuntu·Windows 각449통과는 [당시 기록](docs/verification/queryscope-v4/LIVE-PREPARATION.md)으로 보존했습니다. 새 결과 화면의 검증·배포는 [최신 운영 기록](docs/verification/queryscope-v4/LIVE-OPERATIONS.md)에 구분합니다.
 
 이미 공개한 v4 화면 코드의 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). [화면 공개 시 CI](https://github.com/sokldjs554/queryscope/actions/runs/40711959844)는 Ubuntu·Windows 각각400 passed·2 skipped와 검색 품질 게이트를 통과했습니다. 같은 코드 커밋의 Render 배포가 live이며 공개 파일 응답도 확인했습니다([운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)).
 
 과거 v3의 [CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트를 통과했고, 공개 접속은 사용자 확인 기록이 있습니다. 이는 v4의 배포 확인과 구분합니다. [v3 검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 독립 인간 의미 평가와 장기 운영 성능은 미완료입니다.
 
-## 승인 후 실제 LLM 평가
+## 보존된 v3 실제 24회 평가
 
-고정12사례×힌트유무를 `gpt-5.4-mini-2026-03-17`로 **24회 실행해 실제 응답24건·API오류0건**을 확보했습니다. 토큰 기준 추정 비용은 **$0.0385605**, 예약 상한은$0.30이었습니다. 이번 승인은 소진됐으며 새 호출은 하지 않습니다. 과거 PR의24응답과 별도 결과입니다.
+고정12사례×힌트유무를 `gpt-5.4-mini-2026-03-17`로 **24회 실행해 실제 응답24건·API오류0건**을 확보했습니다. 토큰 기준 추정 비용은 **$0.0385605**, 예약 상한은$0.30이었습니다. 이 v3 승인은 소진됐으며 새 v4의48회 승인·결과와 구분합니다. 과거 PR의24응답과도 별도 결과입니다.
 
 | 일차 자동 판정 | 무힌트12 | 힌트12 |
 |---|---:|---:|
