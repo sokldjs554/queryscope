@@ -1,0 +1,7 @@
+{
+  "canonical_campaign_sha256": "38375811eb5fae4581f08367d2e1ca604c84d65502c11d7bb81451bd60b68029",
+  "prepared_sha256": "ef8185eaaf37dd3b950c561a9de89d55638a709c4feb8315032aea85a6822fba",
+  "approval_sha256": "d73852890e232b564355c04e12fa684273a011275ef07acbe1898185a80091fc",
+  "output": "/home/runner/work/queryscope/queryscope/docs/verification/queryscope-v4/actual-api-v1",
+  "suite": "queryscope-v4-runtime"
+}

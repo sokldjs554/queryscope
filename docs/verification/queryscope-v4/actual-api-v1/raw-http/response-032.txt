@@ -1,0 +1,208 @@
+{
+  "id": "resp_074943bbbc10b8b5016ae21fad539887d1a9b4be3ecf536268",
+  "object": "response",
+  "created_at": 1793204141,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793204143,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 800,
+  "max_tool_calls": null,
+  "model": "gpt-5.4-mini-2026-03-17",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_074943bbbc10b8b5016ae21fae085c87d1881638c61f60f9b5",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"status\":\"supported\",\"summary\":\"\u2018\ubc15\uc790\uae30\u2019\ub294 \ud45c\uc900 \uac80\uc0c9\uc5b4\uc640 \ud615\ud0dc\uac00 \ub2ec\ub77c 0\uac74\uc774 \ub09c \uacbd\uc6b0\ub85c \ubcf4\uc774\uba70, \uac19\uc740 \ub73b\uc758 \ub2e4\ub978 \ud45c\ud604\uc73c\ub85c \uc5f0\uacb0\ud558\ub294 \ub3d9\uc758\uc5b4 \ucc98\ub9ac\uac00 \ud544\uc694\ud569\ub2c8\ub2e4. \ub2e4\ub9cc \ubb38\uc11c\uc0c1\uc73c\ub85c\ub294 \ud45c\uae30 \ubcc0\ud615\uc778\uc9c0, \uc758\ubbf8\uac00 \uac19\uc740 \ub2e4\ub978 \ub9d0\uc778\uc9c0\uae4c\uc9c0\ub294 \ud655\uc815\ub418\uc9c0 \uc54a\uc544 \uac00\uc7a5 \uc881\uc740 \ubc94\uc704\uc758 \uc5f0\uacb0\ub9cc \uc81c\uc548\ud569\ub2c8\ub2e4.\",\"family\":\"synonym_gap\",\"evidence\":[{\"doc_id\":\"K006\",\"quote\":\"\uc0c9\uc778\uc5d0\ub294 \ubcf4\ud1b5 \ud45c\uc900 \ud45c\uae30\ub9cc \ub4e4\uc5b4\uac00\\n\uc788\uc73c\ubbc0\ub85c, \uc0ac\uc6a9\uc790\uac00 \uad00\uc6a9 \ud45c\uae30\ub85c \uac80\uc0c9\ud558\uba74 0\uac74\uc774 \ub41c\ub2e4.\"},{\"doc_id\":\"K006\",\"quote\":\"\ucc98\ubc29\uc740 \ub450 \ud45c\uae30\ub97c \ub3d9\uc758\uc5b4\ub85c \uc787\ub294 \uac83\uc774\uace0, \ub3d9\uc758\uc5b4 \uadf8\ub8f9\uc758 \ub300\ud45c\ub294 **\uc0c9\uc778\uc5d0 \uc2e4\uc81c\ub85c \uc874\uc7ac\ud558\ub294\\n\ud45c\uae30**\uc5ec\uc57c \ud55c\ub2e4.\"},{\"doc_id\":\"K008\",\"quote\":\"\uc0c9\uc778\uc758 \uc5b4\ud718 \ubaa9\ub85d\uc744 \ud6d1\uc5b4\\n\uac19\uc740 \ub73b\uc744 \uac00\ub9ac\ud0a4\ub294 \ub2e4\ub978 \ub9d0\uc774 \uc788\ub294\uc9c0 \ud655\uc778\ud574\uc57c \ud558\uba70, \ucc98\ubc29\uc740 \ub3d9\uc758\uc5b4\ub2e4.\"}],\"patches\":[{\"kind\":\"synonym\",\"terms\":[\"\ubc15\uc790\",\"\ubc15\uc790\uae30\"]}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "current_turn",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "search_explanation",
+      "schema": {
+        "$defs": {
+          "Evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "doc_id": {
+                "maxLength": 32,
+                "minLength": 1,
+                "title": "Doc Id",
+                "type": "string"
+              },
+              "quote": {
+                "maxLength": 500,
+                "minLength": 8,
+                "title": "Quote",
+                "type": "string"
+              }
+            },
+            "required": [
+              "doc_id",
+              "quote"
+            ],
+            "title": "Evidence",
+            "type": "object"
+          },
+          "Patch": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "synonym",
+                  "user_word",
+                  "compound"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "terms": {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "title": "Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "kind",
+              "terms"
+            ],
+            "title": "Patch",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "abstain"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 1200,
+            "minLength": 10,
+            "title": "Summary",
+            "type": "string"
+          },
+          "family": {
+            "enum": [
+              "spelling_variant",
+              "cross_script",
+              "synonym_gap",
+              "compound_locked",
+              "garbage_split",
+              "unknown"
+            ],
+            "title": "Family",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/Evidence"
+            },
+            "maxItems": 4,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "patches": {
+            "items": {
+              "$ref": "#/$defs/Patch"
+            },
+            "maxItems": 4,
+            "title": "Patches",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "summary",
+          "family",
+          "evidence",
+          "patches"
+        ],
+        "title": "Explanation",
+        "type": "object"
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1517,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 259,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1776
+  },
+  "user": null,
+  "metadata": {}
+}

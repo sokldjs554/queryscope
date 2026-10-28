@@ -1,0 +1,208 @@
+{
+  "id": "resp_07c9dd327c56af5b016ae21fbbea5487d1883a7a0291aaf69a",
+  "object": "response",
+  "created_at": 1793204155,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793204157,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 800,
+  "max_tool_calls": null,
+  "model": "gpt-5.4-mini-2026-03-17",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_07c9dd327c56af5b016ae21fbc90c887d18b7f2205513aa5ae",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"status\":\"abstain\",\"summary\":\"\uac80\uc0c9 0\uac74\ub9cc\uc73c\ub85c\ub294 \uc6d0\uc778\uc744 \ud655\uc815\ud560 \uadfc\uac70\uac00 \ubd80\uc871\ud569\ub2c8\ub2e4. \uc81c\uacf5\ub41c \ubb38\uc11c\ub294 \uc7ac\ud604\uacfc \uc6d0\ubb38 \ub300\uc870\uc758 \ud544\uc694\uc131\uc744 \uc124\uba85\ud558\uc9c0\ub9cc, \uc774 \uc9c8\uc758\uc5d0 \ub300\ud574 \uc2e4\uc81c\ub85c \uc5b4\ub5a4 \ud1a0\ud070 \ubd88\uc77c\uce58\uac00 \uc788\uc5c8\ub294\uc9c0\ub294 \uc81c\uc2dc\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.\",\"family\":\"unknown\",\"evidence\":[{\"doc_id\":\"K012\",\"quote\":\"\uac80\uc0c9 \uacb0\uacfc\uac00 0\uac74\uc77c \ub54c \uc6d0\uc778\uc740 \ub458 \uc911 \ud558\ub098\ub2e4.\"},{\"doc_id\":\"K018\",\"quote\":\"\uac80\uc0c9\uc774 \uc548 \ub41c\ub2e4\ub294 \uc81c\ubcf4\uac00 \uc624\uba74 \uac00\uc7a5 \uba3c\uc800 \ud560 \uc77c\uc740 \uc0ac\uc804\uc744 \uace0\uce58\ub294 \uac83\uc774 \uc544\ub2c8\ub77c **\uc7ac\ud604**\uc774\ub2e4.\"}],\"patches\":[]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "current_turn",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "search_explanation",
+      "schema": {
+        "$defs": {
+          "Evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "doc_id": {
+                "maxLength": 32,
+                "minLength": 1,
+                "title": "Doc Id",
+                "type": "string"
+              },
+              "quote": {
+                "maxLength": 500,
+                "minLength": 8,
+                "title": "Quote",
+                "type": "string"
+              }
+            },
+            "required": [
+              "doc_id",
+              "quote"
+            ],
+            "title": "Evidence",
+            "type": "object"
+          },
+          "Patch": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "synonym",
+                  "user_word",
+                  "compound"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "terms": {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "title": "Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "kind",
+              "terms"
+            ],
+            "title": "Patch",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "abstain"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 1200,
+            "minLength": 10,
+            "title": "Summary",
+            "type": "string"
+          },
+          "family": {
+            "enum": [
+              "spelling_variant",
+              "cross_script",
+              "synonym_gap",
+              "compound_locked",
+              "garbage_split",
+              "unknown"
+            ],
+            "title": "Family",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/Evidence"
+            },
+            "maxItems": 4,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "patches": {
+            "items": {
+              "$ref": "#/$defs/Patch"
+            },
+            "maxItems": 4,
+            "title": "Patches",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "summary",
+          "family",
+          "evidence",
+          "patches"
+        ],
+        "title": "Explanation",
+        "type": "object"
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1509,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 155,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1664
+  },
+  "user": null,
+  "metadata": {}
+}

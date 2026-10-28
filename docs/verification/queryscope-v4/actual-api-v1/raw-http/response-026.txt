@@ -1,0 +1,208 @@
+{
+  "id": "resp_0f7397e1fc28a4d3016ae21fa02bf487d18535e2e62f5c59d0",
+  "object": "response",
+  "created_at": 1793204128,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793204129,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 800,
+  "max_tool_calls": null,
+  "model": "gpt-5.4-mini-2026-03-17",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0f7397e1fc28a4d3016ae21fa0c07c87d1802a9adb36ff45ce",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"status\":\"supported\",\"summary\":\"\uac80\uc0c9\uc5b4 \u2018\ud314\ub798\ud2b8\u2019\ub294 \uad00\uc6a9 \ud45c\uae30 \uac00\ub2a5\uc131\uc774 \uc788\ub294 \u2018\ud314\ub808\ud2b8\u2019\uc640 \ud45c\uae30 \ucc28\uc774\ub85c \ubcf4\uc785\ub2c8\ub2e4. \uc0c9\uc778\uc5d0 \ud45c\uc900 \ud45c\uae30\ub9cc \ub4e4\uc5b4\uac04 \uacbd\uc6b0 0\uac74\uc774 \ub0a0 \uc218 \uc788\uc5b4, \ud45c\uae30 \ubcc0\ud615 \ub3d9\uc758\uc5b4 \ubcf4\uac15\uc774 \uc801\uc808\ud569\ub2c8\ub2e4.\",\"family\":\"spelling_variant\",\"evidence\":[{\"doc_id\":\"K006\",\"quote\":\"\uc678\ub798\uc5b4\ub294 \ud45c\uc900 \ud45c\uae30\uc640 \uad00\uc6a9 \ud45c\uae30\uac00 \ud568\uaed8 \uc4f0\uc778\ub2e4.\"},{\"doc_id\":\"K006\",\"quote\":\"\uc0ac\uc6a9\uc790\uac00 \uad00\uc6a9 \ud45c\uae30\ub85c \uac80\uc0c9\ud558\uba74 0\uac74\uc774 \ub41c\ub2e4.\"},{\"doc_id\":\"K006\",\"quote\":\"\ucc98\ubc29\uc740 \ub450 \ud45c\uae30\ub97c \ub3d9\uc758\uc5b4\ub85c \uc787\ub294 \uac83\uc774\uace0\"}],\"patches\":[{\"kind\":\"synonym\",\"terms\":[\"\ud314\ub808\ud2b8\",\"\ud314\ub798\ud2b8\"]}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "current_turn",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "search_explanation",
+      "schema": {
+        "$defs": {
+          "Evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "doc_id": {
+                "maxLength": 32,
+                "minLength": 1,
+                "title": "Doc Id",
+                "type": "string"
+              },
+              "quote": {
+                "maxLength": 500,
+                "minLength": 8,
+                "title": "Quote",
+                "type": "string"
+              }
+            },
+            "required": [
+              "doc_id",
+              "quote"
+            ],
+            "title": "Evidence",
+            "type": "object"
+          },
+          "Patch": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "synonym",
+                  "user_word",
+                  "compound"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "terms": {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "title": "Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "kind",
+              "terms"
+            ],
+            "title": "Patch",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "abstain"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 1200,
+            "minLength": 10,
+            "title": "Summary",
+            "type": "string"
+          },
+          "family": {
+            "enum": [
+              "spelling_variant",
+              "cross_script",
+              "synonym_gap",
+              "compound_locked",
+              "garbage_split",
+              "unknown"
+            ],
+            "title": "Family",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/Evidence"
+            },
+            "maxItems": 4,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "patches": {
+            "items": {
+              "$ref": "#/$defs/Patch"
+            },
+            "maxItems": 4,
+            "title": "Patches",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "summary",
+          "family",
+          "evidence",
+          "patches"
+        ],
+        "title": "Explanation",
+        "type": "object"
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1414,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 189,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1603
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,208 @@
+{
+  "id": "resp_0a47068e0584c4d2016ae21fb7e31887d1be44eec630afab35",
+  "object": "response",
+  "created_at": 1793204151,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793204153,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 800,
+  "max_tool_calls": null,
+  "model": "gpt-5.4-mini-2026-03-17",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0a47068e0584c4d2016ae21fb87c6087d1bec11d9fe00c7324",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"status\":\"abstain\",\"summary\":\"\uc81c\uacf5\ub41c \uc790\ub8cc\ub9cc\uc73c\ub85c\ub294 \u2018\uc6b0\uc8fc\ud56d\ub85c \uc548\ub0b4\u2019\uc758 0\uac74 \uc6d0\uc778\uc744 \ud2b9\uc815\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uc6d0\ubb38 \ub300\uc870\ub098 \uc2e4\uc81c \uc0c9\uc778 \ubb38\uc790\uc5f4, \ubb38\uc11c\uc758 \ud1a0\ud070 \ubd88\uc77c\uce58 \uc99d\uac70\uac00 \uc5c6\uc5b4\uc11c \uc0ac\uc804/\ubd84\uc11d\uae30/\ub3d9\uc758\uc5b4/\ubcf5\ud569\uc5b4 \uc911 \uc5b4\ub290 \uacc4\uc5f4\uc778\uc9c0 \ud310\ub2e8 \ubd88\uac00\uc785\ub2c8\ub2e4.\",\"family\":\"unknown\",\"evidence\":[{\"doc_id\":\"K012\",\"quote\":\"\uc6d0\ubb38\uc5d0\ub294 \uc788\ub294\ub370 \uac80\uc0c9\uc774 0\uac74\uc774\ub77c\uba74 \uc0c9\uc778 \ub300\uc0c1 \uc790\uccb4\ub294 \uc874\uc7ac\ud558\uba70 \ubb38\uc81c\ub294 \ubd84\uc11d \ub2e8\uacc4\uc5d0 \uc788\ub2e4.\"},{\"doc_id\":\"K018\",\"quote\":\"\ubd84\uc11d\uae30\ub97c \uc6b0\ud68c\ud574 \uc6d0\ubb38\uc5d0\uc11c \uc9c1\uc811 \ubb38\uc790\uc5f4\uc744 \ucc3e\uc544\ubcf8\ub2e4.\"}],\"patches\":[]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "current_turn",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "search_explanation",
+      "schema": {
+        "$defs": {
+          "Evidence": {
+            "additionalProperties": false,
+            "properties": {
+              "doc_id": {
+                "maxLength": 32,
+                "minLength": 1,
+                "title": "Doc Id",
+                "type": "string"
+              },
+              "quote": {
+                "maxLength": 500,
+                "minLength": 8,
+                "title": "Quote",
+                "type": "string"
+              }
+            },
+            "required": [
+              "doc_id",
+              "quote"
+            ],
+            "title": "Evidence",
+            "type": "object"
+          },
+          "Patch": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "synonym",
+                  "user_word",
+                  "compound"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "terms": {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 6,
+                "minItems": 1,
+                "title": "Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "kind",
+              "terms"
+            ],
+            "title": "Patch",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "abstain"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 1200,
+            "minLength": 10,
+            "title": "Summary",
+            "type": "string"
+          },
+          "family": {
+            "enum": [
+              "spelling_variant",
+              "cross_script",
+              "synonym_gap",
+              "compound_locked",
+              "garbage_split",
+              "unknown"
+            ],
+            "title": "Family",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/Evidence"
+            },
+            "maxItems": 4,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "patches": {
+            "items": {
+              "$ref": "#/$defs/Patch"
+            },
+            "maxItems": 4,
+            "title": "Patches",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "summary",
+          "family",
+          "evidence",
+          "patches"
+        ],
+        "title": "Explanation",
+        "type": "object"
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1498,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 168,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1666
+  },
+  "user": null,
+  "metadata": {}
+}

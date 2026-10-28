@@ -1,0 +1,27 @@
+{
+  "number": 14,
+  "case_id": "T07",
+  "condition": "hint",
+  "request_body_sha256": "a57aace00dd306f7b2e5ff96e64bf9be01004e8831bdf0b7a5322a60b27fcff6",
+  "http_status": 200,
+  "body_path": "raw-http/response-014.txt",
+  "received_body_sha256": "f2e866b5c8cfa2721f6c31e5698ffe6b82c5044ea6ebf2c9086879d94e45f4c3",
+  "saved_body_sha256": "f2e866b5c8cfa2721f6c31e5698ffe6b82c5044ea6ebf2c9086879d94e45f4c3",
+  "secret_redacted": false,
+  "observed_model": "gpt-5.4-mini-2026-03-17",
+  "response_id": "resp_0934dd80247cfeef016ae21f8a263087d1aced94e51c1c432d",
+  "upstream_status": "completed",
+  "usage": {
+    "input_tokens": 1587,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 93,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1680
+  },
+  "estimated_usd": 0.00160875
+}
