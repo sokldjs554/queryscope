@@ -15,7 +15,7 @@
 - [v2 보존 상품·무힌트 검색 비교](https://queryscope-zwia.onrender.com/evaluation-v2.html): 새 작성 자료의 개선, 하락, 미해결 사례.
 - [v1 보존 결과](https://queryscope-zwia.onrender.com/evaluation.html): 이전 24질의 결과. 이번 개선에는 개발 자료로 사용했습니다.
 
-공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. v4를 기존 사이트에 배포했고 공개 HTML·JavaScript·JSON이 모두 HTTP 200을 반환하며 로컬 검증본과 일치함을 확인했습니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 공개 브라우저 추가 검사의 인증서 오류와 접속 확인 범위는 [최신 운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)에 남겼습니다. 2026-10-27의 사용자 공개 접속·수동 테스트 완료 확인은 [당시 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)에 보존합니다.
+공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. 실제48응답 화면을 기존 사이트에 배포했고 새 HTML·JavaScript·JSON의 HTTP 200과 로컬 검증본의 바이트 일치를 확인했습니다. 공개 Chrome에서 요약표·범위 선택·대표 사례와 이동을 확인했고, 로컬에서는48슬롯·데스크톱·모바일 자동 검사를 마쳤습니다. 각 검사의 범위와 배포 기록은 [최신 운영 기록](docs/verification/queryscope-v4/LIVE-OPERATIONS.md)에 남겼습니다. 2026-10-27의 사용자 공개 접속·수동 테스트 완료 확인은 [당시 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)에 보존합니다.
 
 ## 최신 v4: 입력 보완 후 실제 48회 평가
 
@@ -93,7 +93,7 @@ python scripts/verify_queryscope_operations.py --output work/operations-v3
 
 평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. 위 명령은 저장된 응답 재검사·입력 준비·정적 결과 내보내기만 수행합니다. 실제 모델 실행은 별도 승인 파일과 단일 원격 실행 표식이 필요한 경로이며 이번48회 승인은 소진됐습니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/ACTUAL-API.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
 
-새 실제 결과 화면·exporter를 포함한 최종 로컬 전체 검사는 **477 passed, 1 skipped, 2 deselected**입니다([로그](docs/verification/queryscope-v4/live-execution-checks/pytest-final.txt)). 실제 실행 준비 당시의468통과와 [준비 코드 CI](https://github.com/sokldjs554/queryscope/actions/runs/40721662846)의 Ubuntu·Windows 각449통과는 [당시 기록](docs/verification/queryscope-v4/LIVE-PREPARATION.md)으로 보존했습니다. 새 결과 화면의 검증·배포는 [최신 운영 기록](docs/verification/queryscope-v4/LIVE-OPERATIONS.md)에 구분합니다.
+새 실제 결과 화면·exporter를 포함한 최종 로컬 전체 검사는 **477 passed, 1 skipped, 2 deselected**입니다([로그](docs/verification/queryscope-v4/live-execution-checks/pytest-final.txt)). 같은 코드 `68aec523`의 [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40728281149)는 **Ubuntu·Windows 각458 passed, 2 skipped**와 검색 품질 게이트(평균 nDCG0.5839 유지)를 통과했습니다. 이 코드의 Render 배포도 live입니다. 실제 실행 준비 당시의468통과와 [준비 코드 CI](https://github.com/sokldjs554/queryscope/actions/runs/40721662846)의 Ubuntu·Windows 각449통과는 [당시 기록](docs/verification/queryscope-v4/LIVE-PREPARATION.md)으로 보존했습니다. 새 결과 화면의 검증·배포는 [최신 운영 기록](docs/verification/queryscope-v4/LIVE-OPERATIONS.md)에 구분합니다.
 
 이미 공개한 v4 화면 코드의 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). [화면 공개 시 CI](https://github.com/sokldjs554/queryscope/actions/runs/40711959844)는 Ubuntu·Windows 각각400 passed·2 skipped와 검색 품질 게이트를 통과했습니다. 같은 코드 커밋의 Render 배포가 live이며 공개 파일 응답도 확인했습니다([운영 기록](docs/verification/queryscope-v4/OPERATIONS.md)).
 

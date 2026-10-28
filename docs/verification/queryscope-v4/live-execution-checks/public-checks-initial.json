@@ -1,0 +1,87 @@
+{
+  "checked_at_utc": "2026-10-28T16:45:34.445958+00:00",
+  "code_commit": "68aec52375fc48f2b0b751c4202d82d49990f457",
+  "deploy_id": "dep-dbh2cubbc2fs73ei0j5g",
+  "transport": "HTTPS using Python urllib default TLS verification; no insecure bypass",
+  "all_http_200": true,
+  "all_byte_equal": false,
+  "checks": [
+    {
+      "path": "generation-v4.html",
+      "url": "https://queryscope-zwia.onrender.com/generation-v4.html",
+      "final_url": "https://queryscope-zwia.onrender.com/generation-v4.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5333,
+      "public_sha256": "528c77fcc4c4b4df1ba19e848667a11783e7779899790af404a376a2109bf2e2",
+      "local_sha256": "528c77fcc4c4b4df1ba19e848667a11783e7779899790af404a376a2109bf2e2",
+      "byte_equal": true
+    },
+    {
+      "path": "generation-v4.js",
+      "url": "https://queryscope-zwia.onrender.com/generation-v4.js",
+      "final_url": "https://queryscope-zwia.onrender.com/generation-v4.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "bytes": 9045,
+      "public_sha256": "28a35468473f6e73fb2301561947037f1d45fbacf1fefb2910aa29a7a520e0c7",
+      "local_sha256": "28a35468473f6e73fb2301561947037f1d45fbacf1fefb2910aa29a7a520e0c7",
+      "byte_equal": true
+    },
+    {
+      "path": "generation-v4.json",
+      "url": "https://queryscope-zwia.onrender.com/generation-v4.json",
+      "final_url": "https://queryscope-zwia.onrender.com/generation-v4.json",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1340649,
+      "public_sha256": "a1b77a113abf8bb30751b36ecf8fed431e2198a0c119cd4d5506582e819e95de",
+      "local_sha256": "a1b77a113abf8bb30751b36ecf8fed431e2198a0c119cd4d5506582e819e95de",
+      "byte_equal": true
+    },
+    {
+      "path": "index.html",
+      "url": "https://queryscope-zwia.onrender.com/",
+      "final_url": "https://queryscope-zwia.onrender.com/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 5026,
+      "public_sha256": "2af1c0811749f6158e1a2482403909603085db30ded26a86f42801ecbb6e055b",
+      "local_sha256": "2af1c0811749f6158e1a2482403909603085db30ded26a86f42801ecbb6e055b",
+      "byte_equal": true
+    },
+    {
+      "path": "review-v4.html",
+      "url": "https://queryscope-zwia.onrender.com/review-v4.html",
+      "final_url": "https://queryscope-zwia.onrender.com/review-v4.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 4381,
+      "public_sha256": "a06266d7f8006b0d613033bfd3358bb64f61f0727cab9321be92d990629c9a88",
+      "local_sha256": "a06266d7f8006b0d613033bfd3358bb64f61f0727cab9321be92d990629c9a88",
+      "byte_equal": true
+    },
+    {
+      "path": "generation-v3.html",
+      "url": "https://queryscope-zwia.onrender.com/generation-v3.html",
+      "final_url": "https://queryscope-zwia.onrender.com/generation-v3.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 3892,
+      "public_sha256": "a87a1bfae946b9937713d8b6ca85747435a8e4a0471e989bfe5e52abeef268af",
+      "local_sha256": "a87a1bfae946b9937713d8b6ca85747435a8e4a0471e989bfe5e52abeef268af",
+      "byte_equal": true
+    },
+    {
+      "path": "evaluation-v3.html",
+      "url": "https://queryscope-zwia.onrender.com/evaluation-v3.html",
+      "final_url": "https://queryscope-zwia.onrender.com/evaluation-v3.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 4762,
+      "public_sha256": "626f4548f3d203031f392a78a0bfd92b6478acd11a1b8bf6dae173675c203a4e",
+      "local_sha256": "bb3ccc7cedbd6aeb14358c89aede1d764e0110556f60716450b5dc3f8c7dbe62",
+      "byte_equal": false
+    }
+  ]
+}

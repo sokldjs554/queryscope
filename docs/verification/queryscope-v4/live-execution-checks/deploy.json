@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-28 16:45:27 UTC",
+  "workspace_id": "tea-db9hb2dg1s2s738nd1a0",
+  "service_id": "srv-dbg6rtflk1mc73cok690",
+  "service_type": "static_site",
+  "auto_deploy": "no",
+  "url": "https://queryscope-zwia.onrender.com",
+  "publish_path": "src/searchclinic/web",
+  "deploy": {
+    "commit": {
+      "createdAt": "2026-10-28T16:40:23Z",
+      "id": "68aec52375fc48f2b0b751c4202d82d49990f457",
+      "message": "Publish verified v4 actual evaluation and refreshed application documents\n\nPreserve all 48 actual responses and budget receipts. Separate the paired 24 from 24 additional development responses, expose raw citation checks independently of first validation failure, and add the static results viewer.\n\nRefresh the cover letter and portfolio with measured improvements, remaining failures and explicit AI/human review limits. Local suite: 477 passed, 1 skipped, 2 deselected. No additional paid calls."
+    },
+    "createdAt": "2026-10-28T16:44:42.015308Z",
+    "finishedAt": "2026-10-28T16:44:52.877097Z",
+    "id": "dep-dbh2cubbc2fs73ei0j5g",
+    "startedAt": "2026-10-28T16:44:42.003703Z",
+    "status": "live",
+    "trigger": "api",
+    "updatedAt": "2026-10-28T16:44:52.877312Z"
+  }
+}

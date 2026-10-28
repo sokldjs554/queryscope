@@ -1,0 +1,65 @@
+{
+  "checked_at_utc": "2026-10-28T16:47:00.732Z",
+  "url": "https://queryscope-zwia.onrender.com/generation-v4.html",
+  "title": "QueryScope · v4 실제 모델 평가",
+  "code_commit": "68aec52375fc48f2b0b751c4202d82d49990f457",
+  "deploy_id": "dep-dbh2cubbc2fs73ei0j5g",
+  "browser": "Cloud Chrome via cua_repl",
+  "tls_note": "Normal HTTPS navigation succeeded. No certificate-warning bypass or TLS setting change.",
+  "scope": "Public smoke based on observed accessibility state and page console; not the exhaustive local 48-slot/four-viewport test.",
+  "checks": [
+    {
+      "name": "live_page_loaded",
+      "passed": true,
+      "observed": "48 actual calls / 48 responses / 0 API errors / $0.08442375 token estimate"
+    },
+    {
+      "name": "paired_and_additional_scope",
+      "passed": true,
+      "observed": "Four 12-slot columns; direct comparison 24 and additional development 24 shown separately"
+    },
+    {
+      "name": "comparison",
+      "passed": true,
+      "observed": "Old/new direct24: supported 7/7, abstain 9/13, blocked 8/4; abstention contract 8/11"
+    },
+    {
+      "name": "raw_citation_audit",
+      "passed": true,
+      "observed": "90 quotations / 87 traceable / 3 mismatches in 3 responses; 2 first-failure citation blocks"
+    },
+    {
+      "name": "T15_selection",
+      "passed": true,
+      "observed": "No hint abstain; hint output_schema blocked with separate K006 quote mismatch"
+    },
+    {
+      "name": "T16_selection",
+      "passed": true,
+      "observed": "No hint unknown/abstain; hint patch rejected with nDCG 0 to 0"
+    },
+    {
+      "name": "additional_group_and_T04_selection",
+      "passed": true,
+      "observed": "Additional24; no hint accepted nDCG 0 to 1, development16 0.5 to 0.5625, original36 unchanged 0.5839; hint compound_whole_not_in_index"
+    },
+    {
+      "name": "outgoing_offline_navigation",
+      "passed": true,
+      "observed": "Clicked offline search comparison; reached https://queryscope-zwia.onrender.com/evaluation-v3.html"
+    },
+    {
+      "name": "post_expiry_return_navigation",
+      "passed": true,
+      "observed": "Reloaded evaluation-v3.html after cache expiry. New link 신규 v4 실제48슬롯 visible; clicking returned to generation-v4.html and loaded the 48-call summary and $0.08442375 usage estimate."
+    }
+  ],
+  "application_console_errors_observed": 0,
+  "extension_console_errors_observed": 5,
+  "extension_error_note": "Five Error sending browser metadata to extension messages from a chrome-extension content script; not attributed to site JavaScript.",
+  "stale_menu_observation": "Initial older menu preserved as an observation; resolved after the 300-second shared-cache expiry. HTTPS recheck and cloud Chrome reload both confirmed the new link.",
+  "new_model_calls": 0,
+  "passed_within_scope": true,
+  "separate_local_chrome_attempt": "public-browser.json preserves the local Chrome141 certificate failure. That failed attempt is not described as a UI pass.",
+  "final_checked_at_utc": "2026-10-28T16:51:28.868789+00:00"
+}

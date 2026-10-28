@@ -1,0 +1,12 @@
+{
+  "observed_at_utc": "2026-10-28T16:45:57Z",
+  "path": "evaluation-v3.html",
+  "public_sha256": "626f4548f3d203031f392a78a0bfd92b6478acd11a1b8bf6dae173675c203a4e",
+  "headers": {
+    "cache-control": "public, max-age=0, s-maxage=300",
+    "age": "22",
+    "last-modified": "Wed, 28 Oct 2026 15:06:00 UTC",
+    "cf-cache-status": "HIT"
+  },
+  "difference": "Only the new navigation link to generation-v4.html was missing. Both normal and query-string requests returned the same older cached menu. No runtime/results data difference was observed in that file."
+}

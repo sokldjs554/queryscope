@@ -1,0 +1,15 @@
+{
+  "url": "https://queryscope-zwia.onrender.com/generation-v4.html",
+  "commit": "68aec52375fc48f2b0b751c4202d82d49990f457",
+  "deployment_id": "dep-dbh2cubbc2fs73ei0j5g",
+  "checked_at": "2026-10-28T16:46:05.004Z",
+  "scope": "public browser smoke only; local exhaustive48/four-viewport checks not repeated",
+  "tls_verification": "enabled; no certificate-error bypass",
+  "new_model_calls": 0,
+  "checks": [],
+  "javascript_errors": [],
+  "blocked_model_requests": [],
+  "passed": false,
+  "error": "page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://queryscope-zwia.onrender.com/generation-v4.html\nCall log:\n\u001b[2m  - navigating to \"https://queryscope-zwia.onrender.com/generation-v4.html\", waiting until \"networkidle\"\u001b[22m\n",
+  "certificate_error": true
+}
