@@ -23,6 +23,9 @@ class ExplanationService:
     def context(self, query: str, problem: str) -> tuple[dict,list[KnowledgeDoc]]:
         if not query.strip() or len(query)>100 or len(problem)>500:
             raise ToolFailed('질의는 1~100자, 관찰 내용은 500자 이하입니다.')
+        if self.retrieval_strategy == 'observed':
+            from searchclinic.rag.runtime_retrieval import build_runtime_retrieval_context
+            return build_runtime_retrieval_context(self.clinic.baseline_engine, self.retriever, query, problem)
         from searchclinic.rag.observations import build_context
         return build_context(self.clinic.baseline_engine, self.retriever, query, problem,
                              self.retrieval_strategy)
@@ -32,10 +35,11 @@ class ExplanationService:
         if self.provider is None:
             raise ProviderError('provider_not_configured')
         context,docs=self.context(query,problem)
-        from searchclinic.rag.observations import model_context
-        transmitted=model_context(context) if self.retrieval_strategy=='observed' else context
+        from searchclinic.rag.runtime_contract import build_runtime_context, validate_runtime_explanation
+        transmitted=build_runtime_context(context,docs) if self.retrieval_strategy=='observed' else context
         generated=self.provider.generate(transmitted)
-        answer=validate_explanation(generated['raw'],docs,query)
+        answer=(validate_runtime_explanation(generated['raw'],docs,query,self.clinic.baseline_engine)
+                if self.retrieval_strategy=='observed' else validate_explanation(generated['raw'],docs,query))
         report={'id':uuid.uuid4().hex,'mode':'live','created_at':datetime.now(timezone.utc).isoformat(),
             'context':context,'context_sha256':hashlib.sha256(json.dumps(context,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),
             'model_context':transmitted,'model_context_sha256':hashlib.sha256(json.dumps(transmitted,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),

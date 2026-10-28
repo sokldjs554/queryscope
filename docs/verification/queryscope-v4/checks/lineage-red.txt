@@ -1,0 +1,146 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_____ test_audit_rejects_drifted_actual_evidence_before_reporting[context] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_audit_rejects_drifted_act0')
+mutation = 'context'
+
+    @pytest.mark.parametrize('mutation', ['context', 'duplicate_pair', 'raw_answer', 'prepared_hash', 'response_id'])
+    def test_audit_rejects_drifted_actual_evidence_before_reporting(tmp_path, mutation):
+        from searchclinic.evaluation.runtime_audit import run_audit
+        data = json.loads(SOURCE.read_text(encoding='utf-8'))
+        if mutation == 'context':
+            data['rows'][0]['context']['problem'] = 'ALTERED AFTER GENERATION'
+        elif mutation == 'duplicate_pair':
+            data['rows'][1]['case_id'] = data['rows'][0]['case_id']
+            data['rows'][1]['condition'] = data['rows'][0]['condition']
+        elif mutation == 'raw_answer':
+            data['rows'][0]['model_answer']['summary'] = '생성 후 바꾼 응답이며 원래 응답이 아닙니다.'
+        elif mutation == 'prepared_hash':
+            data['prepared_sha256'] = '0' * 64
+        else:
+            data['rows'][1]['generation']['response_id'] = data['rows'][0]['generation']['response_id']
+        changed = tmp_path / 'changed.json'
+        changed.write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+>       with pytest.raises(ValueError, match='evidence_'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_runtime_audit.py:65: Failed
+_ test_audit_rejects_drifted_actual_evidence_before_reporting[duplicate_pair] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_audit_rejects_drifted_act1')
+mutation = 'duplicate_pair'
+
+    @pytest.mark.parametrize('mutation', ['context', 'duplicate_pair', 'raw_answer', 'prepared_hash', 'response_id'])
+    def test_audit_rejects_drifted_actual_evidence_before_reporting(tmp_path, mutation):
+        from searchclinic.evaluation.runtime_audit import run_audit
+        data = json.loads(SOURCE.read_text(encoding='utf-8'))
+        if mutation == 'context':
+            data['rows'][0]['context']['problem'] = 'ALTERED AFTER GENERATION'
+        elif mutation == 'duplicate_pair':
+            data['rows'][1]['case_id'] = data['rows'][0]['case_id']
+            data['rows'][1]['condition'] = data['rows'][0]['condition']
+        elif mutation == 'raw_answer':
+            data['rows'][0]['model_answer']['summary'] = '생성 후 바꾼 응답이며 원래 응답이 아닙니다.'
+        elif mutation == 'prepared_hash':
+            data['prepared_sha256'] = '0' * 64
+        else:
+            data['rows'][1]['generation']['response_id'] = data['rows'][0]['generation']['response_id']
+        changed = tmp_path / 'changed.json'
+        changed.write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+>       with pytest.raises(ValueError, match='evidence_'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'evidence_'
+E         Actual message: 'primary_summary_mismatch'
+
+tests/test_runtime_audit.py:65: AssertionError
+___ test_audit_rejects_drifted_actual_evidence_before_reporting[raw_answer] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_audit_rejects_drifted_act2')
+mutation = 'raw_answer'
+
+    @pytest.mark.parametrize('mutation', ['context', 'duplicate_pair', 'raw_answer', 'prepared_hash', 'response_id'])
+    def test_audit_rejects_drifted_actual_evidence_before_reporting(tmp_path, mutation):
+        from searchclinic.evaluation.runtime_audit import run_audit
+        data = json.loads(SOURCE.read_text(encoding='utf-8'))
+        if mutation == 'context':
+            data['rows'][0]['context']['problem'] = 'ALTERED AFTER GENERATION'
+        elif mutation == 'duplicate_pair':
+            data['rows'][1]['case_id'] = data['rows'][0]['case_id']
+            data['rows'][1]['condition'] = data['rows'][0]['condition']
+        elif mutation == 'raw_answer':
+            data['rows'][0]['model_answer']['summary'] = '생성 후 바꾼 응답이며 원래 응답이 아닙니다.'
+        elif mutation == 'prepared_hash':
+            data['prepared_sha256'] = '0' * 64
+        else:
+            data['rows'][1]['generation']['response_id'] = data['rows'][0]['generation']['response_id']
+        changed = tmp_path / 'changed.json'
+        changed.write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+>       with pytest.raises(ValueError, match='evidence_'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_runtime_audit.py:65: Failed
+__ test_audit_rejects_drifted_actual_evidence_before_reporting[prepared_hash] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_audit_rejects_drifted_act3')
+mutation = 'prepared_hash'
+
+    @pytest.mark.parametrize('mutation', ['context', 'duplicate_pair', 'raw_answer', 'prepared_hash', 'response_id'])
+    def test_audit_rejects_drifted_actual_evidence_before_reporting(tmp_path, mutation):
+        from searchclinic.evaluation.runtime_audit import run_audit
+        data = json.loads(SOURCE.read_text(encoding='utf-8'))
+        if mutation == 'context':
+            data['rows'][0]['context']['problem'] = 'ALTERED AFTER GENERATION'
+        elif mutation == 'duplicate_pair':
+            data['rows'][1]['case_id'] = data['rows'][0]['case_id']
+            data['rows'][1]['condition'] = data['rows'][0]['condition']
+        elif mutation == 'raw_answer':
+            data['rows'][0]['model_answer']['summary'] = '생성 후 바꾼 응답이며 원래 응답이 아닙니다.'
+        elif mutation == 'prepared_hash':
+            data['prepared_sha256'] = '0' * 64
+        else:
+            data['rows'][1]['generation']['response_id'] = data['rows'][0]['generation']['response_id']
+        changed = tmp_path / 'changed.json'
+        changed.write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+>       with pytest.raises(ValueError, match='evidence_'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_runtime_audit.py:65: Failed
+___ test_audit_rejects_drifted_actual_evidence_before_reporting[response_id] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_audit_rejects_drifted_act4')
+mutation = 'response_id'
+
+    @pytest.mark.parametrize('mutation', ['context', 'duplicate_pair', 'raw_answer', 'prepared_hash', 'response_id'])
+    def test_audit_rejects_drifted_actual_evidence_before_reporting(tmp_path, mutation):
+        from searchclinic.evaluation.runtime_audit import run_audit
+        data = json.loads(SOURCE.read_text(encoding='utf-8'))
+        if mutation == 'context':
+            data['rows'][0]['context']['problem'] = 'ALTERED AFTER GENERATION'
+        elif mutation == 'duplicate_pair':
+            data['rows'][1]['case_id'] = data['rows'][0]['case_id']
+            data['rows'][1]['condition'] = data['rows'][0]['condition']
+        elif mutation == 'raw_answer':
+            data['rows'][0]['model_answer']['summary'] = '생성 후 바꾼 응답이며 원래 응답이 아닙니다.'
+        elif mutation == 'prepared_hash':
+            data['prepared_sha256'] = '0' * 64
+        else:
+            data['rows'][1]['generation']['response_id'] = data['rows'][0]['generation']['response_id']
+        changed = tmp_path / 'changed.json'
+        changed.write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+>       with pytest.raises(ValueError, match='evidence_'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_runtime_audit.py:65: Failed
+=========================== short test summary info ============================
+FAILED tests/test_runtime_audit.py::test_audit_rejects_drifted_actual_evidence_before_reporting[context]
+FAILED tests/test_runtime_audit.py::test_audit_rejects_drifted_actual_evidence_before_reporting[duplicate_pair]
+FAILED tests/test_runtime_audit.py::test_audit_rejects_drifted_actual_evidence_before_reporting[raw_answer]
+FAILED tests/test_runtime_audit.py::test_audit_rejects_drifted_actual_evidence_before_reporting[prepared_hash]
+FAILED tests/test_runtime_audit.py::test_audit_rejects_drifted_actual_evidence_before_reporting[response_id]
+5 failed, 2 deselected in 7.26s

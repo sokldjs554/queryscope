@@ -30,9 +30,13 @@ Do not cite a title as body text. For compounds, whole must equal part1+part2
 with at least two nonempty parts. A quoted principle alone does not prove the cause.'''
 
 def request_payload(context: dict) -> dict:
+    system = SYSTEM
+    from searchclinic.rag.runtime_contract import RUNTIME_CONTRACT_VERSION, RUNTIME_SYSTEM
+    if context.get('runtime_contract', {}).get('version') == RUNTIME_CONTRACT_VERSION:
+        system += RUNTIME_SYSTEM
     return {'model':MODEL, 'store':False, 'max_output_tokens':800,
         'reasoning':{'effort':'none'},
-        'input':[{'role':'system','content':SYSTEM},
+        'input':[{'role':'system','content':system},
                  {'role':'user','content':json.dumps(context,ensure_ascii=False)}],
         'text':{'format':{'type':'json_schema','name':'search_explanation',
                          'strict':True,'schema':Explanation.model_json_schema()}}}

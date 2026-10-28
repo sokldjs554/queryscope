@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "viewports": [
+    1440,
+    320,
+    390,
+    650
+  ],
+  "new_model_calls": 0,
+  "rows": 24,
+  "checks": [
+    "root and v3 navigation",
+    "original versus runtime counts",
+    "all24 original inputs and outputs",
+    "absent canonical blocked",
+    "unchanged abstention",
+    "new context explicitly not generated",
+    "source disclosures",
+    "valid gain retained",
+    "ineffective candidate rejected",
+    "no overflow",
+    "load failure visible",
+    "no JavaScript errors"
+  ]
+}

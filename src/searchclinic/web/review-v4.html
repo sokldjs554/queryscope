@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QueryScope 후속 검증</title><link rel="stylesheet" href="style.css"><style>
+.review{max-width:1100px;padding:30px 24px}.review section{margin:32px 0}.review nav{display:flex;flex-wrap:wrap;gap:16px;margin:22px 0}.review a{color:var(--accent)}.review h2{font-size:23px}.review h3{font-size:17px}.review table{width:100%;border-collapse:collapse}.review th,.review td{padding:11px;text-align:left;border-bottom:1px solid var(--line)}.table-scroll{overflow-x:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}.pair article{min-width:0;padding:20px 0;border-top:2px solid var(--ink)}.review pre{font:12px/1.7 system-ui;white-space:pre-wrap;overflow-wrap:anywhere}.review select{max-width:100%;margin:10px 0}.review p,.review details{overflow-wrap:anywhere}.review details{margin:15px 0}.review summary{cursor:pointer}.review-status{padding:14px 0;border-block:1px solid var(--line)}header{gap:14px;flex-wrap:wrap}@media(max-width:650px){.pair{grid-template-columns:1fr}.review{padding:25px 20px}}
+</style></head><body>
+<header><a class="brand" href="./">QueryScope<span>검색 진단과 검증</span></a><span>v4 후속 검증 · 저장 결과</span></header>
+<main class="review">
+<p class="eyebrow">EVIDENCE SOURCES · CANDIDATE CHECKS · HUMAN REVIEW</p>
+<h1>수정 후보를 적용하기 전에<br>무엇을 더 확인했을까?</h1>
+<p>기존 실제 응답 24건에 출처·실행 조건 검사를 적용했습니다. 원래 판정은 보존했습니다. 설명 기반 근거 검색의 새 입력도 비교할 수 있으며, 그 입력에 대한 모델 응답은 아직 생성하지 않았습니다.</p>
+<nav><a href="generation-v3.html">기존 실제 모델 응답</a><a href="evaluation-v3.html">v3 검색 평가</a><a href="https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/README.md">검증 기록</a><a href="https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md">사람 검토 가이드</a></nav>
+<p id="review-status" class="review-status" role="status" aria-live="polite">검증 결과를 불러오는 중입니다.</p>
+<section><h2>1. 같은 응답을 더 엄격하게 검사한 결과</h2><div class="table-scroll"><table><thead><tr><th>검사 항목</th><th>기존 일차 판정</th><th>후속 검사</th></tr></thead><tbody id="review-summary"></tbody></table></div><p id="review-effect"></p><p>후속 검사는 저장 응답을 다시 검사한 개발 결과입니다. 새 모델 정확도·진단 개선율로 계산하지 않습니다. 상품 ID를 운영 문서처럼 인용한 기존 8응답은 계속 차단됩니다.</p></section>
+<section><h2>2. 사례별 변경과 근거</h2><label for="review-case">확인할 사례</label><select id="review-case"></select><div class="pair"><article><h3>원인 힌트 없음</h3><div id="review-no-hint"></div></article><article><h3>원인 힌트 있음</h3><div id="review-hint"></div></article></div></section>
+<section><h2>3. 추가로 준비한 모델 입력</h2><p id="review-retrieval"></p><p>검색어의 결과가 0건이면 사용자가 적은 설명에서 관련 상품 후보를 찾습니다. 후보 이름·설명은 관찰 자료이며 운영 문서 인용이나 동의어 승인으로 사용하지 않습니다. 이 자료를 활용한 새 모델 응답과 독립적인 사람의 의미 평가는 미완료입니다.</p></section>
+<section><h2>4. 사람이 확인할 부분</h2><p>원인 설명의 충분성, 인용 원문의 의미적 지지, 수정 용어의 적절성, 보류 이유를 검토해야 합니다. 24건 모두 원문·검토 질문을 준비했습니다. AI의 사전 검토 의견은 별도 문서에 표시했고 사람의 평가 결과로 집계하지 않았습니다.</p><p><a href="https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/AI-REVIEW.md">24응답의 사전 검토 의견 보기</a></p></section>
+</main><script src="review-v4.js"></script></body></html>

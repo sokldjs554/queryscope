@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "primary_status_counts": {
+      "invalid": 8,
+      "supported": 7,
+      "abstain": 9
+    },
+    "runtime_status_counts": {
+      "invalid": 9,
+      "supported": 6,
+      "abstain": 9
+    },
+    "newly_blocked": 1,
+    "gate_measured": 6,
+    "accepted_responses": 4,
+    "rejected_responses": 2,
+    "regression_decreases": []
+  },
+  "preparation": {
+    "no_hint": {
+      "eligible": 8,
+      "prior_hits": 7,
+      "runtime_hits": 8
+    },
+    "hint": {
+      "eligible": 8,
+      "prior_hits": 8,
+      "runtime_hits": 8
+    }
+  },
+  "max_payload_bytes": 7444,
+  "all_within_request_limit": true,
+  "new_api_calls": 0
+}

@@ -1,54 +1,45 @@
 # 지원 문서 수정 기록
 
-2026-10-27. 사용자가 첨부한 Markdown 원문을 읽고 기존 별도 초안을 교체했다. 원본 첨부 파일은 변경하지 않았다. 문서 안의 서술은 자료로 읽었으며 별도 작업 지시로 실행하지 않았다.
+2026-10-28. 현재 지원 문서에 QueryScope v4의 실제 후속 분석을 반영하고 분량을 줄였다. 사용자 첨부 원본과 과거 평가 기록은 변경하지 않았다. 이번 작업은 문서 수정이며 새 모델 호출이나 사람의 의미 평가를 수행하지 않았다.
 
-| 원본 | SHA-256 | 수정본 |
+| 최초 첨부 원본 | SHA-256 | 현재 수정본 |
 |---|---|---|
-| Yoon_Gihyeok_Alba_CoverLetter.md | `e456a5f94f4884c6679e59f339f74621e798517a5a3570f4fb50c9cf9e690f46` | [자소서](cover-letter.md) |
-| Yoon_Gihyeok_KoSearch_Portfolio.md | `1321118486e1013ad84e46191ac888681d20e9e58c0ea0232f2cb0f8b6afdb35` | [포트폴리오](portfolio.md) |
+| Yoon_Gihyeok_Alba_CoverLetter.md | `e456a5f94f4884c6679e59f339f74621e798517a5a3570f4fb50c9cf9e690f46` | [자기소개서](https://github.com/sokldjs554/queryscope/blob/main/docs/application/cover-letter.md) |
+| Yoon_Gihyeok_KoSearch_Portfolio.md | `1321118486e1013ad84e46191ac888681d20e9e58c0ea0232f2cb0f8b6afdb35` | [포트폴리오](https://github.com/sokldjs554/queryscope/blob/main/docs/application/portfolio.md) |
 
-## 유지한 부분
+## 유지한 구성과 표현
 
-- 자소서의 지원동기·직무역량·문제 해결 경험·입사 후 포부 4개 항목과 순서를 유지했다. 지원동기와 입사 후 포부의 원래 논지를 살렸다.
-- 포트폴리오의 개발 배경부터 검증 자료까지 9개 항목과 순서를 유지했다. 기술 선택, 기존 인용 검증 과정과 실제 API 실험을 보존했다.
-- 지원 기업·지원 직무·이름·개인 프로젝트·Codex 활용은 사용자 원문에 따른다. 새 경력·학력·팀 기여·채용 데이터 경험은 추가하지 않았다.
-- 원문에 있던 기업 서비스와 채용 공고에 관한 설명을 유지했다. 이번 문서 수정에서 최신 채용 공고나 서비스 상태를 별도로 재조사한 것은 아니다.
+- 자기소개서의 지원동기·직무역량·문제 해결 경험·입사 후 포부 4개 항목과 순서를 유지했다. 제목은 ‘윤기혁 자기소개서’로 정리했다.
+- 포트폴리오의 개발 배경부터 검증 자료까지 9개 항목과 순서를 유지했다. 제목은 ‘QueryScope 프로젝트 포트폴리오’로 정리했다.
+- 지원 기업·직무·이름과 기업 서비스에 대한 지원동기는 기존 원문을 따랐다. 최신 채용 공고나 기업 서비스를 이번 문서 수정에서 재조사한 것은 아니다.
+- 개인 프로젝트의 방향·평가 범위를 정하고 코드 구현·실험 자동화·문서 정리에 Codex의 지원을 받았다는 역할을 명시했다. 새 경력·학력·기여 비율·고객 데이터·고객 성과는 추가하지 않았다.
 
-## 변경과 근거
+## v4 반영 내용과 근거
 
-| 반영 내용 | 근거 및 범위 |
+| 반영 내용 | 근거와 해석 범위 |
 |---|---|
-| QueryScope 이름과 새 저장소·PR 기반 출처 | [출처](../PROVENANCE.md), PR #2 기준 `493935f6`, 전체 이력 보존 |
-| 아답터·백팩 각각 nDCG@10 0→1 | [새 검증 기록](../verification/queryscope-v1/README.md), 사전+표준형의 수동 후보이며 기존 생성 성과와 분리 |
-| 새 24질의 중 순위 평가 20개의 0.8255→0.9142 | 사전 고정한 작성 자료, 같은 카탈로그·어휘 재사용, 관련 문서 없는 4개 제외 |
-| 무힌트 hit@3 1/11 및 미해결 순위 사례 | 새 LLM 진단 정확도가 아닌 근거 검색 결과. 보류 성능은 미실행 |
-| 의미 검토와 실제 효과의 구분 | [설명 평가 기준](../verification/queryscope-v1/rubric.json), 독립 인간 의미 평가는 미완료 |
-| 353 passed / 1 skipped / 2 deselected, CI 성공 | [검사 기록](../verification/queryscope-v1/checks/pytest.txt), [CI](https://github.com/sokldjs554/queryscope/actions/runs/40480583240) 코드 `714600f` |
-| 저장 재생 데모, Render live와 외부 접속 미확인 구분 | [배포 기록](../verification/queryscope-v1/deployment.json), 로컬 브라우저 검사와 공개 운영을 구분 |
-| 기존 실제 API 24회와 새 추가 호출 0회 | [과거 기록](../verification/alba-20261027/README.md)을 유지하고 새 무료 평가와 합산하지 않음 |
+| 최초 24응답의 통과 7·보류 9·차단 8 보존 | [v3 실제 평가](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/ACTUAL-API.md). supported를 의미적 정답으로 표현하지 않는다. |
+| 같은 응답의 새 적용 검사: 6·9·9 | [v4 원자료](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/run-v1/audit.json). 원응답·원문맥 재검사이며 최초 판정을 변경하지 않는다. |
+| microscope 힌트 응답 추가 차단 | 색인에 없는 대표어 마이크로스코프를 `canonical_not_in_index`로 효과 평가 전에 차단. 카탈로그 표현은 광학 현미경이다. |
+| 남은 6응답 중 4채택·2기각 | 팔래트·파스탤의 각 조건 4응답이 nDCG 0→1. 서로 다른 질의로는 2개다. 박자기의 2응답은 0→0으로 기각. |
+| 측정한 회귀 저하 0 | 각 후보를 따로 적용한 기존 36질의와 v3 정답 있는 16질의의 결과. 평가셋 밖의 무회귀를 보장하지 않는다. |
+| 설명 기반 후보 보완 | 0건일 때 일반 안내 표현을 제외한 단서가 둘 이상 겹치는 후보만 제시. 의미 대응을 확정하지 않는다. |
+| 원칙 검색 7/8→8/8 | 이미 개선에 사용한 v3 개발 자료의 무힌트 결과. 힌트는 8/8 유지. 새 모델 정확도·독립 평가 성과가 아니다. |
+| 새 입력 48개 준비·모델 응답 0 | 최대 요청 본문 7,444바이트, 제한 11,000바이트 이내. v4 유료 호출 0회. 과거 실제 비용은 토큰 기준 추정 $0.0385605. |
+| 역사적 기록 보존 | [보존 대조](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/preservation.json)의 159개 파일과 기존 준비 입력 48개의 문맥·요청 재현. |
+| 사람 평가 24건 미완료 | [검토 안내](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md)와 [AI 사전 검토](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/AI-REVIEW.md)를 준비. AI 메모는 독립 사람의 평가가 아니다. |
+| 화면 경로 | `/review-v4.html`을 후속 검토 화면으로, `/generation-v3.html`을 원래 실제 응답 재생으로 구분. 이번 문서에서 최신 배포·접속 성공을 확정하지 않는다. |
 
-원문의 모든 2단계 제목과 순서가 수정본에서도 같은지 비교했다. 수치·제한 조건을 보존 기록과 대조했다. 문서만 수정했으며 모델 생성·평가를 새로 실행하지 않았다. 지원 분량 제한은 제공되지 않아 임의의 글자 수 제한을 적용하지 않았다.
+## 분량 조정과 과거 이력
 
-## v2 후속 수정 (2026-10-27)
+자기소개서는 핵심 문제 해결 흐름을 중심으로 2,549자(공백·제목 포함)로 줄였다. 포트폴리오는 중복 설명과 과거 실험 세부 표를 압축했다. 최종 PDF는 자기소개서 2쪽·포트폴리오 4쪽이며, 한국어 글꼴을 포함하고 모든 쪽을 이미지로 렌더링해 글자 잘림·표 겹침·쪽 나눔을 확인했다. PDF에 포함된 링크는 웹 주소로 연결하고, 편집 가능한 Markdown과 본문을 일치시켰다.
 
-원문에서 이어온 자소서4항목·포트폴리오9항목과 순서를 유지했다. v1 24개를 개발용으로 전환한 사실을 명시하고, 개발 개선과 새18상품·24질의 평가를 분리했다.
+2026-10-27의 v1·v2·v3 수정 내용은 Git 이력과 아래 원자료에 보존한다. 개발 개선과 별도 작성 자료, 근거 검색과 실제 생성, 인용 일치와 의미 판단을 계속 구분한다.
 
-- 무힌트 근거 검색: 개발1/11→10/11, 새6/15→10/15. 진단 정확도로 표현하지 않음.
-- 유의어3/3→2/3 하락, 분해 오류 가설0/3과 관측 불일치, 전등 정답 모호성을 반영.
-- 카페트·워시 개선과 초콜렛의 미해결 향초, 개발순위0.9142→0.9992와 새순위0.5351→0.5351을 분리.
-- 새 실제 LLM 평가는 입력24개 준비·미승인($0.30 상한)·미실행, 독립 인간 의미 평가는 미완료.
-- 로컬370테스트 및 화면검사와 공개접속 미확인 범위를 구분. 새 개인 경력·학력·기여 비율·고객 성과를 추가하지 않음.
+- [v1 기록](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v1/README.md): 아답터·백팩 수동 후보, 초기 개발 평가, 과거 응답 재검증.
+- [v2 기록](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v2/README.md): 개발 근거 검색 개선과 별도 18상품·24질의의 미개선 결과·작성 가설 한계.
+- [v3 기록](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/README.md): 정상 오신호 보완, 강제 통짜 색인 결함, 별도 16상품·24질의 구성.
+- [v3 실제 API](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/ACTUAL-API.md): 승인 후 24회 실제 호출, 최초 판정, 비용·실패 분석.
+- [공개 데모 사용자 확인](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v3/USER-ACCEPTANCE.md): 2026-10-27 접속·수동 테스트 완료 보고. 미제공 기기·브라우저·세부 항목이나 장기 운영 성과는 추가하지 않는다.
 
-근거: [v2 전체 기록](../verification/queryscope-v2/README.md), [원자료](../verification/queryscope-v2/run-v1/results.json), [운영](../verification/queryscope-v2/OPERATIONS.md). 이전 v1 문서·원본 SHA는 Git 이력과 이 문서 상단에 보존한다.
-
-## v3 후속 수정 (2026-10-27)
-
-구성과 개인 기여 표현을 유지하고 [v3 실측](../verification/queryscope-v3/README.md)에 맞춰 수정했다. 새 정상 오신호8/8→0/8, 무힌트7/8→7/8 미개선, 개발 유의어 복구, 강제 통짜 색인4개와 자연 발생 장애의 구분을 반영했다. 개발자료/새자료, 원칙 검색/실제 LLM, 인용 추적/독립 의미평가를 분리했다. 새 학력·경력·팀 기여·고객 성과는 추가하지 않았다. API 추가0회와 독립 인간 평가 미완료를 유지했다. 과거 문안·성과는 Git 이력과 v1/v2 기록에 보존한다.
-
-## v3 승인 후 실제 API 결과 반영
-
-기존 자소서4항목·포트폴리오9항목을 유지했다. 실제 응답24/API오류0, 자동 검증7통과·9보류·8차단, 보류계약각4/6, 후보4응답채택·3기각을 반영했다. 라벨 일치를 의미 정확도로 표현하지 않고, 사후 가상 적용을 일차 성공에 합산하지 않았다. 비용은 청구액이 아닌 표준 단가 토큰 추정이다. 개인 기여 표현과 Codex 활용을 유지하고 새 경력·고객 성과는 추가하지 않았다. 근거: [실제 API 기록](../verification/queryscope-v3/ACTUAL-API.md).
-
-## 공개 데모 사용자 확인 반영
-
-2026-10-27 사용자의 접속·수동 테스트 완료 보고를 포트폴리오에 반영했다. 미제공 기기·브라우저·세부 항목이나 장기 운영 성과는 추가하지 않았으며, Codex의 프록시 차단과 독립 인간 의미 평가 미완료는 별도로 유지했다. [근거](../verification/queryscope-v3/USER-ACCEPTANCE.md).
+최신 문서는 전체 테스트 수나 최신 CI·배포 성공을 앞선 기록에서 그대로 옮기지 않았다. 이번 로컬 전체 검증은 419 passed·1 skipped·2 deselected이며, 실제 브라우저에서 24응답과 4개 화면 너비를 검사했다. 과거 검사 결과는 해당 버전의 증거로 남겼으며, 현재의 상세 검증 범위는 [v4 기록](https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/README.md)에 연결한다.

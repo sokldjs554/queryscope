@@ -1,0 +1,25 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+______________ test_audit_refuses_overwrite_and_non_actual_input _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_audit_refuses_overwrite_a0')
+
+    def test_audit_refuses_overwrite_and_non_actual_input(tmp_path):
+>       from searchclinic.evaluation.runtime_audit import run_audit
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.runtime_audit'
+
+tests/test_runtime_audit.py:11: ModuleNotFoundError
+___________ test_audit_preserves_primary_answers_and_has_no_provider ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_audit_preserves_primary_a0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa14b0438c0>
+
+    def test_audit_preserves_primary_answers_and_has_no_provider(tmp_path, monkeypatch):
+>       from searchclinic.evaluation.runtime_audit import run_audit
+E       ModuleNotFoundError: No module named 'searchclinic.evaluation.runtime_audit'
+
+tests/test_runtime_audit.py:24: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_runtime_audit.py::test_audit_refuses_overwrite_and_non_actual_input
+FAILED tests/test_runtime_audit.py::test_audit_preserves_primary_answers_and_has_no_provider
+2 failed in 0.11s

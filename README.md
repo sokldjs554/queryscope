@@ -6,6 +6,7 @@
 
 ## 먼저 보기
 
+- [v4 후속 검사·검토 자료](docs/verification/queryscope-v4/README.md): 같은 실제 24응답의 원판정과 새 적용 검사를 비교합니다. 신규 모델 호출은 0회이며 로컬 `/demo/review-v4.html`에서 확인합니다. v4 CI·배포 확인은 진행 중입니다.
 - [v3 새 실제 모델 응답 24건](https://queryscope-zwia.onrender.com/generation-v3.html): 힌트 유무, 인용 차단, 보류와 수정 효과 비교.
 - [과거 실제 API 응답 재생](https://queryscope-zwia.onrender.com/): 기존에 생성한 24응답과 수정안 채택·기각 기록.
 - [v3 정상 검색·통제된 누락 비교](https://queryscope-zwia.onrender.com/evaluation-v3.html): 정상 검색의 잘못된 누락 신호와 미개선 사례.
@@ -14,7 +15,21 @@
 
 공개 사이트는 **저장 결과를 읽는 정적 데모**입니다. 새 모델을 호출하지 않습니다. 2026-10-27 사용자가 공개 접속과 수동 테스트 완료를 확인했습니다([확인 기록](docs/verification/queryscope-v3/USER-ACCEPTANCE.md)). Codex 환경의 직접 접속은 프록시 CONNECT403으로 차단됐던 기록을 유지합니다. 로컬 데스크톱·모바일 자동 검사도 통과했습니다. 최신 배포 상태와 확인 범위는 [운영 기록](docs/verification/queryscope-v3/OPERATIONS.md)에 구분합니다.
 
-## 이번에 확인한 결과
+## 최신 v4: 원응답 보존과 실행 전 검사
+
+v3 실제 응답에서 상품 관찰 ID를 지식 출처로 인용한 오류와 색인에 없는 대표어 후보를 확인해 런타임 계약을 보완했습니다. 지식 문서 ID만 인용하도록 입력에 허용 목록을 넣고, 기존 원문 인용 검사를 통과한 뒤에도 실제 색인 대표어·복합어 전체·질의와 수정 대상의 관계를 검사합니다. 상품 설명으로 찾은 후보는 의미 관계가 확인되지 않은 관찰로만 전달합니다.
+
+| 측정 | v4 후속 결과 | 해석 |
+|---|---|---|
+| 저장된 실제24응답 재검사: 통과 / 보류 / 차단 | **7 / 9 / 8 → 6 / 9 / 9** | `microscope` 힌트 응답의 없는 대표어1건 추가 차단; 최초 판정 보존 |
+| 실행 조건을 통과한6후보 | **4응답 채택 / 2응답 기각** | 채택은 고유2질의, 의미적 타당성은 사람 검토 필요 |
+| v3 개발8개 계열: 무힌트 근거 hit@3 | **7/8 → 8/8** | 이미 본 개발 자료의 일반 원칙 검색, 새 모델 진단 성능 아님 |
+| 새 런타임 입력 | **48건 준비 / 모델 응답0건** | 최대7,444바이트, 기존11,000바이트 한도 이내 |
+| 과거 원자료·검토 | **159파일 보존 / 사람24건 pending** | AI 사전 검토와 독립 인간 판정을 구분 |
+
+추가 모델 호출·새 모델 응답은 **0건**입니다. 인용 추적과 적용 가능성 검사를 보완했으며, 새 프롬프트가 생성 오류를 줄였다는 실측은 없습니다. 자료를 본 뒤 보완했으므로 v3는 이제 개발 자료입니다. [원자료·구현·검증·남은 한계](docs/verification/queryscope-v4/README.md) · [AI 사전 검토](docs/verification/queryscope-v4/AI-REVIEW.md) · [사람 검토 안내](docs/verification/queryscope-v4/HUMAN-REVIEW-GUIDE.md).
+
+## v3에서 확인한 결과
 
 기존 상품 카탈로그 72건과 평가셋 36질의(건강 20 + 실패 16)는 회귀 검사에 유지합니다. v1·v2 자료는 후속 개선에 사용해 **개발 자료**로 전환했습니다. 새로운 **16상품·24질의**의 정답·기준·분석기 구성을 실행 전에 `2e7ec2c`와 SHA-256으로 고정했습니다. 이전 실제 API와 v1/v2 자료는 보존했습니다.
 
@@ -55,20 +70,24 @@ pip install -e '.[api,mcp,dev,scale]'
 python -m searchclinic.api.explanation_api
 ```
 
-[http://127.0.0.1:8000/demo/](http://127.0.0.1:8000/demo/) → **v3 비교 보기**에서 사례를 선택하면 입력·토큰·기존/보완 문서·인용 원문을 따라갈 수 있습니다. API 키 없이 동작합니다.
+[http://127.0.0.1:8000/demo/](http://127.0.0.1:8000/demo/) → **후속 검사·검토**에서 같은24응답의 원판정·후속 검사·미생성 입력을 비교합니다. **v3 비교 보기**에서는 이전 입력·토큰·문서·인용 원문을 확인합니다. API 키 없이 동작합니다.
 
 ```bash
 python -m pytest -q
 clinic baseline
+python scripts/evaluate_queryscope_runtime.py --output work/reproduction-v4
+python scripts/export_queryscope_runtime.py --input work/reproduction-v4/audit.json --output work/review-v4.json
 python scripts/evaluate_queryscope_v3.py --output work/reproduction-v3
 python scripts/evaluate_queryscope_v2.py --output work/reproduction-v2
 python scripts/evaluate_queryscope_llm.py --suite queryscope-v3 --output work/llm-prepared-v3
 python scripts/verify_queryscope_operations.py --output work/operations-v3
 ```
 
-출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. `evaluate_queryscope_llm.py` 기본 실행은 공급자를 만들지 않는 무료 준비 모드입니다. [전체 원자료·재현 근거](docs/verification/queryscope-v3/README.md).
+평가 출력 폴더가 이미 있으면 중단하며, 동결 자료의 해시가 다르면 평가하지 않습니다. v4는 실제 원응답·입력·준비 해시·응답ID의 연결도 검사하며 저장된24응답의 재검사와48입력 준비만 수행합니다. `evaluate_queryscope_llm.py` 기본 실행도 공급자를 만들지 않는 무료 준비 모드입니다. [v4 재현 근거](docs/verification/queryscope-v4/README.md) · [v3 원자료](docs/verification/queryscope-v3/README.md).
 
-로컬 전체 검사 **383 passed, 1 skipped, 2 deselected**. 기본 검색 기준선 평균 nDCG0.5839 유지. [최종 CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트가 모두 통과했습니다. 1440/320/390/650px에서 재생·비교·원문 펼침·로딩 실패·가로 넘침을 검사했습니다. [검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 공개 접속은 사용자 확인 기록이 있으며, 독립 인간 의미 평가와 장기 운영 성능은 별도 미완료입니다.
+최신 로컬 전체 검사 **419 passed, 1 skipped, 2 deselected**(107.86초), 기본 검색 기준선 평균 nDCG0.5839 유지. [v4 테스트 기록](docs/verification/queryscope-v4/checks/pytest-final.txt). v4 화면은1440/320/390/650px에서24행·탐색·원판정 비교·미생성 표시·로딩 실패·가로 넘침 등12검사를 통과했습니다([브라우저 기록](docs/verification/queryscope-v4/browser-final/checks.json)). v4 CI·배포 확인은 진행 중이며 성공 여부는 별도 운영 기록에 추가합니다.
+
+과거 v3의 [CI](https://github.com/sokldjs554/queryscope/actions/runs/40520729351)는 Ubuntu·Windows 테스트와 검색 품질 게이트를 통과했고, 공개 접속은 사용자 확인 기록이 있습니다. 이는 v4의 배포 확인과 구분합니다. [v3 검사·지연·CI·배포 범위](docs/verification/queryscope-v3/OPERATIONS.md). 독립 인간 의미 평가와 장기 운영 성능은 미완료입니다.
 
 ## 승인 후 실제 LLM 평가
 

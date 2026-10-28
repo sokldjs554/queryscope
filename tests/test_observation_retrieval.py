@@ -10,7 +10,8 @@ from searchclinic.service import ClinicService
 
 def test_service_uses_actual_token_and_raw_observations_without_root_cause_hint():
     context, _ = ExplanationService(ClinicService()).context('워시', '세정용 상품을 찾습니다.')
-    assert context.get('retrieval', {}).get('strategy') == 'observed'
+    assert context.get('retrieval', {}).get('strategy') == 'runtime_description'
+    assert context['retrieval']['base_strategy'] == 'observed_v3'
     assert any(s['kind'] == 'raw_substring_token_gap' for s in context['retrieval']['signals'])
     assert {'K004', 'K009'} & {d['id'] for d in context['documents']}
 

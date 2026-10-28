@@ -1,0 +1,43 @@
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+......................F.................F............................... [ 52%]
+........................................................................ [ 69%]
+........................................................................ [ 86%]
+......................................................                   [100%]
+=================================== FAILURES ===================================
+_ test_service_uses_actual_token_and_raw_observations_without_root_cause_hint __
+
+    def test_service_uses_actual_token_and_raw_observations_without_root_cause_hint():
+        context, _ = ExplanationService(ClinicService()).context('워시', '세정용 상품을 찾습니다.')
+>       assert context.get('retrieval', {}).get('strategy') == 'observed'
+E       AssertionError: assert 'runtime_description' == 'observed'
+E
+E         - observed
+E         + runtime_description
+
+tests/test_observation_retrieval.py:13: AssertionError
+____________________ test_every_file_open_declares_encoding ____________________
+
+    def test_every_file_open_declares_encoding():
+        """소스 전체: 텍스트 파일을 여는 모든 호출은 encoding을 명시해야 한다."""
+        offenders = [
+            line
+            for path in _python_files()
+            for line in find_unencoded_opens(
+                path.read_text(encoding="utf-8"), str(path.relative_to(ROOT))
+            )
+        ]
+>       assert not offenders, (
+            "encoding 없이 텍스트 파일을 엽니다 — 한국어 Windows(cp949)에서 깨집니다:\n  "
+            + "\n  ".join(offenders)
+        )
+E       AssertionError: encoding 없이 텍스트 파일을 엽니다 — 한국어 Windows(cp949)에서 깨집니다:
+E           tests/test_runtime_audit.py:17: write_text(...) — encoding 없음
+E           tests/test_runtime_retrieval.py:101: read_text(...) — encoding 없음
+E       assert not ['tests/test_runtime_audit.py:17: write_text(...) — encoding 없음', 'tests/test_runtime_retrieval.py:101: read_text(...) — encoding 없음']
+
+tests/test_portability.py:101: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_retrieval.py::test_service_uses_actual_token_and_raw_observations_without_root_cause_hint
+FAILED tests/test_portability.py::test_every_file_open_declares_encoding - As...
+2 failed, 412 passed, 1 skipped, 2 deselected in 112.77s (0:01:52)
