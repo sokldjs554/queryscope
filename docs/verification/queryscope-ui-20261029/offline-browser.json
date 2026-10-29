@@ -1,0 +1,24 @@
+{
+  "mode": "offline DOM: actual local HTML/CSS/JS and immutable JSON; no network navigation",
+  "passed": true,
+  "new_model_calls": 0,
+  "slots_checked": 48,
+  "viewports": [
+    320,
+    390,
+    650,
+    1024,
+    1440
+  ],
+  "summary_cells_checked": 44,
+  "filters": [
+    "search",
+    "group",
+    "outcome",
+    "empty",
+    "reset"
+  ],
+  "keyboard_tabs": true,
+  "source_rows_unchanged": true,
+  "js_errors": []
+}

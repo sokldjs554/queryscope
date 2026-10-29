@@ -1,0 +1,51 @@
+name: UI workbench verification
+on:
+  push:
+    branches: [ui/search-quality-workbench]
+    paths:
+      - src/searchclinic/web/**
+      - scripts/browser_queryscope_workbench.py
+      - .github/workflows/ui-workbench.yml
+  pull_request:
+    paths:
+      - src/searchclinic/web/**
+      - scripts/browser_queryscope_workbench.py
+      - .github/workflows/ui-workbench.yml
+  workflow_dispatch:
+    inputs:
+      public_check:
+        description: Verify the existing public Render site after deployment
+        type: boolean
+        required: false
+        default: false
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install isolated browser test dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Verify local files and all 48 recorded responses
+        if: ${{ !inputs.public_check }}
+        run: python scripts/browser_queryscope_workbench.py --output work/workbench-browser
+      - name: Verify public site with normal TLS validation
+        if: ${{ inputs.public_check }}
+        run: python scripts/browser_queryscope_workbench.py --base-url https://queryscope-zwia.onrender.com --output work/workbench-browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: queryscope-workbench-${{ github.run_id }}
+          path: work/workbench-browser/
+          retention-days: 14
+          if-no-files-found: warn

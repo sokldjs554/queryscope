@@ -1,17 +1,71 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QueryScope · v4 실제 모델 평가</title><link rel="stylesheet" href="style.css"><style>
-.actual{max-width:1100px;margin:auto;padding:30px 24px}.actual section{margin:34px 0}.actual nav{display:flex;flex-wrap:wrap;gap:16px;margin:22px 0}.actual a{color:var(--accent)}.actual h2{font-size:22px}.actual h3{font-size:17px}.actual table{width:100%;min-width:560px;border-collapse:collapse}.actual th,.actual td{padding:11px;text-align:left;border-bottom:1px solid var(--line)}.scroll{overflow-x:auto}.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}.pair article{min-width:0;padding:18px 0;border-top:2px solid var(--ink)}.actual pre{font:12px/1.7 system-ui;white-space:pre-wrap;overflow-wrap:anywhere}.actual select{max-width:100%;margin:10px 10px 10px 0}.actual p,.actual details,.actual blockquote{overflow-wrap:anywhere}.actual details{margin:15px 0}.actual summary{cursor:pointer}.notice,.load-status{padding:14px 0;border-block:1px solid var(--line)}.filters{display:flex;flex-wrap:wrap;gap:12px}.filters label{display:block}header{gap:14px;flex-wrap:wrap}@media(max-width:650px){.pair{grid-template-columns:1fr}.actual{padding:24px 20px}}
-</style></head><body>
-<header><a class="brand" href="./">QueryScope<span>검색 진단과 검증</span></a><span>v4 · 신규 실제 응답의 저장 재생</span></header>
-<main class="actual">
-<p class="eyebrow">NEW RESPONSES · PAIRED COMPARISON · ISOLATED EFFECT</p>
-<h1>검사와 검색 근거를 바꾼 뒤<br>모델은 어떻게 응답했을까?</h1>
-<p>새 입력의 실제 모델 평가를 저장 자료로 확인합니다. 기존 v3의 12사례 × 힌트 유무와 직접 비교하는 24슬롯, 추가 개발 12사례 × 힌트 유무의 24슬롯을 구분합니다. API 오류도 원래 슬롯에 남기며 이 화면은 모델을 호출하지 않습니다.</p>
-<nav><a href="review-v4.html">기존24응답 후속 재검사</a><a href="generation-v3.html">보존된 v3 실제24응답</a><a href="evaluation-v3.html">오프라인 검색 비교</a><a href="./">원본 PR 재생</a><a href="https://github.com/sokldjs554/queryscope/tree/main/docs/verification/queryscope-v4/actual-api-v1">신규 원자료 · HTTP 기록</a></nav>
-<p id="v4-status" class="load-status" role="status" aria-live="polite">저장한 실제 평가 자료를 불러오는 중입니다.</p>
-<div id="v4-content" hidden>
-<section><h2>1. 호출 · 응답 · 비용의 범위</h2><p id="v4-cost"></p><p id="v4-cost-scope"></p><p class="notice">토큰 사용량 기반 비용 추정은 청구서가 아닙니다. 응답을 받지 못했거나 사용량이 없으면 누락 범위를 표시합니다. 인용 추적·실행 조건 통과는 의미적 정답을 보장하지 않으며 독립적인 사람의 의미 검토가 필요합니다.</p></section>
-<section><h2>2. 직접비교24와 추가24의 결과</h2><p>작은 화면에서는 표를 좌우로 움직여 확인할 수 있습니다.</p><div class="scroll"><table><thead><tr><th>자동 검사 · 격리 적용</th><th>직접비교 무힌트12</th><th>직접비교 힌트12</th><th>추가 무힌트12</th><th>추가 힌트12</th></tr></thead><tbody id="v4-summary"></tbody></table></div><p>직접비교는 기존 응답과 동일한 사례·조건의 새 호출입니다. 추가24는 별도 개발 자료이며 기존24와의 개선율로 합산하지 않습니다. 작성 카탈로그·가설·정답을 사용한 평가이므로 고객 일반화나 진단 정확도로 해석하지 않습니다.</p><p id="v4-citations" class="notice"></p><h3>동일24슬롯의 기존 판정과 새 판정</h3><div class="scroll"><table><thead><tr><th>검사 항목</th><th>기존 v3 일차 판정24</th><th>새 v4 직접비교24</th></tr></thead><tbody id="v4-comparison"></tbody></table></div><p>모델 입력과 검증 계약을 함께 바꾼 비교입니다. 차이를 어느 한 변경의 단독 효과로 분리하지 않습니다. 기존 원응답과 당시 판정은 그대로 보존합니다.</p></section>
-<section><h2>3. 모든 입력 · 응답 · 인용 · 적용 결과</h2><div class="filters"><div><label for="v4-group">평가 범위</label><select id="v4-group"><option value="paired_v3">직접비교 12사례 · 24슬롯</option><option value="additional_development">추가 개발 12사례 · 24슬롯</option><option value="all">전체 24사례 · 48슬롯</option></select></div><div><label for="v4-case">사례</label><select id="v4-case"></select></div></div><p id="v4-note"></p><div class="pair"><article><h3>원인 힌트 없음</h3><div id="v4-no-hint"></div></article><article><h3>원인 힌트 있음</h3><div id="v4-hint"></div></article></div></section>
-<section><h2>4. 해석할 때 남는 한계</h2><p>격리 엔진의 채택·기각은 작성 평가셋에서 측정한 결과입니다. 서비스의 기본 검색 설정은 바뀌지 않습니다. 상품 설명에서 찾은 후보와 철자 유사도는 의미 동등성의 증거가 아니며, 원인·인용 의미·수정 범위는 별도 검토 대상입니다.</p><details><summary>원자료 추적 정보</summary><pre id="v4-provenance"></pre></details></section>
-</div></main><script src="generation-v4.js"></script></body></html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="한국어 검색 진단과 수정 후보 검증. 실제 모델 응답 48건의 입력, 근거, 판정, 회귀 검사 비교.">
+  <title>검색 품질 검증 · QueryScope</title>
+  <link rel="stylesheet" href="workbench.css?v=20261029-1">
+</head>
+<body class="workbench">
+<a class="skip-link" href="#panel-cases">사례 검토로 이동</a>
+<header class="app-header">
+  <a class="wordmark" href="generation-v4.html"><span class="brand-mark" aria-hidden="true">Q</span>QueryScope</a>
+  <span class="header-context">검색 진단 / 평가 기록</span>
+  <nav class="header-links" aria-label="프로젝트 자료"><a href="https://github.com/sokldjs554/queryscope">GitHub ↗</a><a href="https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/ACTUAL-API.md">검증 보고서 ↗</a></nav>
+</header>
+<main class="app-main">
+  <div class="page-heading"><div><p class="section-kicker">QUERY REVIEW</p><h1>검색 품질 검증</h1><p class="page-description">검색어, 원문 근거, 수정 후보의 두 조건 비교</p></div><div class="dataset-label"><span class="status-dot" aria-hidden="true"></span>저장 응답 재생<span class="dataset-version">v4 / 개발 평가</span></div></div>
+  <p id="v4-status" class="load-status" role="status" aria-live="polite">평가 자료 로딩 중</p>
+  <noscript><p>사례 비교에는 JavaScript가 필요합니다. <a href="https://github.com/sokldjs554/queryscope/blob/main/docs/verification/queryscope-v4/ACTUAL-API.md">검증 보고서</a>에서 원자료 확인이 가능합니다.</p></noscript>
+  <div id="v4-content" hidden>
+    <div class="tab-bar" role="tablist" aria-label="검토 화면">
+      <button id="tab-cases" role="tab" aria-selected="true" aria-controls="panel-cases" tabindex="0">사례 검토</button>
+      <button id="tab-summary" role="tab" aria-selected="false" aria-controls="panel-summary" tabindex="-1">평가 요약</button>
+      <button id="tab-info" role="tab" aria-selected="false" aria-controls="panel-info" tabindex="-1">실험 정보</button>
+      <span id="dataset-count" class="tab-meta"></span>
+    </div>
+    <section id="panel-cases" class="review-grid" role="tabpanel" aria-labelledby="tab-cases" tabindex="0">
+      <aside class="case-nav" aria-label="사례 탐색">
+        <div class="nav-heading"><h2>검토 목록</h2><span id="case-count" aria-live="polite"></span></div>
+        <label class="sr-only" for="case-search">질의 또는 사례 ID 검색</label><input id="case-search" type="search" placeholder="질의 또는 사례 ID" autocomplete="off" maxlength="100">
+        <div class="filter-row"><div><label for="v4-group">평가 범위</label><select id="v4-group"><option value="all">전체 사례</option><option value="paired_v3">직접 비교</option><option value="additional_development">추가 개발</option></select></div><div><label for="case-outcome">판정</label><select id="case-outcome"><option value="all">전체 판정</option><option value="accepted">채택 포함</option><option value="blocked">차단 포함</option><option value="rejected">기각 포함</option><option value="abstain">보류 포함</option></select></div></div>
+        <div class="list-columns" aria-hidden="true"><span>사례 / 질의</span><span>힌트 없음</span><span>힌트 있음</span></div>
+        <div id="case-list" class="case-list"></div>
+        <p id="case-empty" class="empty-state" hidden>일치하는 사례 없음</p>
+        <button id="reset-filters" class="text-button" type="button">필터 초기화</button>
+        <div class="list-legend"><span class="legend-dot accepted"></span>채택<span class="legend-dot blocked"></span>차단<span class="legend-dot abstain"></span>보류<span class="legend-dot rejected"></span>기각</div>
+      </aside>
+      <div class="case-stage">
+        <div id="no-selection" class="blank-selection" hidden><h2>검색 결과 없음</h2><p>검색어나 평가 범위 변경 필요</p></div>
+        <div id="selected-case">
+          <div class="case-toolbar"><div class="case-heading"><span id="case-id" class="case-code"></span><h2 id="case-title"></h2></div><div class="case-controls"><label class="sr-only" for="v4-case">사례 선택</label><select id="v4-case"></select><button id="case-prev" type="button" aria-label="이전 사례">←</button><button id="case-next" type="button" aria-label="다음 사례">→</button></div></div>
+          <p id="v4-note" class="case-note"></p>
+          <div class="comparison-grid"><article class="comparison"><div class="condition-heading"><h3>힌트 없음</h3><span>관찰만 제공</span></div><div id="v4-no-hint"></div></article><article class="comparison"><div class="condition-heading"><h3>힌트 있음</h3><span>원인 단서 추가</span></div><div id="v4-hint"></div></article></div>
+        </div>
+      </div>
+    </section>
+    <section id="panel-summary" class="document-panel" role="tabpanel" aria-labelledby="tab-summary" tabindex="0" hidden>
+      <div class="panel-heading"><h2>평가 요약</h2><p>응답 단위 집계 · 직접 비교 24응답 / 추가 개발 24응답</p></div>
+      <div id="summary-totals" class="summary-strip"></div>
+      <h3>조건별 판정</h3><div class="table-scroll" tabindex="0" aria-label="조건별 판정표"><table><thead><tr><th scope="col">검사 항목</th><th scope="col">직접 비교<br>힌트 없음</th><th scope="col">직접 비교<br>힌트 있음</th><th scope="col">추가 개발<br>힌트 없음</th><th scope="col">추가 개발<br>힌트 있음</th></tr></thead><tbody id="v4-summary"></tbody></table></div>
+      <p class="annotation">검사 통과는 인용·형식·적용 조건 판정이며 의미적 정답률이 아닙니다. 채택 수는 개별 후보의 응답 단위 집계입니다.</p>
+      <h3>기존 응답과 직접 비교</h3><div class="table-scroll" tabindex="0" aria-label="기존 응답 비교표"><table><thead><tr><th scope="col">검사 항목</th><th scope="col">기존 v3 · 24응답</th><th scope="col">새 v4 · 직접 비교 24응답</th></tr></thead><tbody id="v4-comparison"></tbody></table></div>
+      <p class="annotation">같은 사례·조건의 새 생성 비교입니다. 입력과 검증 계약을 함께 변경한 단일 배치로, 특정 변경 하나의 효과나 고객 성능으로 일반화하지 않습니다.</p>
+      <h3>원문 인용 대조</h3><p id="v4-citations" class="audit-note"></p>
+    </section>
+    <section id="panel-info" class="document-panel" role="tabpanel" aria-labelledby="tab-info" tabindex="0" hidden>
+      <div class="panel-heading"><h2>실험 정보</h2><p>모델 · 비용 · 평가 범위 · 원자료</p></div>
+      <h3>실행 및 비용</h3><p id="v4-cost"></p><p id="v4-cost-scope"></p>
+      <p class="annotation">사용량 기반 비용 추정이며 청구서 확정 금액이 아닙니다. 이 화면은 저장 자료만 읽고 새 모델을 호출하지 않습니다.</p>
+      <h3>판정 범위</h3><p>작성한 상품 카탈로그와 개발 평가셋의 결과입니다. 실제 알바천국 데이터나 고객 운영 성과가 아닙니다. 인용 일치, 수정안 형식, 개별 검색 효과를 분리해 확인합니다. 독립적인 사람의 의미 검토는 미완료입니다.</p>
+      <p>회귀 검사는 각 후보를 별도 엔진에 적용한 개발 16질의와 기존 36질의의 결과입니다. 여러 후보의 결합 성능이나 평가셋 밖의 무회귀를 보장하지 않습니다. 기본 검색 설정은 그대로 유지됩니다.</p>
+      <h3>검증 이력</h3><nav class="history-links" aria-label="이전 평가 기록"><a href="review-v4.html"><span>v4</span>기존 응답 재검사 →</a><a href="generation-v3.html"><span>v3</span>실제 모델 응답 →</a><a href="evaluation-v3.html"><span>v3</span>정상 검색·누락 비교 →</a><a href="evaluation-v2.html"><span>v2</span>근거 검색 평가 →</a><a href="evaluation.html"><span>v1</span>수정 효과 비교 →</a><a href="./"><span>기반</span>검색 진단 기록 →</a></nav>
+      <details class="record-details"><summary>원자료 해시 및 실행 식별자</summary><pre id="v4-provenance"></pre></details>
+      <a class="source-link" href="https://github.com/sokldjs554/queryscope/tree/main/docs/verification/queryscope-v4/actual-api-v1">실제 응답·HTTP 기록 원본 ↗</a>
+    </section>
+  </div>
+</main>
+<footer class="app-footer"><span>QueryScope · 한국어 검색 진단</span><span>작성 데이터 / 개별 후보 평가 / 독립 사람 검토 대기</span></footer>
+<script src="generation-v4.js?v=20261029-1"></script>
+</body></html>
