@@ -1,0 +1,20 @@
+{
+  "static_red": {
+    "failed": 3,
+    "reason": "old conversational headings and report layout"
+  },
+  "static_green": {
+    "passed": 3
+  },
+  "encoding_check": {
+    "passed": 1
+  },
+  "syntax_check": "node --check generation-v4.js; pass",
+  "local_full_pytest": {
+    "collection_errors": 30,
+    "reason": "kiwipiepy unavailable; full suite delegated to CI"
+  },
+  "local_http_browser": "ERR_BLOCKED_BY_ADMINISTRATOR before page execution; not counted as pass",
+  "offline_dom": "offline-browser.json",
+  "source_preservation": "preservation.json"
+}

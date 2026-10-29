@@ -1,0 +1,13 @@
+/* 2026-10-29: compact archive styling; replay/API DOM contracts unchanged. */
+:root{--ink:#1e2c35;--muted:#61717b;--line:#dce3e7;--paper:#fff;--accent:#126c65}
+html body header{padding:18px 28px;border-bottom:1px solid var(--line)}
+html body .brand{font-size:20px;border-left:4px solid var(--accent);padding-left:10px}.brand span{letter-spacing:1px;font-size:9px}
+html body h1{font-size:28px;letter-spacing:-.7px;line-height:1.4;margin-bottom:10px}
+html body .intro{padding:27px 28px 22px}.eyebrow{color:var(--muted);letter-spacing:1.4px}
+html body .evaluation h2,html body .review h2{font-size:17px}.evaluation>p,.review>p{font-size:13px;color:var(--muted)}
+html body .notice,html body #status{background:#f4f7f8}input:read-only,textarea:read-only{background:#f4f7f8}
+html body #cases button[aria-pressed=true]{background:#e3eeeb}.toolbar{font-size:12px}
+html body .evaluation nav,html body .review nav{gap:18px;font-size:12px;padding-block:12px;border-block:1px solid var(--line)}
+html body footer{border-top:1px solid var(--line)}.current-entry{background:#f4f7f8;border-block:1px solid var(--line);margin:18px 36px 0;padding:18px 0;grid-template-columns:196px 1fr}.current-entry h2{font-size:13px;padding-left:18px}.current-link{display:inline-block;color:var(--accent);font-size:17px;font-weight:650;text-decoration:none;margin-bottom:4px}.current-entry .small{margin-top:7px;font-size:11px}
+html body .evaluation,html body .review{padding-top:25px}
+@media(max-width:650px){html body header{padding:16px 20px}html body h1{font-size:25px}html body .intro{padding:24px 20px}.current-entry{margin-inline:20px;padding:16px}.current-entry h2{padding-left:0}.current-entry p{margin-top:6px}}
